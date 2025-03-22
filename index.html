@@ -6,8 +6,12 @@
     <title>Dishify - Recipe Destination</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
+    <link href="auth.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Production Tailwind CSS -->
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+    <!-- Supabase Client Library -->
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
 </head>
 <body>
     <nav>
@@ -384,7 +388,7 @@
         
         <div class="footer-bottom">
             <div class="copyright">
-                © <span id="currentYear">2025</span> Dishify. All rights reserved.
+                &copy; <span id="currentYear">2025</span> Dishify. All rights reserved.
             </div>
             <div class="datetime-display">
                 <span style="color: #FF8C00;" id="currentDay"></span> | 
@@ -401,18 +405,18 @@
    <!-- Login Dialog -->
 <dialog id="loginDialog" class="modal-dialog">
     <div class="dialog-content">
-        <form method="dialog">
-            <button class="close-btn" type="submit" aria-label="Close">×</button>
+        <form method="dialog" class="close-form">
+            <button class="close-btn" type="submit" aria-label="Close">&times;</button>
         </form>
         <h2>Login to Your Account</h2>
-        <form id="loginForm" class="auth-form">
+        <form id="login-form" class="auth-form">
             <div class="form-group">
-                <label for="loginEmail">Email</label>
-                <input type="email" id="loginEmail" required>
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
             </div>
             <div class="form-group">
-                <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" required>
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
             </div>
             <div class="form-options">
                 <button type="button" onclick="showForgotPassword()" class="forgot-link">Forgot Password?</button>
@@ -423,87 +427,53 @@
             Don't have an account? 
             <button type="button" onclick="switchToSignup()" class="link-button">Sign up</button>
         </p>
-                </div>
+    </div>
 </dialog>
 
 <!-- Signup Dialog -->
 <dialog id="signupDialog" class="modal-dialog">
     <div class="dialog-content">
-        <form method="dialog">
-            <button class="close-btn" type="submit" aria-label="Close">×</button>
+        <form method="dialog" class="close-form">
+            <button class="close-btn" type="submit" aria-label="Close">&times;</button>
         </form>
         <h2>Create Account</h2>
-        <form id="signupForm" class="auth-form">
+        <form id="signup-form" class="auth-form">
             <div class="form-group">
-                <label for="signupEmail">Email</label>
-                <input type="email" id="signupEmail" required>
-                </div>
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" required>
+            </div>
             <div class="form-group">
-                <label for="signupPassword">Password</label>
-                <input type="password" id="signupPassword" required>
-                </div>
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" required>
+            </div>
             <button type="submit" class="submit-btn">Sign Up</button>
-            </form>
+        </form>
         <p class="switch-form">
             Already have an account? 
             <button type="button" onclick="switchToLogin()" class="link-button">Login</button>
-            </p>
-        </div>
+        </p>
+    </div>
 </dialog>
 
-<!-- Login Modal -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
-        <h2>Login to Your Account</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="loginEmail">Email</label>
-                <input type="email" id="loginEmail" required>
-            </div>
-            <div class="form-group">
-                <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" required>
-            </div>
-            <button type="submit" class="submit-btn">Login</button>
-        </form>
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-<div id="signupModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeModal('signupModal')">&times;</span>
-        <h2>Create Account</h2>
-        <form id="signupForm">
-            <div class="form-group">
-                <label for="signupEmail">Email</label>
-                <input type="email" id="signupEmail" required>
-            </div>
-            <div class="form-group">
-                <label for="signupPassword">Password</label>
-                <input type="password" id="signupPassword" required>
-                    </div>
-            <button type="submit" class="submit-btn">Sign Up</button>
-        </form>
-                    </div>
-                </div>
-
-<!-- Add new Forgot Password Dialog -->
+<!-- Forgot Password Dialog -->
 <dialog id="forgotPasswordDialog" class="modal-dialog">
     <div class="dialog-content">
-        <form method="dialog">
-            <button class="close-btn" type="submit" aria-label="Close">×</button>
+        <form method="dialog" class="close-form">
+            <button class="close-btn" type="submit" aria-label="Close">&times;</button>
         </form>
         <h2>Reset Password</h2>
         <p class="dialog-description">Enter your email address and we'll send you a link to reset your password.</p>
-        <form id="forgotPasswordForm" class="auth-form">
+        <form id="forgot-password-form" class="auth-form">
             <div class="form-group">
-                <label for="resetEmail">Email Address</label>
-                <input type="email" id="resetEmail" required>
-                </div>
+                <label for="reset-email">Email Address</label>
+                <input type="email" id="reset-email" required>
+            </div>
             <button type="submit" class="submit-btn">Send Reset Link</button>
-            </form>
+        </form>
         <p class="switch-form">
             Remember your password? 
             <button type="button" onclick="switchToLogin()" class="link-button">Back to Login</button>
@@ -511,5 +481,6 @@
     </div>
 </dialog>
     <script src="main.js"></script>
+    <script src="auth.js"></script>
 </body>
-</html> 
+</html>

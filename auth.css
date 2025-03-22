@@ -1,0 +1,38 @@
+.welcome-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1000;
+}
+
+.welcome-content h1 {
+    color: #FF5722;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.welcome-content p {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.signout-btn {
+    background-color: #FF5722;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.signout-btn:hover {
+    background-color: #F4511E;
+}
