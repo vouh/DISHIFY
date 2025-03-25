@@ -1,9 +1,5 @@
-// Initialize Supabase client
-const { createClient } = supabase;
-const supabaseClient = createClient(
-    'https://itukwxjrkjlpimafhhie.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0dWt3eGpya2pscGltYWZoaGllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2NTI1NzcsImV4cCI6MjA1ODIyODU3N30.29hEH2ZTIkCgfiVt-2cwJzHw6PeLMdHYf7bfk3sV0nI'
-);
+// Use supabaseClient from config.js
+const supabaseClient = window.supabaseClient;
 
 // DOM Elements
 const loginForm = document.getElementById('login-form');
@@ -130,8 +126,8 @@ loginForm.addEventListener('submit', async (e) => {
         loginDialog.close();
     }
     
-    // Show the dashboard
-    showWelcomeMessage(email);
+    // Redirect to community page instead of showing dashboard
+    window.location.href = 'community.html';
 });
 
 signupForm.addEventListener('submit', async (e) => {
@@ -173,8 +169,10 @@ forgotPasswordForm.addEventListener('submit', async (e) => {
 // Auth state change listener
 supabaseClient.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_IN' && session) {
-        showWelcomeMessage(session.user.email);
+        // Redirect to community page on sign in
+        window.location.href = 'community.html';
     } else if (event === 'SIGNED_OUT') {
-        hideWelcomeMessage();
+        // Redirect to home page on sign out
+        window.location.href = 'index.html';
     }
 });

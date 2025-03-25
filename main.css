@@ -11,12 +11,15 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
+    padding: 15px 50px;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
     z-index: 1000;
+    height: 70px;
+    top: 0;
+    left: 0;
 }
 
 .logo {
@@ -37,6 +40,7 @@ nav {
     display: flex;
     gap: 30px;
     align-items: center;
+    height: 100%;
 }
 
 .nav-links a {
@@ -45,6 +49,9 @@ nav {
     position: relative;
     padding: 5px 0;
     transition: color 0.3s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .nav-links a::after {
@@ -1584,4 +1591,15 @@ nav {
     .hero h1 {
         font-size: 1.5rem;
     }
+}
+
+/* Community Page Styles */
+.community-container {
+    display: grid;
+    grid-template-columns: 300px 1fr 350px;
+    gap: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 90px 20px 20px;
+    min-height: calc(100vh - 80px);
 }

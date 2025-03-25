@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dishify - Community</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <link href="auth.css" rel="stylesheet">
+    <link href="community.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Production Tailwind CSS -->
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+    <!-- Supabase Client Library -->
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <!-- Config -->
+    <script src="config.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
+        
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <a href="#">Recipes <i class="fas fa-chevron-down" style="font-size: 12px;"></i></a>
+                <div class="dropdown-content">
+                    <div class="category">By Cuisine</div>
+                    <a href="#">African</a>
+                    <a href="#">Asian</a>
+                    <a href="#">European</a>
+                    <div class="category">By Meal</div>
+                    <a href="#">Breakfast</a>
+                    <a href="#">Lunch</a>
+                    <a href="#">Dinner</a>
+                    <div class="category">By Diet</div>
+                    <a href="#">Vegetarian</a>
+                    <a href="#">Vegan</a>
+                    <a href="#">Gluten-Free</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="community-container">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <div class="user-profile-card">
+                <img src="https://via.placeholder.com/100" alt="Profile" class="profile-pic">
+                <h2 class="user-name">Loading...</h2>
+                <p class="user-bio">Food lover and cooking enthusiast</p>
+                <button class="edit-profile-btn" onclick="editProfile()">Edit Profile</button>
+                <div class="quick-actions">
+                    <button class="action-btn" onclick="showRecipeUpload()">
+                        <i class="fas fa-plus"></i>
+                        Upload Recipe
+                    </button>
+                    <button class="action-btn" onclick="showMyRecipes()">
+                        <i class="fas fa-book"></i>
+                        My Recipes
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Feed -->
+        <div class="main-feed">
+            <div class="recipe-feed">
+                <h2>Recent Community Recipes</h2>
+                <div id="recipes-container"></div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="community-members">
+                <h3>Community Members</h3>
+                <div id="members-grid" class="members-grid"></div>
+                <button class="view-all-btn" onclick="viewAllMembers()">View All Members</button>
+            </div>
+            <div class="suggested-connections">
+                <h3>Suggested Connections</h3>
+                <div id="suggestions-grid" class="members-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipe Upload Dialog -->
+    <dialog id="recipeUploadDialog" class="modal-dialog">
+        <div class="dialog-content">
+            <button class="close-btn" onclick="this.closest('dialog').close()">&times;</button>
+            <h2>Upload Recipe</h2>
+            <form id="recipe-upload-form">
+                <input type="text" name="title" placeholder="Recipe Title" required>
+                <textarea name="description" placeholder="Recipe Description" required></textarea>
+                <textarea name="ingredients" placeholder="Ingredients (one per line)" required></textarea>
+                <textarea name="instructions" placeholder="Cooking Instructions" required></textarea>
+                <input type="file" name="image" accept="image/*" required>
+                <button type="submit">Upload Recipe</button>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section brand">
+                <div class="footer-logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
+                <p class="footer-description">Discover amazing recipes from around the world. Join our community of passionate food lovers.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" data-tooltip="Follow us on TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-link" data-tooltip="Like us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" data-tooltip="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" data-tooltip="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" data-tooltip="Subscribe on YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Browse Recipes</a></li>
+                    <li><a href="#">Submit Recipe</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section categories">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Kenyan Cuisine</a></li>
+                    <li><a href="#">African Dishes</a></li>
+                    <li><a href="#">Vegetarian</a></li>
+                    <li><a href="#">Quick & Easy</a></li>
+                    <li><a href="#">Healthy Options</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-phone"></i> +254 123 456 789</li>
+                    <li><i class="fas fa-envelope"></i> hello@dishify.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; <span id="currentYear">2025</span> Dishify. All rights reserved.
+            </div>
+            <div class="datetime-display">
+                <span style="color: #FF8C00;" id="currentDay"></span> | 
+                <span style="color: #FF8C00;" id="currentTime"></span>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="community.js"></script>
+    <script src="main.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
