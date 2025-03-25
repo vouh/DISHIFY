@@ -12,6 +12,28 @@
     <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
     <!-- Supabase Client Library -->
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <style>
+        /* Dashboard styles */
+        .dashboard-container {
+            background-color: #f8f9fa;
+            min-height: 80vh;
+        }
+        .dashboard-content {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        /* Add dashboard styles */
+        .dashboard-container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .dialog {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -402,12 +424,13 @@
         </div>
     </footer>
 
+    <!-- Add dashboard container -->
+    <div id="dashboard-container" class="dashboard-container" style="display: none;"></div>
+
    <!-- Login Dialog -->
 <dialog id="loginDialog" class="modal-dialog">
     <div class="dialog-content">
-        <form method="dialog" class="close-form">
-            <button class="close-btn" type="submit" aria-label="Close">&times;</button>
-        </form>
+        <button class="close-btn" onclick="document.getElementById('loginDialog').close()" aria-label="Close">&times;</button>
         <h2>Login to Your Account</h2>
         <form id="login-form" class="auth-form">
             <div class="form-group">
@@ -433,9 +456,7 @@
 <!-- Signup Dialog -->
 <dialog id="signupDialog" class="modal-dialog">
     <div class="dialog-content">
-        <form method="dialog" class="close-form">
-            <button class="close-btn" type="submit" aria-label="Close">&times;</button>
-        </form>
+        <button class="close-btn" onclick="document.getElementById('signupDialog').close()" aria-label="Close">&times;</button>
         <h2>Create Account</h2>
         <form id="signup-form" class="auth-form">
             <div class="form-group">
@@ -462,9 +483,7 @@
 <!-- Forgot Password Dialog -->
 <dialog id="forgotPasswordDialog" class="modal-dialog">
     <div class="dialog-content">
-        <form method="dialog" class="close-form">
-            <button class="close-btn" type="submit" aria-label="Close">&times;</button>
-        </form>
+        <button class="close-btn" onclick="document.getElementById('forgotPasswordDialog').close()" aria-label="Close">&times;</button>
         <h2>Reset Password</h2>
         <p class="dialog-description">Enter your email address and we'll send you a link to reset your password.</p>
         <form id="forgot-password-form" class="auth-form">
@@ -481,6 +500,7 @@
     </div>
 </dialog>
     <script src="main.js"></script>
+    <script src="dashboard.js"></script>
     <script src="auth.js"></script>
 </body>
 </html>

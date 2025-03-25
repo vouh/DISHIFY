@@ -74,16 +74,15 @@ async function handleSignOut() {
 }
 
 // Show welcome message
-function showWelcomeMessage(email) {
-    welcomeMessage.innerHTML = `
-        <div class="welcome-content">
-            <h1>Welcome to Dishify!</h1>
-            <p>Logged in as: ${email}</p>
-            <button onclick="handleSignOut()" class="signout-btn">Sign Out</button>
-        </div>
-    `;
-    welcomeMessage.style.display = 'block';
-    document.querySelector('.nav-links .auth-buttons').style.display = 'none';
+async function showWelcomeMessage(email) {
+    console.log('Showing dashboard for:', email);
+    const { data: { user }, error } = await supabaseClient.auth.getUser();
+    if (error) {
+        console.error('Error getting user:', error.message);
+        return;
+    }
+    console.log('User data:', user);
+    showDashboard(user.id);
 }
 
 // Hide welcome message
@@ -114,6 +113,7 @@ function showForgotPasswordDialog() {
 // Form event listeners
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    console.log('Login form submitted');
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
     
@@ -123,7 +123,14 @@ loginForm.addEventListener('submit', async (e) => {
         return;
     }
     
-    document.getElementById('loginDialog').close();
+    console.log('Login successful');
+    // Close the dialog after successful login
+    const loginDialog = document.getElementById('loginDialog');
+    if (loginDialog) {
+        loginDialog.close();
+    }
+    
+    // Show the dashboard
     showWelcomeMessage(email);
 });
 
