@@ -1,203 +1,203 @@
 // Community Page JavaScript
 
 // Initialize page when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeCommunityPage);
-
-async function initializeCommunityPage() {
-    // Temporarily disable auth check for development
-    /*
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+document.addEventListener('DOMContentLoaded', function() {
+    initializePage();
+    initializeEventListeners();
     
-    if (userError || !user) {
-        window.location.href = 'index.html';
-        return;
-    }
-    */
+    // Initialize grid layout
+    adjustGridLayout();
+    window.addEventListener('resize', adjustGridLayout);
+});
 
-    // Load dummy data for now
-    await Promise.all([
-        loadDummyProfile(),
-        loadDummyMembers(),
-        loadDummyRecipes()
-    ]);
+function initializePage() {
+    // Load initial profile data
+    updateProfileUI({
+        full_name: '',
+        city: '',
+        country: '',
+        bio: '',
+        avatar_url: 'https://via.placeholder.com/150',
+        facebook_url: '',
+        instagram_url: '',
+        tiktok_url: '',
+        whatsapp_number: ''
+    });
 }
 
-// Temporary dummy data functions
-async function loadDummyProfile() {
-    const profile = {
-        display_name: 'Test User',
-        profile_pic_url: 'https://via.placeholder.com/100',
-        bio: 'Food lover and cooking enthusiast'
-    };
+function initializeEventListeners() {
+    // Add event listener for profile form submission
+    const editProfileForm = document.getElementById('editProfileForm');
+    if (editProfileForm) {
+        editProfileForm.addEventListener('submit', handleProfileSubmit);
+    }
 
-    // Update profile section
-    const profilePics = document.querySelectorAll('.user-profile-menu .profile-pic, .user-profile-card .profile-pic');
+    // Add event listener for edit profile button
+    const editProfileBtn = document.querySelector('.edit-profile-btn');
+    if (editProfileBtn) {
+        editProfileBtn.addEventListener('click', editProfile);
+    }
+}
+
+// Dashboard Functions
+function updateDateTime() {
+    const now = new Date();
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    
+    document.getElementById('currentDay').textContent = days[now.getDay()];
+    document.getElementById('currentTime').textContent = now.toLocaleTimeString();
+}
+
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('show');
+}
+
+// Community Profile Functions
+function updateProfileUI(profileData) {
+    // Update profile picture
+    const profilePics = document.querySelectorAll('#userProfilePic, #editProfilePic');
     profilePics.forEach(pic => {
-        pic.src = profile.profile_pic_url;
-        pic.alt = profile.display_name;
+        pic.src = profileData.avatar_url || 'https://via.placeholder.com/150';
     });
 
-    document.querySelector('.user-name').textContent = profile.display_name;
-    document.querySelector('.user-bio').textContent = profile.bio;
+    // Update user information
+    document.querySelector('.user-name').textContent = profileData.full_name || 'Your Name';
+    document.querySelector('.user-location').innerHTML = 
+        `<i class="fas fa-map-marker-alt"></i> ${profileData.city ? profileData.city + ', ' : ''}${profileData.country || 'Add your location'}`;
+    document.querySelector('.user-bio').textContent = profileData.bio || 'Share your cooking journey...';
+
+    // Update form fields if they exist
+    const fullNameInput = document.getElementById('fullName');
+    const cityInput = document.getElementById('city');
+    const countryInput = document.getElementById('country');
+    const bioInput = document.getElementById('bio');
+
+    if (fullNameInput) fullNameInput.value = profileData.full_name || '';
+    if (cityInput) cityInput.value = profileData.city || '';
+    if (countryInput) countryInput.value = profileData.country || '';
+    if (bioInput) bioInput.value = profileData.bio || '';
+
+    // Update social links
+    updateSocialLinks(profileData);
 }
 
-async function loadDummyMembers() {
-    const members = [
-        { id: 1, display_name: 'John Doe', profile_pic_url: 'https://via.placeholder.com/60' },
-        { id: 2, display_name: 'Jane Smith', profile_pic_url: 'https://via.placeholder.com/60' },
-        { id: 3, display_name: 'Mike Johnson', profile_pic_url: 'https://via.placeholder.com/60' },
-        { id: 4, display_name: 'Sarah Wilson', profile_pic_url: 'https://via.placeholder.com/60' },
-        { id: 5, display_name: 'Tom Brown', profile_pic_url: 'https://via.placeholder.com/60' },
-        { id: 6, display_name: 'Lisa Davis', profile_pic_url: 'https://via.placeholder.com/60' }
-    ];
+function updateSocialLinks(profileData) {
+    const socialLinksContainer = document.querySelector('.social-links');
+    socialLinksContainer.innerHTML = '';
 
-    const membersGrid = document.getElementById('members-grid');
-    membersGrid.innerHTML = members.map(member => `
-        <div class="member-card" onclick="viewProfile('${member.id}')">
-            <img src="${member.profile_pic_url}" 
-                 alt="${member.display_name}"
-                 class="member-pic">
-            <p class="member-name">${member.display_name}</p>
-        </div>
-    `).join('');
+    if (profileData.facebook_url) {
+        socialLinksContainer.innerHTML += `<a href="${profileData.facebook_url}" class="social-link" target="_blank"><i class="fab fa-facebook"></i></a>`;
+    }
+    if (profileData.instagram_url) {
+        socialLinksContainer.innerHTML += `<a href="${profileData.instagram_url}" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>`;
+    }
+    if (profileData.tiktok_url) {
+        socialLinksContainer.innerHTML += `<a href="${profileData.tiktok_url}" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>`;
+    }
+    if (profileData.whatsapp_number) {
+        socialLinksContainer.innerHTML += `<a href="https://wa.me/${profileData.whatsapp_number}" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>`;
+    }
 }
 
-async function loadDummyRecipes() {
-    const recipes = [
-        {
-            title: 'Kenyan Pilau',
-            description: 'Traditional Kenyan rice dish with aromatic spices',
-            image_url: 'https://via.placeholder.com/400x300',
-            profiles: {
-                display_name: 'Chef John',
-                profile_pic_url: 'https://via.placeholder.com/40'
-            },
-            created_at: new Date()
-        },
-        {
-            title: 'Nyama Choma',
-            description: 'Grilled meat with Kenyan spices',
-            image_url: 'https://via.placeholder.com/400x300',
-            profiles: {
-                display_name: 'Chef Mary',
-                profile_pic_url: 'https://via.placeholder.com/40'
-            },
-            created_at: new Date(Date.now() - 86400000) // 1 day ago
-        }
-    ];
-
-    const recipesContainer = document.getElementById('recipes-container');
-    recipesContainer.innerHTML = recipes.map(recipe => `
-        <div class="recipe-card">
-            <div class="recipe-header">
-                <img src="${recipe.profiles.profile_pic_url}" 
-                     alt="${recipe.profiles.display_name}"
-                     class="author-pic">
-                <div class="recipe-meta">
-                    <p class="author-name">${recipe.profiles.display_name}</p>
-                    <p class="recipe-time">${formatDate(recipe.created_at)}</p>
-                </div>
-            </div>
-            <img src="${recipe.image_url}" alt="${recipe.title}" class="recipe-image">
-            <div class="recipe-content">
-                <h3>${recipe.title}</h3>
-                <p>${recipe.description}</p>
-            </div>
-        </div>
-    `).join('');
+function editProfile() {
+    const dialog = document.getElementById('editProfileDialog');
+    if (dialog) {
+        dialog.showModal();
+    }
 }
 
-// Recipe Upload Dialog
-function showRecipeUpload() {
-    const dialog = document.getElementById('recipeUploadDialog');
-    dialog.showModal();
+function previewProfilePhoto(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.getElementById('editProfilePic');
+            if (preview) {
+                preview.src = e.target.result;
+            }
+            // Store the temporary URL for later use
+            window.tempPhotoUrl = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
-// Profile Completion Dialog
-function showProfileCompletion() {
-    // Create and show profile completion dialog
-    const dialog = document.createElement('dialog');
-    dialog.className = 'modal-dialog';
-    dialog.innerHTML = `
-        <div class="dialog-content">
-            <h2>Complete Your Profile</h2>
-            <p>Please complete your profile to get the most out of the Dishify community!</p>
-            <form id="profile-completion-form">
-                <input type="text" name="display_name" placeholder="Display Name" required>
-                <input type="tel" name="phone" placeholder="Phone Number">
-                <input type="text" name="instagram" placeholder="Instagram Handle">
-                <input type="text" name="whatsapp" placeholder="WhatsApp Number">
-                <input type="file" name="profile_pic" accept="image/*">
-                <button type="submit">Save Profile</button>
-            </form>
-        </div>
-    `;
-    document.body.appendChild(dialog);
-    dialog.showModal();
-
-    // Handle form submission
-    dialog.querySelector('form').addEventListener('submit', handleProfileUpdate);
-}
-
-async function handleProfileUpdate(e) {
-    e.preventDefault();
-    const form = e.target;
-    const { data: { user } } = await supabaseClient.auth.getUser();
-
-    if (!user) return;
-
-    const formData = new FormData(form);
-    const updates = {
-        id: user.id,
-        display_name: formData.get('display_name'),
-        phone: formData.get('phone'),
-        instagram: formData.get('instagram'),
-        whatsapp: formData.get('whatsapp'),
-        updated_at: new Date()
+function handleProfileSubmit(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const profileData = {
+        full_name: formData.get('fullName'),
+        city: formData.get('city'),
+        country: formData.get('country'),
+        bio: formData.get('bio'),
+        avatar_url: window.tempPhotoUrl || document.getElementById('userProfilePic').src,
+        facebook_url: formData.get('facebook'),
+        instagram_url: formData.get('instagram'),
+        tiktok_url: formData.get('tiktok'),
+        whatsapp_number: formData.get('whatsapp')
     };
 
-    const { error } = await supabaseClient
-        .from('profiles')
-        .upsert(updates);
+    // Update UI with new profile data
+    updateProfileUI(profileData);
 
-    if (error) {
-        console.error('Error updating profile:', error);
-        alert('Failed to update profile');
-        return;
+    // Close the dialog
+    document.getElementById('editProfileDialog').close();
+
+    // Show success notification
+    showNotification('Profile updated successfully!', 'success');
+}
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    // Trigger reflow to enable animation
+    notification.offsetHeight;
+    notification.classList.add('show');
+
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Toggle profile sidebar
+function toggleProfile() {
+    const sidebar = document.querySelector('.left-sidebar');
+    const mainContent = document.querySelector('.main-content');
+    
+    sidebar.classList.toggle('collapsed');
+    mainContent.classList.toggle('expanded');
+
+    // Wait for transition to complete before recalculating grid
+    setTimeout(() => {
+        adjustGridLayout();
+    }, 300); // Match the transition duration
+}
+
+function adjustGridLayout() {
+    const membersGrid = document.querySelector('.members-grid');
+    if (membersGrid) {
+        const cards = membersGrid.querySelectorAll('.member-card');
+        const gridWidth = membersGrid.offsetWidth;
+        const cardWidth = 250; // minimum card width
+        const gap = 25; // gap between cards
+        
+        // Calculate number of columns that can fit
+        const columns = Math.floor((gridWidth + gap) / (cardWidth + gap));
+        
+        // Update grid template columns
+        if (columns > 0) {
+            const columnWidth = `${Math.floor((gridWidth - (gap * (columns - 1))) / columns)}px`;
+            membersGrid.style.gridTemplateColumns = `repeat(${columns}, ${columnWidth})`;
+        }
     }
-
-    // Close dialog and reload page
-    e.target.closest('dialog').close();
-    window.location.reload();
 }
 
-// Utility Functions
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
-    });
-}
-
-function viewProfile(userId) {
-    // Implement profile viewing functionality
-    console.log('Viewing profile:', userId);
-}
-
-function viewAllMembers() {
-    // Implement view all members functionality
-    console.log('Viewing all members');
-}
-
-function showMyRecipes() {
-    // Implement my recipes view
-    console.log('Showing my recipes');
-}
-
-// Export functions for global use
-window.showRecipeUpload = showRecipeUpload;
-window.viewProfile = viewProfile;
-window.viewAllMembers = viewAllMembers;
-window.showMyRecipes = showMyRecipes;
+// Make functions globally available
+window.toggleMobileMenu = toggleMobileMenu;
+window.toggleProfile = toggleProfile;

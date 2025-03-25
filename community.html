@@ -21,6 +21,8 @@
     <nav>
         <div class="logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
         
+        <div class="welcome-text" style="color: #FF5722; font-size: 1.2rem; font-weight: 500;">Welcome to the Community</div>
+        
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
             <i class="fas fa-bars"></i>
         </button>
@@ -49,60 +51,215 @@
 
     <!-- Main Content -->
     <div class="community-container">
-        <!-- Left Sidebar -->
-        <div class="left-sidebar">
+        <!-- Left Sidebar - Collapsible Profile -->
+        <div class="left-sidebar" id="profileSidebar">
+            <div class="collapse-btn" onclick="toggleProfile()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
             <div class="user-profile-card">
-                <img src="https://via.placeholder.com/100" alt="Profile" class="profile-pic">
-                <h2 class="user-name">Loading...</h2>
-                <p class="user-bio">Food lover and cooking enthusiast</p>
-                <button class="edit-profile-btn" onclick="editProfile()">Edit Profile</button>
-                <div class="quick-actions">
-                    <button class="action-btn" onclick="showRecipeUpload()">
-                        <i class="fas fa-plus"></i>
-                        Upload Recipe
-                    </button>
-                    <button class="action-btn" onclick="showMyRecipes()">
-                        <i class="fas fa-book"></i>
-                        My Recipes
+                <div class="profile-header">
+                    <div class="profile-pic-container">
+                        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic" id="userProfilePic">
+                        <label for="photoUpload" class="upload-trigger">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" id="photoUpload" accept="image/*" onchange="previewProfilePhoto(this)">
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <h2 class="user-name">Loading...</h2>
+                    <p class="user-location"><i class="fas fa-map-marker-alt"></i> Loading...</p>
+                    <p class="user-bio">Loading...</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Recipes</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <!-- Social links will be populated dynamically -->
+                    </div>
+                    <button class="edit-profile-btn" onclick="editProfile()">
+                        <i class="fas fa-edit"></i> Edit Profile
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Main Feed -->
-        <div class="main-feed">
-            <div class="recipe-feed">
-                <h2>Recent Community Recipes</h2>
-                <div id="recipes-container"></div>
-            </div>
-        </div>
-
-        <!-- Right Sidebar -->
-        <div class="right-sidebar">
-            <div class="community-members">
-                <h3>Community Members</h3>
-                <div id="members-grid" class="members-grid"></div>
-                <button class="view-all-btn" onclick="viewAllMembers()">View All Members</button>
-            </div>
-            <div class="suggested-connections">
-                <h3>Suggested Connections</h3>
-                <div id="suggestions-grid" class="members-grid"></div>
+        <!-- Main Feed - Member Grid -->
+        <div class="main-content">
+            <div class="members-section">
+                <h2>Community Members</h2>
+                <div class="members-grid">
+                    <!-- 10 Blank Member Cards -->
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <div class="member-info">
+                            <h3 class="member-name">Your Name</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
+                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <div class="member-social">
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <div class="member-info">
+                            <h3 class="member-name">Your Name</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
+                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <div class="member-social">
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <div class="member-info">
+                            <h3 class="member-name">Your Name</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
+                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <div class="member-social">
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <div class="member-info">
+                            <h3 class="member-name">Your Name</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
+                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <div class="member-social">
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <div class="member-info">
+                            <h3 class="member-name">Your Name</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
+                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <div class="member-social">
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <div class="member-info">
+                            <h3 class="member-name">Your Name</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
+                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <div class="member-social">
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <div class="member-info">
+                            <h3 class="member-name">Your Name</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
+                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <div class="member-social">
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Recipe Upload Dialog -->
-    <dialog id="recipeUploadDialog" class="modal-dialog">
+    <!-- Edit Profile Modal -->
+    <dialog id="editProfileDialog" class="modal-dialog">
         <div class="dialog-content">
             <button class="close-btn" onclick="this.closest('dialog').close()">&times;</button>
-            <h2>Upload Recipe</h2>
-            <form id="recipe-upload-form">
-                <input type="text" name="title" placeholder="Recipe Title" required>
-                <textarea name="description" placeholder="Recipe Description" required></textarea>
-                <textarea name="ingredients" placeholder="Ingredients (one per line)" required></textarea>
-                <textarea name="instructions" placeholder="Cooking Instructions" required></textarea>
-                <input type="file" name="image" accept="image/*" required>
-                <button type="submit">Upload Recipe</button>
+            <h2>Complete Your Profile</h2>
+            <p class="dialog-description">Tell us about yourself and connect with other food lovers!</p>
+            
+            <form id="editProfileForm">
+                <div class="edit-photo-section">
+                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="edit-profile-pic" id="editProfilePic">
+                    <label for="editPhotoUpload" class="change-photo-btn">
+                        <i class="fas fa-camera"></i>
+                        Upload New Photo
+                    </label>
+                    <input type="file" id="editPhotoUpload" accept="image/*" onchange="previewProfilePhoto(this)">
+                    <span class="photo-upload-hint">Click to upload a new profile photo</span>
+                </div>
+
+                <div class="form-section">
+                    <h3>Basic Information</h3>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Location</label>
+                        <div class="location-inputs">
+                            <input type="text" id="city" name="city" placeholder="Your City" required class="city-input">
+                            <input type="text" id="country" name="country" placeholder="Your Country" required class="country-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">About You</label>
+                        <textarea id="bio" name="bio" placeholder="Share your passion for cooking, favorite cuisines, or cooking experience" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Social Media Links</h3>
+                    <p class="section-hint">Connect with other food lovers through your social media</p>
+                    <div class="social-inputs">
+                        <div class="social-input">
+                            <i class="fab fa-facebook"></i>
+                            <input type="url" name="facebook" placeholder="Your Facebook profile URL">
+                        </div>
+                        <div class="social-input">
+                            <i class="fab fa-instagram"></i>
+                            <input type="url" name="instagram" placeholder="Your Instagram profile URL">
+                        </div>
+                        <div class="social-input">
+                            <i class="fab fa-tiktok"></i>
+                            <input type="url" name="tiktok" placeholder="Your TikTok profile URL">
+                        </div>
+                        <div class="social-input">
+                            <i class="fab fa-whatsapp"></i>
+                            <input type="tel" name="whatsapp" placeholder="Your WhatsApp number (with country code)">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="save-profile-btn">
+                    <i class="fas fa-save"></i> Save Profile
+                </button>
             </form>
         </div>
     </dialog>
