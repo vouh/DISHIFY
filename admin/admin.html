@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dishify Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../main.css" rel="stylesheet">
+    <link href="admin.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Production Tailwind CSS -->
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+    <!-- Supabase Client Library -->
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <!-- Config -->
+    <script src="../config.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="../index.html">
+                <div class="logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
+            </a>
+        </div>
+        <div class="nav-links">
+            <div id="admin-nav-buttons">
+                <button id="admin-logout" style="display: none;" class="login-btn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <div id="admin-login-section" class="admin-section">
+        <div class="admin-login-container">
+            <h2>Admin Login</h2>
+            <p class="auth-subtitle">Access the Dishify admin dashboard</p>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-email">Email</label>
+                    <input type="email" id="admin-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" required>
+                </div>
+                <button type="submit" class="btn-primary">Login to Dashboard</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="admin-dashboard-section" class="admin-section" style="display: none;">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Pending Approval</h3>
+                    <p id="pending-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Approved Recipes</h3>
+                    <p id="approved-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-upload"></i>
+                    <h3>Total Uploads</h3>
+                    <p id="total-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Active Users</h3>
+                    <p id="users-count">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Actions -->
+        <div class="dashboard-actions">
+            <button id="add-recipe-btn" class="action-btn">
+                <i class="fas fa-plus"></i> Add New Recipe
+            </button>
+            <div class="filter-group">
+                <select id="status-filter" class="filter-select">
+                    <option value="all">All Recipes</option>
+                    <option value="pending">Pending Approval</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+                <input type="text" id="search-recipes" class="search-input" placeholder="Search recipes...">
+            </div>
+        </div>
+
+        <!-- Recipe Management Tabs -->
+        <div class="recipe-tabs">
+            <button class="tab-btn active" data-tab="pending">Pending Approval</button>
+            <button class="tab-btn" data-tab="approved">Approved Recipes</button>
+            <button class="tab-btn" data-tab="all">All Recipes</button>
+        </div>
+
+        <!-- Recipes Grid -->
+        <div class="recipes-container">
+            <div id="pending-recipes" class="recipes-grid">
+                <!-- Pending recipes will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Recipe Modal -->
+    <div id="add-recipe-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Recipe</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="add-recipe-form" class="recipe-form">
+                <div class="form-group">
+                    <label for="recipe-title">Recipe Title</label>
+                    <input type="text" id="recipe-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-description">Description</label>
+                    <textarea id="recipe-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-ingredients">Ingredients</label>
+                    <textarea id="recipe-ingredients" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-instructions">Instructions</label>
+                    <textarea id="recipe-instructions" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-image">Recipe Image</label>
+                    <input type="file" id="recipe-image" accept="image/*" required>
+                    <div id="image-preview" class="image-preview"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Recipe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section brand">
+                <div class="footer-logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
+                <p class="footer-description">Admin Dashboard - Manage and curate the best recipes for our community.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; <span id="currentYear">2025</span> Dishify. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="adminAuth.js"></script>
+    <script src="adminDashboard.js"></script>
+</body>
+</html>
