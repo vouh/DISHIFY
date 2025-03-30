@@ -2,26 +2,46 @@
 
 // Initialize page when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initializePage();
+    // Removed automatic auth check
     initializeEventListeners();
-    
-    // Initialize grid layout
     adjustGridLayout();
     window.addEventListener('resize', adjustGridLayout);
 });
 
-function initializePage() {
-    // Load initial profile data
-    updateProfileUI({
-        full_name: '',
-        city: '',
-        country: '',
-        bio: '',
-        avatar_url: 'https://via.placeholder.com/150',
-        facebook_url: '',
-        instagram_url: '',
-        tiktok_url: '',
-        whatsapp_number: ''
+// Manual auth check - only call this when needed
+async function checkAuth() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    
+    if (!session) {
+        // No session, redirect to index
+        window.location.href = 'index.html';
+        return false;
+    }
+    
+    return true;
+}
+
+// Simple auth check
+async function manualAuthCheck() {
+    // Don't check if we just signed up
+    if (sessionStorage.getItem('justSignedUp')) {
+        sessionStorage.removeItem('justSignedUp');
+        return;
+    }
+
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    
+    if (!session) {
+        // No session, redirect to index
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // Set up listener for sign out
+    supabaseClient.auth.onAuthStateChange((event, _session) => {
+        if (event === 'SIGNED_OUT') {
+            window.location.href = 'index.html';
+        }
     });
 }
 
@@ -54,49 +74,47 @@ function toggleMobileMenu() {
 }
 
 // Community Profile Functions
-function updateProfileUI(profileData) {
-    // Update profile picture
-    const profilePics = document.querySelectorAll('#userProfilePic, #editProfilePic');
-    profilePics.forEach(pic => {
-        pic.src = profileData.avatar_url || 'https://via.placeholder.com/150';
-    });
+function updateProfileUI(profile) {
+    // Get elements
+    const userNameElement = document.getElementById('userName');
+    const userProfilePic = document.getElementById('userProfilePic');
+    const userBio = document.getElementById('userBio');
+    const userLocation = document.getElementById('userLocation');
+    const socialLinks = document.getElementById('socialLinks');
 
-    // Update user information
-    document.querySelector('.user-name').textContent = profileData.full_name || 'Your Name';
-    document.querySelector('.user-location').innerHTML = 
-        `<i class="fas fa-map-marker-alt"></i> ${profileData.city ? profileData.city + ', ' : ''}${profileData.country || 'Add your location'}`;
-    document.querySelector('.user-bio').textContent = profileData.bio || 'Share your cooking journey...';
-
-    // Update form fields if they exist
-    const fullNameInput = document.getElementById('fullName');
-    const cityInput = document.getElementById('city');
-    const countryInput = document.getElementById('country');
-    const bioInput = document.getElementById('bio');
-
-    if (fullNameInput) fullNameInput.value = profileData.full_name || '';
-    if (cityInput) cityInput.value = profileData.city || '';
-    if (countryInput) countryInput.value = profileData.country || '';
-    if (bioInput) bioInput.value = profileData.bio || '';
-
-    // Update social links
-    updateSocialLinks(profileData);
-}
-
-function updateSocialLinks(profileData) {
-    const socialLinksContainer = document.querySelector('.social-links');
-    socialLinksContainer.innerHTML = '';
-
-    if (profileData.facebook_url) {
-        socialLinksContainer.innerHTML += `<a href="${profileData.facebook_url}" class="social-link" target="_blank"><i class="fab fa-facebook"></i></a>`;
+    // Update elements if they exist
+    if (userNameElement) {
+        userNameElement.textContent = profile.full_name || 'Anonymous User';
     }
-    if (profileData.instagram_url) {
-        socialLinksContainer.innerHTML += `<a href="${profileData.instagram_url}" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>`;
+
+    if (userProfilePic) {
+        userProfilePic.src = profile.avatar_url || 'images/default-avatar.png';
+        userProfilePic.alt = profile.full_name || 'User avatar';
     }
-    if (profileData.tiktok_url) {
-        socialLinksContainer.innerHTML += `<a href="${profileData.tiktok_url}" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>`;
+
+    if (userBio) {
+        userBio.textContent = profile.bio || 'No bio available';
     }
-    if (profileData.whatsapp_number) {
-        socialLinksContainer.innerHTML += `<a href="https://wa.me/${profileData.whatsapp_number}" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>`;
+
+    if (userLocation) {
+        userLocation.textContent = profile.city && profile.country ? 
+            `${profile.city}, ${profile.country}` : 'Location not set';
+    }
+
+    if (socialLinks) {
+        socialLinks.innerHTML = '';
+        if (profile.facebook_url) {
+            socialLinks.innerHTML += `<a href="${profile.facebook_url}" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>`;
+        }
+        if (profile.instagram_url) {
+            socialLinks.innerHTML += `<a href="${profile.instagram_url}" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>`;
+        }
+        if (profile.tiktok_url) {
+            socialLinks.innerHTML += `<a href="${profile.tiktok_url}" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>`;
+        }
+        if (profile.whatsapp_number) {
+            socialLinks.innerHTML += `<a href="https://wa.me/${profile.whatsapp_number}" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>`;
+        }
     }
 }
 

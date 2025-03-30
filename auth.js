@@ -22,6 +22,7 @@ async function handleLogin(email, password) {
         return { data };
         
     } catch (error) {
+        console.error('Login error:', error);
         return { error: error.message };
     }
 }
@@ -29,15 +30,25 @@ async function handleLogin(email, password) {
 // Sign up functionality
 async function handleSignUp(email, password) {
     try {
+        // First check connection
+        const connectionOk = await testSupabaseConnection();
+        if (!connectionOk) {
+            throw new Error('Unable to connect to database. Please try again later.');
+        }
+        
+        // Use signUp with minimal options
         const { data, error } = await supabaseClient.auth.signUp({
             email: email,
             password: password,
         });
         
         if (error) throw error;
+        
+        console.log('Signup successful:', data);
         return { data };
         
     } catch (error) {
+        console.error('Signup error:', error);
         return { error: error.message };
     }
 }
@@ -64,6 +75,7 @@ async function handleSignOut() {
         if (error) throw error;
         hideWelcomeMessage();
         showLoginDialog();
+        window.location.href = 'index.html';
     } catch (error) {
         console.error('Error signing out:', error.message);
     }
@@ -78,7 +90,7 @@ async function showWelcomeMessage(email) {
         return;
     }
     console.log('User data:', user);
-    showDashboard(user.id);
+    // showDashboard(user.id);
 }
 
 // Hide welcome message
@@ -109,7 +121,6 @@ function showForgotPasswordDialog() {
 // Form event listeners
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.log('Login form submitted');
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
     
@@ -119,14 +130,7 @@ loginForm.addEventListener('submit', async (e) => {
         return;
     }
     
-    console.log('Login successful');
-    // Close the dialog after successful login
-    const loginDialog = document.getElementById('loginDialog');
-    if (loginDialog) {
-        loginDialog.close();
-    }
-    
-    // Redirect to community page instead of showing dashboard
+    document.getElementById('loginDialog').close();
     window.location.href = 'community.html';
 });
 
@@ -147,9 +151,11 @@ signupForm.addEventListener('submit', async (e) => {
         return;
     }
     
+    // Clear any existing session check flags
+    sessionStorage.removeItem('redirecting');
+    
     alert('Sign up successful! Please check your email for verification.');
     document.getElementById('signupDialog').close();
-    showLoginDialog();
 });
 
 forgotPasswordForm.addEventListener('submit', async (e) => {
@@ -166,13 +172,7 @@ forgotPasswordForm.addEventListener('submit', async (e) => {
     document.getElementById('forgotPasswordDialog').close();
 });
 
-// Auth state change listener
-supabaseClient.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_IN' && session) {
-        // Redirect to community page on sign in
-        window.location.href = 'community.html';
-    } else if (event === 'SIGNED_OUT') {
-        // Redirect to home page on sign out
-        window.location.href = 'index.html';
-    }
+// Clear signup flag when leaving the page
+window.addEventListener('beforeunload', () => {
+    sessionStorage.removeItem('justSignedUp');
 });

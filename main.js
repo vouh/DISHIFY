@@ -211,9 +211,6 @@ function showNotification(message, type = 'default') {
     }, 3000);
 }
 
-// Direct button handlers - at the top of the file for immediate execution
-console.log('Looking for buttons...');
-
 // Dialog handling functions
 function showLogin() {
     console.log('Opening login dialog');
@@ -245,39 +242,16 @@ function switchToLogin() {
     showLogin();
 }
 
-// Update your auth buttons to use these functions
+function showForgotPassword() {
+    document.getElementById('loginDialog').close();
+    document.getElementById('forgotPasswordDialog').showModal();
+}
+
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-    // Setup form submissions
-    document.getElementById('loginForm')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = this.querySelector('#loginEmail').value;
-        const password = this.querySelector('#loginPassword').value;
-        console.log('Login attempt:', { email });
-        // Add your login logic here
-        document.getElementById('loginDialog').close();
-    });
-
-    document.getElementById('signupForm')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = this.querySelector('#signupEmail').value;
-        const password = this.querySelector('#signupPassword').value;
-        console.log('Signup attempt:', { email });
-        // Add your signup logic here
-        document.getElementById('signupDialog').close();
-    });
-
-    // Click outside to close
-    const dialogs = document.querySelectorAll('dialog');
-    dialogs.forEach(dialog => {
-        dialog.addEventListener('click', (e) => {
-            const rect = dialog.getBoundingClientRect();
-            if (e.clientY < rect.top || e.clientY > rect.bottom ||
-                e.clientX < rect.left || e.clientX > rect.right) {
-                dialog.close();
-            }
-        });
-    });
-
+    // Looking for buttons
+    console.log('Looking for buttons...');
+    
     // Verify buttons are working
     const loginBtn = document.querySelector('.login-btn');
     const signupBtn = document.querySelector('.signup-btn');
@@ -292,34 +266,18 @@ document.addEventListener('DOMContentLoaded', function() {
         signupBtn.addEventListener('click', showSignup);
     }
 
-    // Handle forgot password form submission
-    document.getElementById('forgotPasswordForm')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = this.querySelector('#resetEmail').value;
-        console.log('Password reset requested for:', email);
-        // Add your password reset logic here
-        alert('Password reset link has been sent to your email!');
-        document.getElementById('forgotPasswordDialog').close();
-        // Optionally switch back to login
-        showLogin();
+    // Click outside to close dialogs
+    const dialogs = document.querySelectorAll('dialog');
+    dialogs.forEach(dialog => {
+        dialog.addEventListener('click', (e) => {
+            const rect = dialog.getBoundingClientRect();
+            if (e.clientY < rect.top || e.clientY > rect.bottom ||
+                e.clientX < rect.left || e.clientX > rect.right) {
+                dialog.close();
+            }
+        });
     });
+
+    // Run text reveal animation
+    textReveal();
 });
-
-// Add these new functions
-function showForgotPassword() {
-    const loginDialog = document.getElementById('loginDialog');
-    const forgotDialog = document.getElementById('forgotPasswordDialog');
-    if (loginDialog && forgotDialog) {
-        loginDialog.close();
-        forgotDialog.showModal();
-    }
-}
-
-function switchToLogin() {
-    const currentDialog = document.querySelector('dialog[open]');
-    const loginDialog = document.getElementById('loginDialog');
-    if (currentDialog && loginDialog) {
-        currentDialog.close();
-        loginDialog.showModal();
-    }
-}
