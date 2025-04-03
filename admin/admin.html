@@ -104,43 +104,49 @@
     </div>
 
     <!-- Simple Add Recipe Modal -->
-    <div id="simple-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000;">
-        <div style="position: relative; width: 70%; max-width: 600px; margin: 50px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
-                <h2 style="margin: 0; color: #333; font-size: 1.5rem;">Add New Recipe</h2>
-                <button onclick="closeSimpleModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">&times;</button>
+    <div id="simple-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; overflow-y: auto;">
+        <div style="position: relative; width: 70%; max-width: 500px; margin: 30px auto; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
+                <h2 style="margin: 0; color: #333; font-size: 1.3rem;">Add New Recipe</h2>
+                <button onclick="closeSimpleModal()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #666;">&times;</button>
             </div>
             
-            <form id="simple-recipe-form" style="margin-top: 15px;">
-                <div style="margin-bottom: 12px;">
-                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Recipe Title</label>
-                    <input type="text" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;">
+            <form id="simple-recipe-form" style="margin-top: 10px;">
+                <div style="margin-bottom: 8px;">
+                    <label style="display: block; margin-bottom: 3px; font-weight: 500; color: #333; font-size: 0.85rem;">Recipe Title</label>
+                    <input type="text" id="recipe-title" name="title" required style="width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;">
+                    <small id="title-error" style="color: #f44336; font-size: 0.75rem; display: none;">Title must be at least 5 characters</small>
                 </div>
                 
-                <div style="margin-bottom: 12px;">
-                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Description</label>
-                    <textarea rows="2" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;"></textarea>
+                <div style="margin-bottom: 8px;">
+                    <label style="display: block; margin-bottom: 3px; font-weight: 500; color: #333; font-size: 0.85rem;">Description</label>
+                    <textarea rows="2" id="recipe-description" name="description" required style="width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;"></textarea>
+                    <small id="description-error" style="color: #f44336; font-size: 0.75rem; display: none;">Description must be at least 20 characters</small>
                 </div>
                 
-                <div style="margin-bottom: 12px;">
-                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Ingredients</label>
-                    <textarea rows="3" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;"></textarea>
-                    <small style="color: #666; font-size: 0.8rem;">Enter each ingredient on a new line</small>
+                <div style="margin-bottom: 8px;">
+                    <label style="display: block; margin-bottom: 3px; font-weight: 500; color: #333; font-size: 0.85rem;">Ingredients</label>
+                    <textarea rows="2" id="recipe-ingredients" name="ingredients" required style="width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;"></textarea>
+                    <small style="color: #666; font-size: 0.75rem;">Enter each ingredient on a new line</small>
+                    <small id="ingredients-error" style="color: #f44336; font-size: 0.75rem; display: none;">Please enter at least 3 ingredients</small>
                 </div>
                 
-                <div style="margin-bottom: 12px;">
-                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Instructions</label>
-                    <textarea rows="3" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;"></textarea>
+                <div style="margin-bottom: 8px;">
+                    <label style="display: block; margin-bottom: 3px; font-weight: 500; color: #333; font-size: 0.85rem;">Instructions</label>
+                    <textarea rows="2" id="recipe-instructions" name="instructions" required style="width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;"></textarea>
+                    <small id="instructions-error" style="color: #f44336; font-size: 0.75rem; display: none;">Instructions must be at least 50 characters</small>
                 </div>
                 
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Recipe Image</label>
-                    <input type="file" accept="image/*" style="font-size: 0.9rem;">
+                <div style="margin-bottom: 10px;">
+                    <label style="display: block; margin-bottom: 3px; font-weight: 500; color: #333; font-size: 0.85rem;">Recipe Image</label>
+                    <input type="file" id="recipe-image" name="image" accept="image/*" style="font-size: 0.85rem;">
+                    <small id="image-error" style="color: #f44336; font-size: 0.75rem; display: none;">Please select an image</small>
                 </div>
                 
                 <div style="text-align: right;">
-                    <button type="button" onclick="closeSimpleModal()" style="padding: 8px 12px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; margin-right: 8px; cursor: pointer; font-size: 0.9rem;">Cancel</button>
-                    <button type="submit" style="padding: 8px 12px; background: #FF5722; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">Add Recipe</button>
+                    <button type="button" onclick="clearRecipeForm()" style="padding: 6px 10px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; margin-right: 6px; cursor: pointer; font-size: 0.85rem;">Clear Form</button>
+                    <button type="button" onclick="closeSimpleModal()" style="padding: 6px 10px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; margin-right: 6px; cursor: pointer; font-size: 0.85rem;">Cancel</button>
+                    <button type="button" onclick="validateAndSubmitRecipe()" style="padding: 6px 10px; background: #FF5722; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Add Recipe</button>
                 </div>
             </form>
         </div>
@@ -158,6 +164,91 @@
             document.getElementById('simple-modal').style.display = 'none';
             document.body.style.overflow = 'auto';
             console.log('Simple modal closed');
+        }
+        
+        // Form validation functions
+        function validateAndSubmitRecipe() {
+            console.log('Validating form...');
+            // Reset all error messages
+            hideAllErrors();
+            
+            // Get form values
+            const title = document.getElementById('recipe-title').value.trim();
+            const description = document.getElementById('recipe-description').value.trim();
+            const ingredients = document.getElementById('recipe-ingredients').value.trim();
+            const instructions = document.getElementById('recipe-instructions').value.trim();
+            const imageInput = document.getElementById('recipe-image');
+            
+            // Validation flags
+            let isValid = true;
+            
+            // Validate title (at least 5 characters)
+            if (title.length < 5) {
+                showError('title-error');
+                isValid = false;
+            }
+            
+            // Validate description (at least 20 characters)
+            if (description.length < 20) {
+                showError('description-error');
+                isValid = false;
+            }
+            
+            // Validate ingredients (at least 3 ingredients)
+            const ingredientLines = ingredients.split('\n').filter(line => line.trim().length > 0);
+            if (ingredientLines.length < 3) {
+                showError('ingredients-error');
+                isValid = false;
+            }
+            
+            // Validate instructions (at least 50 characters)
+            if (instructions.length < 50) {
+                showError('instructions-error');
+                isValid = false;
+            }
+            
+            // Validate image is selected
+            if (imageInput.files.length === 0) {
+                showError('image-error');
+                isValid = false;
+            }
+            
+            // If all validations pass, submit the form
+            if (isValid) {
+                // Here you would add the code to submit to Supabase
+                console.log('Form is valid, submitting recipe:');
+                console.log({
+                    title,
+                    description,
+                    ingredients: ingredientLines,
+                    instructions,
+                    image: imageInput.files[0].name
+                });
+                
+                // Close the modal after successful submission
+                closeSimpleModal();
+                
+                // Show success message
+                alert('Recipe submitted successfully!');
+            } else {
+                console.log('Form validation failed');
+            }
+        }
+
+        // Helper function to show error message
+        function showError(errorId) {
+            const errorElement = document.getElementById(errorId);
+            if (errorElement) {
+                errorElement.style.display = 'block';
+            }
+        }
+
+        // Helper function to hide all error messages
+        function hideAllErrors() {
+            const errorElements = document.querySelectorAll('[id$="-error"]');
+            errorElements.forEach(element => {
+                element.style.display = 'none';
+            });
         }
         
         // Add event listener to button
@@ -189,10 +280,65 @@
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
                     console.log('Form submitted');
-                    closeSimpleModal();
+                    validateAndSubmitRecipe();
+                });
+            }
+            
+            // Add image preview functionality
+            const imageInput = document.getElementById('recipe-image');
+            if (imageInput) {
+                imageInput.addEventListener('change', function() {
+                    const previewContainer = document.createElement('div');
+                    previewContainer.id = 'image-preview-container';
+                    previewContainer.style.marginTop = '10px';
+                    previewContainer.style.maxWidth = '100%';
+                    previewContainer.style.height = '150px';
+                    previewContainer.style.border = '1px dashed #ddd';
+                    previewContainer.style.borderRadius = '4px';
+                    previewContainer.style.overflow = 'hidden';
+                    previewContainer.style.display = 'flex';
+                    previewContainer.style.alignItems = 'center';
+                    previewContainer.style.justifyContent = 'center';
+                    
+                    // Remove existing preview if any
+                    const existingPreview = document.getElementById('image-preview-container');
+                    if (existingPreview) {
+                        existingPreview.remove();
+                    }
+                    
+                    // Add the preview container after the file input
+                    imageInput.parentNode.appendChild(previewContainer);
+                    
+                    // Preview the selected image
+                    if (imageInput.files && imageInput.files[0]) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            previewContainer.innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+                        };
+                        reader.readAsDataURL(imageInput.files[0]);
+                    } else {
+                        previewContainer.innerHTML = '<p style="color: #666;">No image selected</p>';
+                    }
                 });
             }
         });
+        
+        // Function to clear the form
+        function clearRecipeForm() {
+            const form = document.getElementById('simple-recipe-form');
+            if (form) {
+                form.reset();
+                hideAllErrors();
+                const imageInput = document.getElementById('recipe-image');
+                if (imageInput) {
+                    imageInput.value = '';
+                }
+                const previewContainer = document.getElementById('image-preview-container');
+                if (previewContainer) {
+                    previewContainer.remove();
+                }
+            }
+        }
     </script>
 
     <footer class="footer">

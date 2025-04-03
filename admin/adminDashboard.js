@@ -118,6 +118,172 @@ window.handleAddRecipe = async function(event) {
     }
 };
 
+// Form validation functions
+function validateAndSubmitRecipe() {
+    // Reset all error messages
+    hideAllErrors();
+    
+    // Get form values
+    const title = document.getElementById('recipe-title').value.trim();
+    const description = document.getElementById('recipe-description').value.trim();
+    const ingredients = document.getElementById('recipe-ingredients').value.trim();
+    const instructions = document.getElementById('recipe-instructions').value.trim();
+    const imageInput = document.getElementById('recipe-image');
+    
+    // Validation flags
+    let isValid = true;
+    
+    // Validate title (at least 5 characters)
+    if (title.length < 5) {
+        showError('title-error');
+        isValid = false;
+    }
+    
+    // Validate description (at least 20 characters)
+    if (description.length < 20) {
+        showError('description-error');
+        isValid = false;
+    }
+    
+    // Validate ingredients (at least 3 ingredients)
+    const ingredientLines = ingredients.split('\n').filter(line => line.trim().length > 0);
+    if (ingredientLines.length < 3) {
+        showError('ingredients-error');
+        isValid = false;
+    }
+    
+    // Validate instructions (at least 50 characters)
+    if (instructions.length < 50) {
+        showError('instructions-error');
+        isValid = false;
+    }
+    
+    // Validate image is selected
+    if (imageInput.files.length === 0) {
+        showError('image-error');
+        isValid = false;
+    }
+    
+    // If all validations pass, submit the form
+    if (isValid) {
+        // Here you would add the code to submit to Supabase
+        console.log('Form is valid, submitting recipe:');
+        console.log({
+            title,
+            description,
+            ingredients: ingredientLines,
+            instructions,
+            image: imageInput.files[0].name
+        });
+        
+        // Close the modal after successful submission
+        closeSimpleModal();
+        
+        // Show success message
+        alert('Recipe submitted successfully!');
+    } else {
+        console.log('Form validation failed');
+    }
+}
+
+// Helper function to show error message
+function showError(errorId) {
+    const errorElement = document.getElementById(errorId);
+    if (errorElement) {
+        errorElement.style.display = 'block';
+    }
+}
+
+// Helper function to hide all error messages
+function hideAllErrors() {
+    const errorElements = document.querySelectorAll('[id$="-error"]');
+    errorElements.forEach(element => {
+        element.style.display = 'none';
+    });
+}
+
+// Add image preview functionality
+function previewRecipeImage() {
+    const imageInput = document.getElementById('recipe-image');
+    const previewContainer = document.createElement('div');
+    previewContainer.id = 'image-preview-container';
+    previewContainer.style.marginTop = '10px';
+    previewContainer.style.maxWidth = '100%';
+    previewContainer.style.height = '150px';
+    previewContainer.style.border = '1px dashed #ddd';
+    previewContainer.style.borderRadius = '4px';
+    previewContainer.style.overflow = 'hidden';
+    previewContainer.style.display = 'flex';
+    previewContainer.style.alignItems = 'center';
+    previewContainer.style.justifyContent = 'center';
+    
+    // Remove existing preview if any
+    const existingPreview = document.getElementById('image-preview-container');
+    if (existingPreview) {
+        existingPreview.remove();
+    }
+    
+    // Add the preview container after the file input
+    imageInput.parentNode.appendChild(previewContainer);
+    
+    // Preview the selected image
+    if (imageInput.files && imageInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewContainer.innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+        };
+        reader.readAsDataURL(imageInput.files[0]);
+    } else {
+        previewContainer.innerHTML = '<p style="color: #666;">No image selected</p>';
+    }
+}
+
+// Test function to verify form validation is working
+function testFormValidation() {
+    console.log('Testing form validation...');
+    
+    // Open the modal
+    openSimpleModal();
+    
+    // Set a timeout to attempt validation with empty fields
+    setTimeout(() => {
+        console.log('Attempting to validate empty form...');
+        validateAndSubmitRecipe();
+        console.log('Validation errors should be visible now');
+    }, 1000);
+}
+
+// Make sure openSimpleModal is defined and working
+function openSimpleModal() {
+    document.getElementById('simple-modal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    console.log('Simple modal opened');
+    
+    // Reset form and errors when opening
+    const form = document.getElementById('simple-recipe-form');
+    if (form) form.reset();
+    hideAllErrors();
+    
+    // Remove any existing image preview
+    const existingPreview = document.getElementById('image-preview-container');
+    if (existingPreview) existingPreview.remove();
+}
+
+function closeSimpleModal() {
+    document.getElementById('simple-modal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    console.log('Simple modal closed');
+}
+
+// Add event listeners when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add image preview functionality
+    const imageInput = document.getElementById('recipe-image');
+    if (imageInput) {
+        imageInput.addEventListener('change', previewRecipeImage);
+    }
+});
+
 // DOM Elements
 const addRecipeBtn = document.getElementById('add-recipe-btn');
 const addRecipeModal = document.getElementById('add-recipe-modal');
