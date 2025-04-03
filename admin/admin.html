@@ -79,7 +79,7 @@
 
         <!-- Dashboard Actions -->
         <div class="dashboard-actions">
-            <button id="add-recipe-btn" class="action-btn">
+            <button id="add-recipe-btn" class="action-btn" onclick="openSimpleModal()">
                 <i class="fas fa-plus"></i> Add New Recipe
             </button>
             <div class="filter-group">
@@ -108,42 +108,97 @@
         </div>
     </div>
 
-    <!-- Add Recipe Modal -->
-    <div id="add-recipe-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add New Recipe</h2>
-                <button class="close-modal">&times;</button>
+    <!-- Simple Add Recipe Modal -->
+    <div id="simple-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000;">
+        <div style="position: relative; width: 70%; max-width: 600px; margin: 50px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                <h2 style="margin: 0; color: #333; font-size: 1.5rem;">Add New Recipe</h2>
+                <button onclick="closeSimpleModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">&times;</button>
             </div>
-            <form id="add-recipe-form" class="recipe-form">
-                <div class="form-group">
-                    <label for="recipe-title">Recipe Title</label>
-                    <input type="text" id="recipe-title" required>
+            
+            <form id="simple-recipe-form" style="margin-top: 15px;">
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Recipe Title</label>
+                    <input type="text" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;">
                 </div>
-                <div class="form-group">
-                    <label for="recipe-description">Description</label>
-                    <textarea id="recipe-description" required></textarea>
+                
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Description</label>
+                    <textarea rows="2" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="recipe-ingredients">Ingredients</label>
-                    <textarea id="recipe-ingredients" required></textarea>
+                
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Ingredients</label>
+                    <textarea rows="3" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;"></textarea>
+                    <small style="color: #666; font-size: 0.8rem;">Enter each ingredient on a new line</small>
                 </div>
-                <div class="form-group">
-                    <label for="recipe-instructions">Instructions</label>
-                    <textarea id="recipe-instructions" required></textarea>
+                
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Instructions</label>
+                    <textarea rows="3" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="recipe-image">Recipe Image</label>
-                    <input type="file" id="recipe-image" accept="image/*" required>
-                    <div id="image-preview" class="image-preview"></div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 4px; font-weight: 500; color: #333; font-size: 0.9rem;">Recipe Image</label>
+                    <input type="file" accept="image/*" style="font-size: 0.9rem;">
                 </div>
-                <div class="form-actions">
-                    <button type="button" class="cancel-btn">Cancel</button>
-                    <button type="submit" class="submit-btn">Add Recipe</button>
+                
+                <div style="text-align: right;">
+                    <button type="button" onclick="closeSimpleModal()" style="padding: 8px 12px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; margin-right: 8px; cursor: pointer; font-size: 0.9rem;">Cancel</button>
+                    <button type="submit" style="padding: 8px 12px; background: #FF5722; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">Add Recipe</button>
                 </div>
             </form>
         </div>
     </div>
+    
+    <script>
+        // Very simple modal functions
+        function openSimpleModal() {
+            document.getElementById('simple-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            console.log('Simple modal opened');
+        }
+        
+        function closeSimpleModal() {
+            document.getElementById('simple-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            console.log('Simple modal closed');
+        }
+        
+        // Add event listener to button
+        document.addEventListener('DOMContentLoaded', function() {
+            const addButton = document.getElementById('add-recipe-btn');
+            if (addButton) {
+                addButton.onclick = function() {
+                    openSimpleModal();
+                    return false;
+                };
+                console.log('Added click handler to button');
+            } else {
+                console.error('Add recipe button not found');
+            }
+            
+            // Close when clicking outside
+            const modal = document.getElementById('simple-modal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeSimpleModal();
+                    }
+                });
+            }
+            
+            // Prevent form submission
+            const form = document.getElementById('simple-recipe-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted');
+                    closeSimpleModal();
+                });
+            }
+        });
+    </script>
 
     <footer class="footer">
         <div class="footer-content">

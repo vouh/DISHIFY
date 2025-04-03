@@ -1,6 +1,123 @@
 // Get supabaseClient from window object (initialized in config.js)
 const { supabaseClient } = window;
 
+// Make modal functions globally available
+window.openAddRecipeModal = function() {
+    const addRecipeModal = document.getElementById('add-recipe-modal');
+    if (addRecipeModal) {
+        addRecipeModal.classList.add('active');
+        addRecipeModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Reset form and preview
+        const addRecipeForm = document.getElementById('add-recipe-form');
+        if (addRecipeForm) {
+            addRecipeForm.reset();
+        }
+        const imagePreview = document.getElementById('image-preview');
+        if (imagePreview) {
+            imagePreview.innerHTML = '';
+        }
+    }
+};
+
+window.closeAddRecipeModal = function() {
+    const addRecipeModal = document.getElementById('add-recipe-modal');
+    if (addRecipeModal) {
+        addRecipeModal.classList.remove('active');
+        addRecipeModal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+};
+
+window.handleAddRecipe = async function(event) {
+    event.preventDefault();
+    const form = event.target;
+    const submitBtn = form.querySelector('.submit-btn');
+    
+    try {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Adding Recipe...';
+        
+        const formData = new FormData(form);
+        
+        // Process ingredients and instructions into arrays
+        const ingredients = formData.get('ingredients')
+            .split('\n')
+            .map(item => item.trim())
+            .filter(item => item.length > 0);
+            
+        const instructions = formData.get('instructions')
+            .split('\n')
+            .map(item => item.trim())
+            .filter(item => item.length > 0);
+
+        // Get dietary info
+        const dietaryInfo = Array.from(form.querySelectorAll('input[name="dietary_info"]:checked'))
+            .map(checkbox => checkbox.value);
+
+        // Prepare recipe data
+        const recipeData = {
+            title: formData.get('title'),
+            description: formData.get('description'),
+            cooking_time: parseInt(formData.get('cooking_time')),
+            servings: parseInt(formData.get('servings')),
+            difficulty: formData.get('difficulty'),
+            cuisine_type: formData.get('cuisine_type'),
+            dietary_info: dietaryInfo,
+            ingredients: ingredients,
+            instructions: instructions,
+            status: 'pending',
+            user_id: (await supabaseClient.auth.getUser()).data.user.id
+        };
+
+        // Upload image
+        const imageFile = formData.get('image');
+        if (imageFile) {
+            const fileExt = imageFile.name.split('.').pop();
+            const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+            
+            const { data: imageData, error: imageError } = await supabaseClient.storage
+                .from('recipe-images')
+                .upload(fileName, imageFile, {
+                    cacheControl: '3600',
+                    upsert: false
+                });
+
+            if (imageError) throw imageError;
+
+            const { data: { publicUrl } } = supabaseClient.storage
+                .from('recipe-images')
+                .getPublicUrl(imageData.path);
+
+            recipeData.image_url = publicUrl;
+        }
+
+        // Save recipe to database
+        const { error } = await supabaseClient
+            .from('recipes')
+            .insert([recipeData]);
+
+        if (error) throw error;
+
+        // Close modal and reset form
+        window.closeAddRecipeModal();
+        form.reset();
+        
+        // Reload recipes and stats
+        loadRecipes(currentTab);
+        loadDashboardStats();
+
+        alert('Recipe added successfully!');
+    } catch (error) {
+        console.error('Error adding recipe:', error);
+        alert('Failed to add recipe: ' + error.message);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Add Recipe';
+    }
+};
+
 // DOM Elements
 const addRecipeBtn = document.getElementById('add-recipe-btn');
 const addRecipeModal = document.getElementById('add-recipe-modal');
@@ -118,14 +235,26 @@ function createRecipeCard(recipe) {
     const statusClass = recipe.status === 'approved' ? 'status-approved' : 
                        recipe.status === 'rejected' ? 'status-rejected' : 'status-pending';
 
+    const dietaryInfo = recipe.dietary_info && recipe.dietary_info.length > 0 
+        ? `<div class="recipe-dietary-info">${recipe.dietary_info.join(', ')}</div>` 
+        : '';
+
     card.innerHTML = `
-        <img src="${recipe.image_url || '../images/default-recipe.jpg'}" alt="${recipe.title}">
-        <div class="recipe-card-content">
+        <div class="recipe-image-container">
+            <img src="${recipe.image_url || '../images/default-recipe.jpg'}" alt="${recipe.title}">
             <div class="recipe-status ${statusClass}">${recipe.status}</div>
+        </div>
+        <div class="recipe-card-content">
             <h3>${recipe.title}</h3>
-            <p>By: ${recipe.profiles?.username || 'Anonymous'}</p>
-            <p>Submitted: ${new Date(recipe.created_at).toLocaleDateString()}</p>
-            <p>${recipe.description || ''}</p>
+            <p class="recipe-meta">
+                <span><i class="fas fa-clock"></i> ${recipe.cooking_time} mins</span>
+                <span><i class="fas fa-utensils"></i> ${recipe.servings} servings</span>
+                <span><i class="fas fa-chart-line"></i> ${recipe.difficulty}</span>
+            </p>
+            ${dietaryInfo}
+            <p class="recipe-description">${recipe.description || ''}</p>
+            <p class="recipe-cuisine">Cuisine: ${recipe.cuisine_type}</p>
+            <p class="recipe-timestamp">Added: ${new Date(recipe.created_at).toLocaleDateString()}</p>
         </div>
         ${recipe.status === 'pending' ? `
         <div class="recipe-actions">
@@ -135,8 +264,17 @@ function createRecipeCard(recipe) {
             <button class="btn-reject" onclick="handleRecipeAction('${recipe.id}', 'rejected')">
                 <i class="fas fa-times"></i> Reject
             </button>
+            <button class="btn-view" onclick="viewRecipeDetails('${recipe.id}')">
+                <i class="fas fa-eye"></i> View Details
+            </button>
         </div>
-        ` : ''}
+        ` : `
+        <div class="recipe-actions">
+            <button class="btn-view" onclick="viewRecipeDetails('${recipe.id}')">
+                <i class="fas fa-eye"></i> View Details
+            </button>
+        </div>
+        `}
     `;
     return card;
 }
@@ -163,74 +301,38 @@ async function handleRecipeAction(recipeId, status) {
     }
 }
 
-// Handle new recipe submission
-async function handleAddRecipe(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(e.target);
-    const recipeData = {
-        title: formData.get('recipe-title'),
-        description: formData.get('recipe-description'),
-        ingredients: formData.get('recipe-ingredients'),
-        instructions: formData.get('recipe-instructions'),
-        status: 'pending',
-        user_id: (await supabaseClient.auth.getUser()).data.user.id
-    };
-
-    try {
-        // Upload image if provided
-        const imageFile = formData.get('recipe-image');
-        if (imageFile) {
-            const { data: imageData, error: imageError } = await supabaseClient.storage
-                .from('recipe-images')
-                .upload(`${Date.now()}-${imageFile.name}`, imageFile);
-
-            if (imageError) throw imageError;
-
-            const { data: { publicUrl } } = supabaseClient.storage
-                .from('recipe-images')
-                .getPublicUrl(imageData.path);
-
-            recipeData.image_url = publicUrl;
+// Add event listeners for modal
+document.addEventListener('DOMContentLoaded', function() {
+    // Close modal when clicking outside
+    addRecipeModal?.addEventListener('click', (e) => {
+        if (e.target === addRecipeModal) {
+            window.closeAddRecipeModal();
         }
+    });
 
-        // Save recipe to database
-        const { error } = await supabaseClient
-            .from('recipes')
-            .insert([recipeData]);
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && addRecipeModal?.classList.contains('active')) {
+            window.closeAddRecipeModal();
+        }
+    });
 
-        if (error) throw error;
-
-        // Close modal and reset form
-        closeAddRecipeModal();
-        e.target.reset();
-        
-        // Reload recipes and stats
-        loadRecipes(currentTab);
-        loadDashboardStats();
-
-        alert('Recipe added successfully!');
-    } catch (error) {
-        console.error('Error adding recipe:', error);
-        alert('Failed to add recipe. Please try again.');
-    }
-}
-
-// Modal functions
-function openAddRecipeModal() {
-    addRecipeModal.classList.add('active');
-}
-
-function closeAddRecipeModal() {
-    addRecipeModal.classList.remove('active');
-    addRecipeForm.reset();
-}
-
-// Event listeners
-addRecipeBtn.addEventListener('click', openAddRecipeModal);
-closeModalBtn.addEventListener('click', closeAddRecipeModal);
-cancelBtn.addEventListener('click', closeAddRecipeModal);
-addRecipeForm.addEventListener('submit', handleAddRecipe);
+    // Initialize image preview
+    const recipeImage = document.getElementById('recipe-image');
+    recipeImage?.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('image-preview');
+                if (preview) {
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Recipe preview">`;
+                }
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+});
 
 // Tab switching
 tabButtons.forEach(button => {
@@ -280,8 +382,59 @@ function debounce(func, wait) {
     };
 }
 
-// Initialize dashboard
-document.addEventListener('DOMContentLoaded', () => {
-    loadDashboardStats();
-    loadRecipes('pending');
-}); 
+// Add recipe details view function
+async function viewRecipeDetails(recipeId) {
+    try {
+        const { data: recipe, error } = await supabaseClient
+            .from('recipes')
+            .select('*')
+            .eq('id', recipeId)
+            .single();
+
+        if (error) throw error;
+
+        const detailsModal = document.createElement('div');
+        detailsModal.className = 'modal recipe-details-modal active';
+        
+        detailsModal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>${recipe.title}</h2>
+                    <button class="close-modal" onclick="this.closest('.modal').remove()">&times;</button>
+                </div>
+                <div class="recipe-details">
+                    <img src="${recipe.image_url || '../images/default-recipe.jpg'}" alt="${recipe.title}" class="recipe-detail-image">
+                    <div class="recipe-info">
+                        <p class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> ${recipe.cooking_time} mins</span>
+                            <span><i class="fas fa-utensils"></i> ${recipe.servings} servings</span>
+                            <span><i class="fas fa-chart-line"></i> ${recipe.difficulty}</span>
+                        </p>
+                        <p class="recipe-description">${recipe.description}</p>
+                        <div class="recipe-section">
+                            <h3>Ingredients</h3>
+                            <ul>${recipe.ingredients.map(item => `<li>${item}</li>`).join('')}</ul>
+                        </div>
+                        <div class="recipe-section">
+                            <h3>Instructions</h3>
+                            <ol>${recipe.instructions.map(item => `<li>${item}</li>`).join('')}</ol>
+                        </div>
+                        ${recipe.dietary_info && recipe.dietary_info.length > 0 ? `
+                        <div class="recipe-section">
+                            <h3>Dietary Information</h3>
+                            <div class="dietary-tags">
+                                ${recipe.dietary_info.map(item => `<span class="dietary-tag">${item}</span>`).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(detailsModal);
+    } catch (error) {
+        console.error('Error loading recipe details:', error);
+        alert('Failed to load recipe details');
+    }
+}
