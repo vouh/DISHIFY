@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dishify - Recipe Destination</title>
+<<<<<<< HEAD:index.html
     <!-- Supabase Client Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- Config must come after Supabase -->
     <script src="config.js"></script>
     <!-- Styles -->
+=======
+    <link rel="website icon" type="png" href="C:\Users\kelvi\OneDrive\Documents\png.0.jpg">
+>>>>>>> 7167679862d98a5fe4f617ec38b57f09f274d50e:main.html
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
     <link href="auth.css" rel="stylesheet">
@@ -48,29 +52,50 @@
         </button>
 
         <div class="nav-links">
-            <a href="#">Home</a>
+            <a href="index.html">
+                <i class="fa fa-home"></i>
+                Home</a>
             <div class="dropdown">
-                <a href="#">Recipes <i class="fas fa-chevron-down" style="font-size: 12px;"></i></a>
+                <a href="recipes-index.html">Recipes <i class="fas fa-chevron-down" style="font-size: 12px;"></i></a>
                 <div class="dropdown-content">
                     <div class="category">By Cuisine</div>
                     <a href="#">African</a>
                     <a href="#">Asian</a>
                     <a href="#">European</a>
-                    <div class="category">By Meal</div>
+                    <div class="category">By Meal-Time</div>
                     <a href="#">Breakfast</a>
                     <a href="#">Lunch</a>
                     <a href="#">Dinner</a>
-                    <div class="category">By Diet</div>
+                    <div class="category">By Dietary Needs</div>
                     <a href="#">Vegetarian</a>
                     <a href="#">Vegan</a>
                     <a href="#">Gluten-Free</a>
+                    <div class="category">By Cooking Style</div>
+                    <a href="#">Quick & Easy</a>
+                    <a href="#">Gourmet</a>
+                    <a href="#">Traditional</a>
+                    <div class="category">By Occasion</div>
+                    <a href="#">Holidays</a>
+                    <a href="#">Parties</a>
+                    <a href="#">Everyday</a>
                 </div>
             </div>
+<<<<<<< HEAD:index.html
             <a href="community.html">Community</a>
             <a href="#">About</a>
             <a href="admin/admin.html" class="admin-link">Admin</a>
+=======
+            <a href="community.html">
+                <i class="fa fa-users"></i>
+                Community</a>
+            <a href="#">
+                <i class="fas fa-info-circle"></i>
+                About</a>
+>>>>>>> 7167679862d98a5fe4f617ec38b57f09f274d50e:main.html
             <div class="auth-buttons">
-                <button type="button" class="login-btn" onclick="showLogin()">Login</button>
+                <button type="button" class="login-btn" onclick="showLogin()">
+                    <i class="fa fa-user"></i>
+                    Login</button>
                 <button type="button" class="signup-btn" onclick="showSignup()">Sign Up</button>
             </div>
         </div>
@@ -383,11 +408,11 @@
             <div class="footer-section links">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="main.html">Home</a></li>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">Browse Recipes</a></li>
+                    <li><a href="recipes-index.html">Browse Recipes</a></li>
                     <li><a href="#">Submit Recipe</a></li>
-                    <li><a href="#">Community</a></li>
+                    <li><a href="community.html">Community</a></li>
                 </ul>
             </div>
 
@@ -410,8 +435,11 @@
                     <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
                 </ul>
             </div>
+            <div class="footer-section about">
+                <h3>About us</h3>
+                <p>At Dishify,we believe that food is more than just nourishment, it's a celebration of culture,creativity and connection.Our mission is to inspire you with diverse recipes that bring the world to your kitchen while catering to every taste,occasion and lifestyle.</p>
         </div>
-        
+        </div>
         <div class="footer-bottom">
             <div class="copyright">
                 &copy; <span id="currentYear">2025</span> Dishify. All rights reserved.
