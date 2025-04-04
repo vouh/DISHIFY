@@ -1,175 +1,612 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Config must come after Supabase -->
+    <script src="config.js"></script>
+    <!-- Styles -->
+    <!-- Font Awesome must be loaded before any other styles that might use it -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="website icon" type="png" href="C:\Users\kelvi\OneDrive\Documents\png.0.jpg">
+    <link href="main.css" rel="stylesheet">
+    <link href="auth.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Production Tailwind CSS -->
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
     <title>Dishify-RecipePage</title>
     <link rel="icon" type="image/png" href="images/1 Logo.PNG">
     <link rel="stylesheet" href="styles.css">
     <link href="main.css" rel="stylesheet.css">
     <link href="auth.css" rel="stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Sidebar Styles */
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            background: white;
+            width: 300px;
+            overflow-y: auto;
+        }
+
+        .sidebar.show-sidebar {
+            transform: translateX(0);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            transition: margin-left 0.3s ease-in-out;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .sidebar.show-sidebar + .main-content {
+            margin-left: 300px;
+        }
+
+        /* Navigation Styles */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4B5563;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #FF5722;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            z-index: 50;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content .category {
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            color: #374151;
+            background: #F3F4F6;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #4B5563;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #F3F4F6;
+            color: #FF5722;
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .login-btn, .signup-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: #4B5563;
+            border: none;
+        }
+
+        .login-btn:hover {
+            color: #FF5722;
+        }
+
+        .signup-btn {
+            background: #FF5722;
+            color: white;
+            border: none;
+        }
+
+        .signup-btn:hover {
+            background: #F4511E;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-menu-btn {
+                display: inline-flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                margin-top: 0.5rem;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .login-btn, .signup-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Add to existing styles */
+        #sidebar {
+            position: fixed;
+            top: 64px; /* Height of your navbar */
+            left: 0;
+            height: calc(100vh - 64px);
+            width: 280px; /* Narrower width */
+            background: white;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+        }
+
+        #sidebar.active {
+            transform: translateX(0);
+        }
+
+        #sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        #sidebar-overlay.active {
+            display: block;
+        }
+
+        .search-container {
+            position: sticky;
+            top: 0;
+            padding: 1rem;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        
+        /* Updated Sidebar Styles */
+        aside {
+            width: 280px; /* Narrower width to hold just its contents */
+            z-index: 40;
+        }
+        
+        /* Ensure main content doesn't move when sidebar opens */
+        .main-content {
+            margin-left: 0 !important; /* Force no margin */
+            transition: none; /* Disable transition to prevent content movement */
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <button class="sidebar-toggle">
-            <i class="fas fa-bars"></i>
+
+
+    <nav class="fixed top-0 left-0 w-full bg-white z-50 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center">
+                    <div class="logo text-2xl font-bold">
+                        <div class="logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
+                    </div>
+                </a>
+
+                <!-- Mobile menu button -->
+                <button type="button" class="mobile-menu-btn lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#FF5722] focus:outline-none transition-colors duration-200" aria-label="Menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <!-- Navigation Links -->
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+
+                    <div class="dropdown">
+                        <a href="recipe.html" class="nav-link">
+                            <div class="flex items-center">
+                                <i class="fas fa-utensils"></i>
+                                <span>Recipes</span>
+                            </div>
+                            <i class="fas fa-chevron-down chevron"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <div class="category">By Cuisine</div>
+                            <a href="#">African</a>
+                            <a href="#">Asian</a>
+                            <a href="#">European</a>
+                            
+                            <div class="category">By Meal-Time</div>
+                            <a href="#">Breakfast</a>
+                            <a href="#">Lunch</a>
+                            <a href="#">Dinner</a>
+                            
+                            <div class="category">By Dietary Needs</div>
+                            <a href="#">Vegetarian</a>
+                            <a href="#">Vegan</a>
+                            <a href="#">Gluten-Free</a>
+                        </div>
+                    </div>
+
+                    <a href="community.html" class="nav-link">
+                        <i class="fa fa-users"></i>
+                        <span>Community</span>
+                    </a>
+
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container" style="margin-top: 64px;">
+        <!-- Sidebar Toggle Button -->
+        <button class="fixed top-20 left-4 z-50 bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none transition-transform duration-200 hover:scale-105">
+            <i class="fas fa-bars text-gray-600"></i>
         </button>
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2><div class="logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
-                Menu</h2>
-                <button class="close-sidebar">
-                    <i class="fas fa-times"></i>
+
+        <!-- Sidebar -->
+        <aside class="fixed top-16 left-0 h-screen w-80 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40">
+            <!-- Sidebar Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <div class="flex items-center">
+                    <img src="images/1 Logo.PNG" alt="Dishify Logo" class="h-8 w-auto">
+                </div>
+                <button class="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200">
+                    <i class="fas fa-times text-gray-500 text-xl"></i>
                 </button>
             </div>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search recipes, ingredients..">
-                <button class="search-button">
-                    <i class="fas fa-search"></i>
-                </button>
+
+            <!-- Search Section -->
+            <div class="p-4 border-b border-gray-200">
+                <div class="relative">
+                    <input type="text" 
+                        placeholder="What are you looking for?" 
+                        class="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                    >
+                    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-white bg-primary hover:bg-secondary p-2 rounded-lg transition-colors duration-200">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="has-sublist">
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-globe"></i> By Cuisine
-                            <i class="fas fa-chevron-down dropdown-icon"></i>
+
+            <!-- Navigation Links -->
+            <nav class="overflow-y-auto h-[calc(100vh-180px)]">
+                <div class="py-2">
+                    <!-- Navigation Items -->
+                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
+                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">DINNERS</span>
+                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
+                    </a>
+                    
+                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
+                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">MEALS</span>
+                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
+                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">INGREDIENTS</span>
+                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
+                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">OCCASIONS</span>
+                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
+                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">CUISINES</span>
+                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
+                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">KITCHEN TIPS</span>
+                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
+                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">NEWS</span>
+                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
+                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">FEATURES</span>
+                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
+                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">ABOUT US</span>
+                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
+                    </a>
+
+                    <div class="border-t border-gray-200 mt-2">
+                        <a href="#" class="flex items-center justify-between px-6 py-3 text-primary hover:bg-gray-50 group">
+                            <span class="text-base font-semibold">GET THE MAGAZINE</span>
+                            <i class="fas fa-chevron-right text-sm"></i>
                         </a>
-                        <ul class="sublist">
-                            <li><a href="#"><i class="fas fa-circle"></i> Continental</a></li>
-                            <li><a href="#"><i class="fas fa-circle"></i> Regional</a></li>
-                            <li><a href="#"><i class="fas fa-circle"></i> Fusion</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-sublist">
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-clock"></i> By Mealtime
-                            <i class="fas fa-chevron-down dropdown-icon"></i>
-                        </a>
-                        <ul class="sublist">
-                            <li><a href="#"><i class="fas fa-circle"></i> Breakfast</a></li>
-                            <li><a href="#"><i class="fas fa-circle"></i> Lunch</a></li>
-                            <li><a href="#"><i class="fas fa-circle"></i> Dinner</a></li>
-                            <li><a href="#"><i class="fas fa-circle"></i> Snacks</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-sublist">
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-leaf"></i> By Dietary Needs
-                            <i class="fas fa-chevron-down dropdown-icon"></i>
-                        </a>
-                        <ul class="sublist">
-                            <li><a href="#"><i class="fas fa-circle"></i> Health-Focused</a></li>
-                            <li><a href="#"><i class="fas fa-circle"></i> Lifestyle</a></li>
-                            <li><a href="#"><i class="fas fa-circle"></i> Allergy-Friendly</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-sublist">
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-utensils"></i> By Cooking Style
-                            <i class="fas fa-chevron-down dropdown-icon"></i>
-                        </a>
-                        <ul class="sublist">
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Support</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Feedback</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Help</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-sublist">
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-calendar-alt"></i> By Occasion
-                            <i class="fas fa-chevron-down dropdown-icon"></i>
-                        </a>
-                        <ul class="sublist">
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Holidays</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Parties</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Special Days</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-home"></i> Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-users"></i> Community
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-info-circle"></i> About Us
-                        </a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </nav>
         </aside>
-        <main class="main-content">
-            <h1>Discover the best recipes.</h1>
-            <p>From quick and easy weeknight dinners to festive holiday meals, we've got you covered.</p>
-            
-            <div class="content-section">
-                <h2><i class="fas fa-globe"></i> By Cuisine</h2>
-                <div class="content-wrapper">
-                    <div class="content-text">
-                        <p>Traditions from all walks on Earth, be it continental, regional or even blends of different cuisines</p>
+
+        <!-- Main Content -->
+        <main class="main-content transition-all duration-300">
+            <section class="trending-recipes">
+                <div class="section-title">
+                    <h2>Popular Kenyan Recipes</h2>
+                    <p>Discover authentic tastes from the heart of Kenya</p>
+                </div>
+                <div class="recipe-grid">
+                    <div class="recipe-card" data-aos="fade-up">
+                        <div class="recipe-image-wrapper">
+                            <img src="images/17.jpg" alt="Nyama Choma" class="recipe-image">
+                            <div class="recipe-overlay">
+                                <i class="fas fa-fire"></i>
+                                <span>Most Popular</span>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Traditional</span>
+                                <span class="recipe-tag">Main Course</span>
+                            </div>
+                            <h3>Nyama Choma</h3>
+                            <p class="recipe-description">Traditional Kenyan roasted meat, usually goat or beef, served with kachumbari</p>
+                            <div class="recipe-stats">
+                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 45 mins</span>
+                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 328</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="content-image">
-                        <img src="images/Pork Chop Milanese.PNG" alt="Technology Platform">
+
+                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="recipe-image-wrapper">
+                            <img src="images/16.jpg" alt="Ugali and Beef" class="recipe-image">
+                            <div class="recipe-overlay">
+                                <i class="fas fa-crown"></i>
+                                <span>Classic</span>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Traditional</span>
+                                <span class="recipe-tag">Main Course</span>
+                            </div>
+                            <h3>Ugali na Nyama</h3>
+                            <p class="recipe-description">Classic Kenyan cornmeal dish served with tender beef stew and vegetables</p>
+                            <div class="recipe-stats">
+                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 45 mins</span>
+                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 425</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="recipe-image-wrapper">
+                            <img src="images/2.jpg" alt="Mukimo" class="recipe-image">
+                            <div class="recipe-overlay">
+                                <i class="fas fa-leaf"></i>
+                                <span>Vegetarian</span>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Vegetarian</span>
+                                <span class="recipe-tag">Kikuyu</span>
+                            </div>
+                            <h3>Mukimo</h3>
+                            <p class="recipe-description">Mashed potatoes with peas, pumpkin leaves, and green maize</p>
+                            <div class="recipe-stats">
+                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 40 mins</span>
+                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 186</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="recipe-image-wrapper">
+                            <img src="images/21.jpg" alt="Samosa" class="recipe-image">
+                            <div class="recipe-overlay">
+                                <i class="fas fa-fire"></i>
+                                <span>Popular</span>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Snack</span>
+                                <span class="recipe-tag">Spicy</span>
+                            </div>
+                            <h3>Kenyan Samosas</h3>
+                            <p class="recipe-description">Crispy triangular pastries filled with spiced minced meat or vegetables</p>
+                            <div class="recipe-stats">
+                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 60 mins</span>
+                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 312</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="recipe-image-wrapper">
+                            <img src="images/18.jpg" alt="Githeri" class="recipe-image">
+                            <div class="recipe-overlay">
+                                <i class="fas fa-seedling"></i>
+                                <span>Healthy</span>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Beans</span>
+                                <span class="recipe-tag">Maize</span>
+                            </div>
+                            <h3>Githeri</h3>
+                            <p class="recipe-description">A nutritious mix of boiled maize and beans, seasoned to perfection</p>
+                            <div class="recipe-stats">
+                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 90 mins</span>
+                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 164</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="recipe-image-wrapper">
+                            <img src="images/19.jpg" alt="Chapati" class="recipe-image">
+                            <div class="recipe-overlay">
+                                <i class="fas fa-utensils"></i>
+                                <span>Essential</span>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Bread</span>
+                                <span class="recipe-tag">Basic</span>
+                            </div>
+                            <h3>Kenyan Chapati</h3>
+                            <p class="recipe-description">Soft and layered flatbread, perfect with any curry or stew</p>
+                            <div class="recipe-stats">
+                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 30 mins</span>
+                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 292</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="recipe-image-wrapper">
+                            <img src="images/4.jpg" alt="Pilau" class="recipe-image">
+                            <div class="recipe-overlay">
+                                <i class="fas fa-star"></i>
+                                <span>Featured</span>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Rice</span>
+                                <span class="recipe-tag">Spicy</span>
+                            </div>
+                            <h3>Kenyan Pilau</h3>
+                            <p class="recipe-description">Aromatic rice cooked with spices, meat, and caramelized onions</p>
+                            <div class="recipe-stats">
+                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 60 mins</span>
+                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 245</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="recipe-image-wrapper">
+                            <img src="images/20.jpg" alt="Mandazi" class="recipe-image">
+                            <div class="recipe-overlay">
+                                <i class="fas fa-cookie"></i>
+                                <span>Breakfast</span>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Pastry</span>
+                                <span class="recipe-tag">Sweet</span>
+                            </div>
+                            <h3>Kenyan Mandazi</h3>
+                            <p class="recipe-description">Sweet, fluffy East African doughnuts flavored with cardamom and coconut milk</p>
+                            <div class="recipe-stats">
+                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 45 mins</span>
+                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 275</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="content-section">
-                <h2><i class="fas fa-clock"></i> By Mealtime</h2>
-                <div class="content-wrapper">
-                    <div class="content-text">
-                        <p>From Pancakes served as breakfast to rice and roasts for dinner.</p>
-                    </div>
-                    <div class="content-image">
-                        <img src="images/Simple Spanish Rice.PNG" alt="Analytics Dashboard">
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <h2><i class="fas fa-leaf"></i> By Dietary Needs</h2>
-                <div class="content-wrapper">
-                    <div class="content-text">
-                        <p>Be it Low-Carb, Vegan, Gluten or Nut-Free, we've got you covered.</p>
-                    </div>
-                    <div class="content-image">
-                        <img src="images/Common-Ragi Porridge.PNG" alt="Community Support">
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <h2><i class="fas fa-utensils"></i> By Cooking Style</h2>
-                <div class="content-wrapper">
-                    <div class="content-text">
-                        <p>Can be 30-minute meals, one-pot recipes or even complex dishes.</p>
-                    </div>
-                    <div class="content-image">
-                        <img src="images/Braised Red Cabbage with Apples and Bacon.PNG" alt="Featured Content">
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <h2><i class="fas fa-calendar-alt"></i> By Occasion</h2>
-                <div class="content-wrapper">
-                    <div class="content-text">
-                        <p> A nutritious meal for every occasion, be it Christmas, Eid, Thanksgiving or even a simple, family-friendly meal.</p>
-                        </p>
-                    </div>
-                    <div class="content-image">
-                        <img src="images/19.jpg" alt="Statistics Dashboard">
-                    </div>
-                </div>
-            </div>
-
+            </section>
         </main>
     </div>
     <footer class="footer">
@@ -234,5 +671,65 @@
         </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('aside');
+            const sidebarToggle = document.querySelector('button.fixed');
+            const closeSidebarButton = sidebar.querySelector('button');
+            const mainContent = document.querySelector('.main-content');
+
+            function toggleSidebar() {
+                const isOpen = !sidebar.classList.contains('-translate-x-full');
+                if (isOpen) {
+                    // Close sidebar
+                    sidebar.classList.add('-translate-x-full');
+                } else {
+                    // Open sidebar
+                    sidebar.classList.remove('-translate-x-full');
+                }
+            }
+
+            // Toggle sidebar when clicking the toggle button
+            sidebarToggle.addEventListener('click', toggleSidebar);
+
+            // Close sidebar when clicking the close button
+            closeSidebarButton.addEventListener('click', toggleSidebar);
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                const isClickInside = sidebar.contains(e.target) || sidebarToggle.contains(e.target);
+                if (!isClickInside && window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+                    toggleSidebar();
+                }
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) {
+                    sidebar.classList.remove('-translate-x-full');
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            });
+
+            // Search functionality
+            const searchInput = sidebar.querySelector('input[type="text"]');
+            const searchButton = sidebar.querySelector('button.absolute');
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+                // Add your search logic here
+                console.log('Searching for:', searchTerm);
+            }
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            searchButton.addEventListener('click', performSearch);
+        });
+    </script>
 </body>
-</html> 
+</html>

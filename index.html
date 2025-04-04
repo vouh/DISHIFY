@@ -9,92 +9,85 @@
     <!-- Config must come after Supabase -->
     <script src="config.js"></script>
     <!-- Styles -->
-
-    <link rel="website icon" type="png" href="C:\Users\kelvi\OneDrive\Documents\png.0.jpg"
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome must be loaded before any other styles that might use it -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="website icon" type="png" href="C:\Users\kelvi\OneDrive\Documents\png.0.jpg">
     <link href="main.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <link href="auth.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Production Tailwind CSS -->
     <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
     <style>
-        /* Dashboard styles */
-        .dashboard-container {
-            background-color: #f8f9fa;
-            min-height: 80vh;
-        }
-        .dashboard-content {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        /* Add dashboard styles */
-        .dashboard-container {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
         
-        .dialog {
-            display: none;
-        }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
-        
-        <!-- Add this mobile menu button -->
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
+    <nav class="fixed top-0 left-0 w-full bg-white z-50 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center">
+                    <div class="logo text-2xl font-bold">
+                        <div class="logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
+                    </div>
+                </a>
 
-        <div class="nav-links">
-            <a href="index.html">
-                <i class="fa fa-home"></i>
-                Home</a>
-            <div class="dropdown">
-                <a href="recipes-index.html">Recipes <i class="fas fa-chevron-down" style="font-size: 12px;"></i></a>
-                <div class="dropdown-content">
-                    <div class="category">By Cuisine</div>
-                    <a href="#">African</a>
-                    <a href="#">Asian</a>
-                    <a href="#">European</a>
-                    <div class="category">By Meal-Time</div>
-                    <a href="#">Breakfast</a>
-                    <a href="#">Lunch</a>
-                    <a href="#">Dinner</a>
-                    <div class="category">By Dietary Needs</div>
-                    <a href="#">Vegetarian</a>
-                    <a href="#">Vegan</a>
-                    <a href="#">Gluten-Free</a>
-                    <div class="category">By Cooking Style</div>
-                    <a href="#">Quick & Easy</a>
-                    <a href="#">Gourmet</a>
-                    <a href="#">Traditional</a>
-                    <div class="category">By Occasion</div>
-                    <a href="#">Holidays</a>
-                    <a href="#">Parties</a>
-                    <a href="#">Everyday</a>
+                <!-- Mobile menu button -->
+                <button type="button" class="mobile-menu-btn lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#FF5722] focus:outline-none transition-colors duration-200" aria-label="Menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <!-- Navigation Links -->
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+
+                    <div class="dropdown">
+                        <a href="recipe.html" class="nav-link">
+                            <div class="flex items-center">
+                                <i class="fas fa-utensils"></i>
+                                <span>Recipes</span>
+                            </div>
+                            <i class="fas fa-chevron-down chevron"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <div class="category">By Cuisine</div>
+                            <a href="#">African</a>
+                            <a href="#">Asian</a>
+                            <a href="#">European</a>
+                            
+                            <div class="category">By Meal-Time</div>
+                            <a href="#">Breakfast</a>
+                            <a href="#">Lunch</a>
+                            <a href="#">Dinner</a>
+                            
+                            <div class="category">By Dietary Needs</div>
+                            <a href="#">Vegetarian</a>
+                            <a href="#">Vegan</a>
+                            <a href="#">Gluten-Free</a>
+                        </div>
+                    </div>
+
+                    <a href="community.html" class="nav-link">
+                        <i class="fa fa-users"></i>
+                        <span>Community</span>
+                    </a>
+
+                    <a href="about.html" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a>
+
+                    <div class="auth-buttons">
+                        <button type="button" class="login-btn" onclick="showLogin()">
+                            <i class="fa fa-user"></i>
+                            <span>Login</span>
+                        </button>
+                        <button type="button" class="signup-btn" onclick="showSignup()">Sign Up</button>
+                    </div>
                 </div>
-            </div>
-
-            <a href="community.html">Community</a>
-            <a href="#">About</a>
-            <a href="admin/admin.html" class="admin-link">Admin</a>
-
-            <a href="community.html">
-                <i class="fa fa-users"></i>
-                Community</a>
-            <a href="#">
-                <i class="fas fa-info-circle"></i>
-                About</a>
-
-            <div class="auth-buttons">
-                <button type="button" class="login-btn" onclick="showLogin()">
-                    <i class="fa fa-user"></i>
-                    Login</button>
-                <button type="button" class="signup-btn" onclick="showSignup()">Sign Up</button>
             </div>
         </div>
     </nav>
@@ -353,14 +346,16 @@
                     <h3>Become a Chef</h3>
                     <p>Share your recipes, build your following, and inspire others</p>
                     <div class="stats-row">
-                        <span><i class="fas fa-user-chef"></i> 200+ Chefs</span>
-                        <span><i class="fas fa-utensils"></i> 1000+ Recipes</span>
+                        <span><i class="fas fa-user-chef"></i> Cooking Community</span>
+                        <span><i class="fas fa-utensils"></i> SimpleRecipes</span>
                     </div>
-                    <button class="join-button">
-                        <span>Jiunge Nasi</span>
-                        <small>Join Our Community</small>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
+                    <a href="community.html">
+                        <button class="join-button">
+                            <span>Jiunge Nasi</span>
+                            <small>Join Our Community</small>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </a>
                 </div>
             </div>
 
@@ -392,8 +387,9 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section brand">
-                <div class="footer-logo"><span>D</span>ish<i class="fas fa-spoon "style="color: #FF5722; font-size: 0.65em;transform: rotate(135deg);"></i>fy</div>
-                <p class="footer-description">Discover amazing recipes from around the world. Join our community of passionate food lovers.</p>
+                <div class="footer-logo"><span>D</span>ish<i class="fa-solid fa-utensils "style="color: #FF5722; font-size: 0.65em;transform: rotate(135deg);"></i>fy</div>
+               <a href="community.html"> <p class="footer-description"><a href="community.html">Discover amazing recipes from around the world. Join our community of passionate food lovers.</a></p></a>
+         
                 <div class="social-links">
                     <a href="#" class="social-link" data-tooltip="Follow us on TikTok"><i class="fab fa-tiktok"></i></a>
                     <a href="#" class="social-link" data-tooltip="Like us on Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -433,10 +429,6 @@
                     <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
                 </ul>
             </div>
-            <div class="footer-section about">
-                <h3>About us</h3>
-                <p>At Dishify,we believe that food is more than just nourishment, it's a celebration of culture,creativity and connection.Our mission is to inspire you with diverse recipes that bring the world to your kitchen while catering to every taste,occasion and lifestyle.</p>
-        </div>
         </div>
         <div class="footer-bottom">
             <div class="copyright">
@@ -532,5 +524,89 @@
     <script src="main.js"></script>
     <script src="auth.js"></script>
     <script src="community.js"></script>
+    
+    <!-- Add mobile menu JavaScript -->
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const menuIcon = menuBtn.querySelector('i');
+            
+            // Toggle menu function
+            function toggleMenu() {
+                const isOpen = navLinks.classList.contains('active');
+                
+                if (isOpen) {
+                    navLinks.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                    document.body.style.overflow = '';
+                } else {
+                    navLinks.classList.add('active');
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            // Add click event to menu button
+            menuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleMenu();
+            });
+
+            // Handle dropdown toggles in mobile view
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('a');
+                const content = dropdown.querySelector('.dropdown-content');
+
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        
+                        // Close other dropdowns
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown && d.classList.contains('active')) {
+                                d.classList.remove('active');
+                                const c = d.querySelector('.dropdown-content');
+                                if (c) {
+                                    c.style.height = '0';
+                                }
+                            }
+                        });
+
+                        // Toggle current dropdown
+                        const isOpen = dropdown.classList.contains('active');
+                        dropdown.classList.toggle('active');
+                        
+                        // Animate height
+                        if (!isOpen) {
+                            content.style.height = content.scrollHeight + 'px';
+                        } else {
+                            content.style.height = '0';
+                        }
+                    }
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (navLinks.classList.contains('active') &&
+                    !navLinks.contains(e.target) &&
+                    !menuBtn.contains(e.target)) {
+                    toggleMenu();
+                }
+            });
+
+            // Close menu on window resize (if open)
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

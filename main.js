@@ -13,8 +13,72 @@ window.addEventListener('scroll', function() {
 // Mobile menu toggle
 function toggleMobileMenu() {
     const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
+    const menuBtn = document.querySelector('.mobile-menu-btn i');
+    const body = document.body;
+
+    if (!navLinks || !menuBtn) {
+        console.error('Mobile menu elements not found');
+        return;
+    }
+
+    const isOpen = navLinks.classList.contains('active');
+
+    if (isOpen) {
+        // Close menu
+        navLinks.classList.remove('active');
+        menuBtn.classList.remove('fa-times');
+        menuBtn.classList.add('fa-bars');
+        body.classList.remove('overflow-hidden');
+    } else {
+        // Open menu
+        navLinks.classList.add('active');
+        menuBtn.classList.remove('fa-bars');
+        menuBtn.classList.add('fa-times');
+        body.classList.add('overflow-hidden');
+    }
 }
+
+// Handle mobile dropdown toggles
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const content = this.nextElementSibling;
+                const isOpen = dropdown.classList.contains('active');
+                
+                // Close all other dropdowns
+                dropdowns.forEach(d => {
+                    if (d !== dropdown) {
+                        d.classList.remove('active');
+                        const c = d.querySelector('.dropdown-content');
+                        if (c) c.style.display = 'none';
+                    }
+                });
+                
+                // Toggle current dropdown
+                dropdown.classList.toggle('active');
+                content.style.display = isOpen ? 'none' : 'block';
+            }
+        });
+    });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const navLinks = document.querySelector('.nav-links');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (navLinks && menuBtn && navLinks.classList.contains('active')) {
+        if (!navLinks.contains(event.target) && !menuBtn.contains(event.target)) {
+            toggleMobileMenu();
+        }
+    }
+});
 
 // Recipe search functionality
 function searchRecipes() {
@@ -155,35 +219,15 @@ console.log('Script loaded!');
 
 // Footer DateTime Display
 function updateDateTime() {
-    try {
     const now = new Date();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const dayName = days[now.getDay()];
-    
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
-    const timeString = `${hours}:${minutes}:${seconds}`;
-    
-        const dayElement = document.getElementById('currentDay');
-        const timeElement = document.getElementById('currentTime');
-        const yearElement = document.getElementById('currentYear');
-        
-        if (dayElement) dayElement.textContent = dayName;
-        if (timeElement) timeElement.textContent = timeString;
-        if (yearElement) yearElement.textContent = now.getFullYear();
-    } catch (error) {
-        console.log('Error updating date/time:', error);
-    }
+    document.getElementById('currentDay').textContent = days[now.getDay()];
+    document.getElementById('currentTime').textContent = now.toLocaleTimeString();
 }
 
-// Initialize date/time display
-if (document.getElementById('currentDay') || 
-    document.getElementById('currentTime') || 
-    document.getElementById('currentYear')) {
-updateDateTime();
+// Update time every second
 setInterval(updateDateTime, 1000);
-}
+updateDateTime(); // Initial call
 
 // Notification System
 function showNotification(message, type = 'default') {

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Dishify</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: #ff6b6b;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffe0e0;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .mission-statement {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .mission-statement p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .values {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .values h2 {
+            color: #ff6b6b;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mission-statement {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">Dishify</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/recipes">Recipes</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div>
+            <h1>Welcome to Dishify</h1>
+            <p>Where Passion Meets the Plate</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="mission-statement">
+            <p>At Dishify, we believe that food is more than just nourishment,it's a celebration of culture, creativity, and connection. Our mission is to inspire you with diverse recipes that bring the world to your kitchen while catering to every taste, occasion, and lifestyle.</p>
+            
+            <p>Cooking is more than a task,it's a way to create memories, share love, and spark joy. Let us be your trusted companion as you whip up meals that you, your family, and friends will savor.</p>
+        </div>
+
+        <div class="values">
+            <h2>What We Stand For</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>Cultural Diversity</h3>
+                    <p>Celebrating recipes from around the world</p>
+                </div>
+                <div class="value-item">
+                    <h3>Inclusivity</h3>
+                    <p>Recipes for every dietary preference and need</p>
+                </div>
+                <div class="value-item">
+                    <h3>Quality</h3>
+                    <p>Tested recipes you can trust</p>
+                </div>
+            </div>
+        </div>
