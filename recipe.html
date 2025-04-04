@@ -121,6 +121,7 @@
             display: flex;
             align-items: center;
             gap: 2rem;
+            margin-left: auto; /* Push links to the right */
         }
 
         .nav-link {
@@ -218,6 +219,7 @@
         /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
+            margin-left: 1rem; /* Add space between links and menu button */
         }
 
         @media (max-width: 1024px) {
@@ -286,58 +288,45 @@
     <nav class="fixed top-0 left-0 w-full bg-white z-50 shadow-sm">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
+                <!-- Logo on the left -->
                 <a href="index.html" class="flex items-center">
                     <div class="logo text-2xl font-bold">
                         <div class="logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
                     </div>
                 </a>
 
-                <!-- Mobile menu button -->
-                <button type="button" class="mobile-menu-btn lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#FF5722] focus:outline-none transition-colors duration-200" aria-label="Menu">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-
-                <!-- Navigation Links -->
-                <div class="nav-links">
-                    <a href="index.html" class="nav-link">
-                        <i class="fa fa-home"></i>
-                        <span>Home</span>
-                    </a>
-
-                    <div class="dropdown">
-                        <a href="recipe.html" class="nav-link">
-                            <div class="flex items-center">
-                                <i class="fas fa-utensils"></i>
-                                <span>Recipes</span>
-                            </div>
-                            <i class="fas fa-chevron-down chevron"></i>
+                <!-- Navigation Links on the right -->
+                <div class="flex items-center">
+                    <div class="nav-links">
+                        <a href="index.html" class="nav-link">
+                            <i class="fa fa-home"></i>
+                            <span>Home</span>
                         </a>
-                        <div class="dropdown-content">
-                            <div class="category">By Cuisine</div>
-                            <a href="#">African</a>
-                            <a href="#">Asian</a>
-                            <a href="#">European</a>
-                            
-                            <div class="category">By Meal-Time</div>
-                            <a href="#">Breakfast</a>
-                            <a href="#">Lunch</a>
-                            <a href="#">Dinner</a>
-                            
-                            <div class="category">By Dietary Needs</div>
-                            <a href="#">Vegetarian</a>
-                            <a href="#">Vegan</a>
-                            <a href="#">Gluten-Free</a>
+
+                        <div class="dropdown">
+                            <a href="recipe.html" class="nav-link">
+                                <div class="flex items-center">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Recipes</span>
+                                </div>
+                            </a>
                         </div>
+
+                        <a href="community.html" class="nav-link">
+                            <i class="fa fa-users"></i>
+                            <span>Community</span>
+                        </a>
+
+                        <a href="about.html" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About</span>
+                        </a>
                     </div>
 
-                    <a href="community.html" class="nav-link">
-                        <i class="fa fa-users"></i>
-                        <span>Community</span>
-                    </a>
-
-                    <a href="abo" class="nav-link">
-                        <i class="fas fa-info-circle"></i>
-                        <span>About</span>
+                    <!-- Mobile menu button -->
+                    <button type="button" class="mobile-menu-btn lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#FF5722] focus:outline-none transition-colors duration-200" aria-label="Menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
