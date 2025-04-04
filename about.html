@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Dishify</title>
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Config must come after Supabase -->
+    <script src="config.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="main.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link href="auth.css" rel="stylesheet">
+    <!-- Production Tailwind CSS -->
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
     <style>
         * {
             margin: 0;
@@ -16,6 +27,50 @@
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
+        }
+
+        /* Update navigation styles */
+        nav.fixed {
+            background-color: white !important;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #FF5722 !important;
+        }
+
+        .nav-link i {
+            color: #FF5722;
+        }
+
+        .dropdown-content {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .auth-buttons .login-btn {
+            color: #333;
+            border: 1px solid #FF5722;
+        }
+
+        .auth-buttons .signup-btn {
+            background-color: #FF5722;
+            color: white;
+        }
+
+        .logo {
+            color: #333 !important;
+        }
+
+        .logo span {
+            color: #FF5722;
         }
 
         .navbar {
@@ -68,6 +123,7 @@
             text-align: center;
             color: white;
             padding: 2rem;
+            margin-top: 64px;
         }
 
         .hero h1 {
@@ -104,6 +160,25 @@
             margin-bottom: 2rem;
         }
 
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .value-item h3 {
+            color: #FF5722;
+            margin-bottom: 1rem;
+        }
+
         footer {
             background-color: #333;
             color: white;
@@ -120,18 +195,81 @@
             .mission-statement {
                 padding: 2rem;
             }
+
+            /* Mobile navigation styles */
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-link {
+                padding: 0.75rem 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                border-radius: 0.375rem;
+            }
+
+            .nav-link:hover {
+                background-color: rgba(255, 87, 34, 0.1);
+            }
+
+            .nav-link i {
+                width: 20px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="/" class="logo">Dishify</a>
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="/recipes">Recipes</a>
-                <a href="/contact">Contact</a>
+    <nav class="fixed top-0 left-0 w-full bg-white z-50 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center">
+                    <div class="logo text-2xl font-bold">
+                        <div class="logo"><span>D</span>ish<i class="fas fa-spoon" style="color: #FF5722; font-size: 0.65em; transform: rotate(135deg);"></i>fy</div>
+                    </div>
+                </a>
+
+                <!-- Mobile menu button -->
+                <button type="button" class="mobile-menu-btn lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#FF5722] focus:outline-none transition-colors duration-200" aria-label="Menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <!-- Navigation Links -->
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+
+                    <a href="recipe.html" class="nav-link">
+                        <i class="fas fa-utensils"></i>
+                        <span>Recipes</span>
+                    </a>
+
+                    <a href="community.html" class="nav-link">
+                        <i class="fa fa-users"></i>
+                        <span>Community</span>
+                    </a>
+
+                    <a href="about.html" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -145,9 +283,9 @@
 
     <div class="content">
         <div class="mission-statement">
-            <p>At Dishify, we believe that food is more than just nourishment,it's a celebration of culture, creativity, and connection. Our mission is to inspire you with diverse recipes that bring the world to your kitchen while catering to every taste, occasion, and lifestyle.</p>
+            <p>At Dishify, we believe that food is more than just nourishment, it's a celebration of culture, creativity, and connection. Our mission is to inspire you with diverse recipes that bring the world to your kitchen while catering to every taste, occasion, and lifestyle.</p>
             
-            <p>Cooking is more than a task,it's a way to create memories, share love, and spark joy. Let us be your trusted companion as you whip up meals that you, your family, and friends will savor.</p>
+            <p>Cooking is more than a task, it's a way to create memories, share love, and spark joy. Let us be your trusted companion as you whip up meals that you, your family, and friends will savor.</p>
         </div>
 
         <div class="values">
@@ -167,3 +305,86 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Add the footer from index.html -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section brand">
+                <div class="footer-logo"><span>D</span>ish<i class="fa-solid fa-utensils" style="color: #FF5722; font-size: 0.65em;transform: rotate(135deg);"></i>fy</div>
+                <p class="footer-description">Discover amazing recipes from around the world. Join our community of passionate food lovers.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" data-tooltip="Follow us on TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-link" data-tooltip="Like us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" data-tooltip="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" data-tooltip="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" data-tooltip="Subscribe on YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="recipe.html">Browse Recipes</a></li>
+                    <li><a href="#">Submit Recipe</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section categories">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Kenyan Cuisine</a></li>
+                    <li><a href="#">African Dishes</a></li>
+                    <li><a href="#">Vegetarian</a></li>
+                    <li><a href="#">Quick & Easy</a></li>
+                    <li><a href="#">Healthy Options</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-phone"></i> +254 123 456 789</li>
+                    <li><i class="fas fa-envelope"></i> hello@dishify.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; <span id="currentYear">2025</span> Dishify. All rights reserved.
+            </div>
+            <div class="datetime-display">
+                <span style="color: #FF8C00;" id="currentDay"></span> | 
+                <span style="color: #FF8C00;" id="currentTime"></span>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add the auth dialogs from index.html -->
+    <dialog id="loginDialog" class="modal-dialog">
+        <!-- Login dialog content -->
+    </dialog>
+
+    <dialog id="signupDialog" class="modal-dialog">
+        <!-- Signup dialog content -->
+    </dialog>
+
+    <dialog id="forgotPasswordDialog" class="modal-dialog">
+        <!-- Forgot password dialog content -->
+    </dialog>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+    <script src="community.js"></script>
+</body>
+</html>

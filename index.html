@@ -19,7 +19,81 @@
     <!-- Production Tailwind CSS -->
     <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
     <style>
-        
+        /* Mobile menu styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: -50px;
+                gap:-5px;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                flex-direction: column;
+                z-index: 50;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-link {
+                display: flex;
+                align-items: center;
+                border-radius: 0.375rem;
+                color: #333;
+                gap:-5px;
+            }
+
+            .nav-link:hover {
+                background-color: rgba(255, 87, 34, 0.1);
+            }
+
+            .nav-link i {
+                width: 20px;
+                text-align: center;
+                color: #FF5722;
+                height:10px;
+                gap:-5px;
+            }
+
+            .auth-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem;
+                margin-top:2px;
+                border-top: 1px solid rgba(0,0,0,0.1);
+            }
+
+            .auth-buttons button {
+                width: 100%;
+                padding: 0.5rem;
+                border-radius: 0.375rem;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .login-btn {
+                background-color: white;
+                color: #FF5722;
+                border: 1px solid #FF5722;
+            }
+
+            .signup-btn {
+                background-color: #FF5722;
+                color: white;
+                border: none;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -44,31 +118,10 @@
                         <span>Home</span>
                     </a>
 
-                    <div class="dropdown">
-                        <a href="recipe.html" class="nav-link">
-                            <div class="flex items-center">
-                                <i class="fas fa-utensils"></i>
-                                <span>Recipes</span>
-                            </div>
-                            <i class="fas fa-chevron-down chevron"></i>
-                        </a>
-                        <div class="dropdown-content">
-                            <div class="category">By Cuisine</div>
-                            <a href="#">African</a>
-                            <a href="#">Asian</a>
-                            <a href="#">European</a>
-                            
-                            <div class="category">By Meal-Time</div>
-                            <a href="#">Breakfast</a>
-                            <a href="#">Lunch</a>
-                            <a href="#">Dinner</a>
-                            
-                            <div class="category">By Dietary Needs</div>
-                            <a href="#">Vegetarian</a>
-                            <a href="#">Vegan</a>
-                            <a href="#">Gluten-Free</a>
-                        </div>
-                    </div>
+                    <a href="recipe.html" class="nav-link">
+                        <i class="fas fa-utensils"></i>
+                        <span>Recipes</span>
+                    </a>
 
                     <a href="community.html" class="nav-link">
                         <i class="fa fa-users"></i>
