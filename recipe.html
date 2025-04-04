@@ -53,7 +53,7 @@
             top: 80px;
             left: 1rem;
             z-index: 50;
-            background:#ee592b;
+            background: #ee592b;
             border: none;
             padding: 0.75rem;
             border-radius: 50%;
@@ -62,6 +62,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .sidebar-toggle i {
+            color: white; /* Make the bars icon white */
         }
 
         /* Overlay styles */
@@ -268,9 +272,12 @@
             display: block;
         }
 
-      
-      
-      
+        /* Sidebar content wrapper */
+        .sidebar-content {
+            margin-top: 4rem; /* Increase top margin to prevent overlap with toggle button */
+            padding: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -342,36 +349,36 @@
     <div class="container mx-auto" style="margin-top: 64px;">
         <!-- Sidebar Toggle Button -->
         <button class="sidebar-toggle">
-            <i class="fas fa-bars text-gray-600"></i>
+            <i class="fas fa-bars text-white"></i>
         </button>
 
         <!-- Sidebar -->
         <aside>
-            <div class="p-4">
-                <div class="mb-6">
+            <div style="margin-top: 4rem; padding: 1.5rem;">
+                <div class="mb-6 px-4">
                     <div class="category font-bold text-lg mb-3 text-gray-700">By Cuisine</div>
                     <div class="flex flex-col space-y-2">
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">African</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Asian</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">European</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors px-2 py-1">African</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors px-2 py-1">Asian</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors px-2 py-1">European</a>
                     </div>
                 </div>
 
-                <div class="mb-6">
+                <div class="mb-6 px-4">
                     <div class="category font-bold text-lg mb-3 text-gray-700">By Meal-Time</div>
                     <div class="flex flex-col space-y-2">
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Breakfast</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Lunch</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Dinner</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors px-2 py-1">Breakfast</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors px-2 py-1">Lunch</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors px-2 py-1">Dinner</a>
                     </div>
                 </div>
 
-                <div class="mb-6">
+                <div class="mb-6 px-4">
                     <div class="category font-bold text-lg mb-3 text-gray-700">By Dietary Needs</div>
                     <div class="flex flex-col space-y-2">
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Vegetarian</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Vegan</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Gluten-Free</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors px-2 py-1">Vegetarian</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors px-2 py-1">Vegan</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors px-2 py-1">Gluten-Free</a>
                     </div>
                 </div>
             </div>
@@ -479,7 +486,7 @@
                                 <i class="fas fa-seedling"></i>
                                 <span>Healthy</span>
                             </div>
-                        </div>git 
+                        </div>
                         <div class="recipe-content">
                             <div class="recipe-tags">
                                 <span class="recipe-tag">Beans</span>
