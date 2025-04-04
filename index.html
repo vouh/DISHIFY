@@ -514,7 +514,12 @@
             </div>
             <div class="form-group">
                 <label for="login-password">Password</label>
-                <input type="password" id="login-password" required>
+                <div style="position: relative;">
+                    <input type="password" id="login-password" required>
+                    <button type="button" onclick="togglePassword('login-password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer; color: #666;">
+                        <i class="far fa-eye"></i>
+                    </button>
+                </div>
             </div>
             <div class="form-options">
                 <button type="button" onclick="showForgotPassword()" class="forgot-link">Forgot Password?</button>
@@ -540,11 +545,21 @@
             </div>
             <div class="form-group">
                 <label for="signup-password">Password</label>
-                <input type="password" id="signup-password" required>
+                <div style="position: relative;">
+                    <input type="password" id="signup-password" required>
+                    <button type="button" onclick="togglePassword('signup-password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer; color: #666;">
+                        <i class="far fa-eye"></i>
+                    </button>
+                </div>
             </div>
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" required>
+                <div style="position: relative;">
+                    <input type="password" id="confirm-password" required>
+                    <button type="button" onclick="togglePassword('confirm-password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer; color: #666;">
+                        <i class="far fa-eye"></i>
+                    </button>
+                </div>
             </div>
             <button type="submit" class="submit-btn">Sign Up</button>
         </form>
@@ -660,6 +675,25 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        // Add this function to handle password visibility toggle
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const button = input.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
     </script>
 </body>
 </html>

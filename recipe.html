@@ -23,29 +23,93 @@
     <link href="auth.css" rel="stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Sidebar Styles */
-        .sidebar {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
+        /* Sidebar styles */
+        aside {
+            width: 280px;
             background: white;
-            width: 300px;
+            position: fixed;
+            top: 64px;
+            left: -280px; /* Start completely off-screen */
+            height: calc(100vh - 64px);
+            z-index: 40;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            transition: left 0.3s ease;
             overflow-y: auto;
         }
 
-        .sidebar.show-sidebar {
-            transform: translateX(0);
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        aside.active {
+            left: 0;
         }
 
-        /* Main Content Styles */
+        /* Main content styles */
         .main-content {
-            transition: margin-left 0.3s ease-in-out;
             width: 100%;
             padding: 2rem;
         }
 
-        .sidebar.show-sidebar + .main-content {
-            margin-left: 300px;
+        /* Toggle button styles */
+        .sidebar-toggle {
+            position: fixed;
+            top: 80px;
+            left: 1rem;
+            z-index: 50;
+            background:#ee592b;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Overlay styles */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 35;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* Recipe grid styles */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+        }
+
+        /* Desktop styles */
+        @media (min-width: 1024px) {
+            aside {
+                transform: translateX(0);
+            }
+            .main-content {  
+                width:100%;
+            }
+        }
+
+        /* Mobile styles */
+        @media (max-width: 1023px) {
+            aside {
+                transform: translateX(-280px);
+            }
+            aside.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
         }
 
         /* Navigation Styles */
@@ -192,78 +256,21 @@
             }
         }
 
-        /* Add to existing styles */
-        #sidebar {
-            position: fixed;
-            top: 64px; /* Height of your navbar */
-            left: 0;
-            height: calc(100vh - 64px);
-            width: 280px; /* Narrower width */
-            background: white;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-            z-index: 1000;
-            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-        }
+       
 
         #sidebar.active {
             transform: translateX(0);
         }
 
-        #sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-            display: none;
-        }
+   
 
         #sidebar-overlay.active {
             display: block;
         }
 
-        .search-container {
-            position: sticky;
-            top: 0;
-            padding: 1rem;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .search-input-wrapper {
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.5rem 1rem 0.5rem 2.5rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.375rem;
-            outline: none;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9ca3af;
-        }
-        
-        /* Updated Sidebar Styles */
-        aside {
-            width: 280px; /* Narrower width to hold just its contents */
-            z-index: 40;
-        }
-        
-        /* Ensure main content doesn't move when sidebar opens */
-        .main-content {
-            margin-left: 0 !important; /* Force no margin */
-            transition: none; /* Disable transition to prevent content movement */
-        }
+      
+      
+      
     </style>
 </head>
 <body>
@@ -321,7 +328,7 @@
                         <span>Community</span>
                     </a>
 
-                    <a href="about.html" class="nav-link">
+                    <a href="abo" class="nav-link">
                         <i class="fas fa-info-circle"></i>
                         <span>About</span>
                     </a>
@@ -332,109 +339,56 @@
 
 
 
-    <div class="container" style="margin-top: 64px;">
+    <div class="container mx-auto" style="margin-top: 64px;">
         <!-- Sidebar Toggle Button -->
-        <button class="fixed top-20 left-4 z-50 bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none transition-transform duration-200 hover:scale-105">
+        <button class="sidebar-toggle">
             <i class="fas fa-bars text-gray-600"></i>
         </button>
 
         <!-- Sidebar -->
-        <aside class="fixed top-16 left-0 h-screen w-80 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40">
-            <!-- Sidebar Header -->
-            <div class="flex items-center justify-between p-4 border-b border-gray-200">
-                <div class="flex items-center">
-                    <img src="images/1 Logo.PNG" alt="Dishify Logo" class="h-8 w-auto">
-                </div>
-                <button class="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200">
-                    <i class="fas fa-times text-gray-500 text-xl"></i>
-                </button>
-            </div>
-
-            <!-- Search Section -->
-            <div class="p-4 border-b border-gray-200">
-                <div class="relative">
-                    <input type="text" 
-                        placeholder="What are you looking for?" 
-                        class="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    >
-                    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-white bg-primary hover:bg-secondary p-2 rounded-lg transition-colors duration-200">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Navigation Links -->
-            <nav class="overflow-y-auto h-[calc(100vh-180px)]">
-                <div class="py-2">
-                    <!-- Navigation Items -->
-                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
-                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">DINNERS</span>
-                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
-                    </a>
-                    
-                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
-                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">MEALS</span>
-                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
-                    </a>
-
-                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
-                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">INGREDIENTS</span>
-                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
-                    </a>
-
-                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
-                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">OCCASIONS</span>
-                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
-                    </a>
-
-                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
-                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">CUISINES</span>
-                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
-                    </a>
-
-                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
-                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">KITCHEN TIPS</span>
-                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
-                    </a>
-
-                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
-                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">NEWS</span>
-                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
-                    </a>
-
-                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
-                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">FEATURES</span>
-                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
-                    </a>
-
-                    <a href="#" class="flex items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-50 group">
-                        <span class="text-base font-semibold group-hover:text-primary transition-colors duration-200">ABOUT US</span>
-                        <i class="fas fa-chevron-right text-sm text-gray-400 group-hover:text-primary"></i>
-                    </a>
-
-                    <div class="border-t border-gray-200 mt-2">
-                        <a href="#" class="flex items-center justify-between px-6 py-3 text-primary hover:bg-gray-50 group">
-                            <span class="text-base font-semibold">GET THE MAGAZINE</span>
-                            <i class="fas fa-chevron-right text-sm"></i>
-                        </a>
+        <aside>
+            <div class="p-4">
+                <div class="mb-6">
+                    <div class="category font-bold text-lg mb-3 text-gray-700">By Cuisine</div>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">African</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Asian</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">European</a>
                     </div>
                 </div>
-            </nav>
+
+                <div class="mb-6">
+                    <div class="category font-bold text-lg mb-3 text-gray-700">By Meal-Time</div>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Breakfast</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Lunch</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Dinner</a>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <div class="category font-bold text-lg mb-3 text-gray-700">By Dietary Needs</div>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Vegetarian</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Vegan</a>
+                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Gluten-Free</a>
+                    </div>
+                </div>
+            </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="main-content transition-all duration-300">
+        <main class="main-content">
             <section class="trending-recipes">
                 <div class="section-title">
-                    <h2>Popular Kenyan Recipes</h2>
+                    <h2>Popular Kenyan Recipes Recipes</h2>
                     <p>Discover authentic tastes from the heart of Kenya</p>
                 </div>
                 <div class="recipe-grid">
                     <div class="recipe-card" data-aos="fade-up">
                         <div class="recipe-image-wrapper">
                             <img src="images/17.jpg" alt="Nyama Choma" class="recipe-image">
-                            <div class="recipe-overlay">
-                                <i class="fas fa-fire"></i>
+                            <div class="recipe-overlay"                          <i class="fas fa-fire"></i>
                                 <span>Most Popular</span>
                             </div>
                         </div>
@@ -525,7 +479,7 @@
                                 <i class="fas fa-seedling"></i>
                                 <span>Healthy</span>
                             </div>
-                        </div>
+                        </div>git 
                         <div class="recipe-content">
                             <div class="recipe-tags">
                                 <span class="recipe-tag">Beans</span>
@@ -608,6 +562,9 @@
                 </div>
             </section>
         </main>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay"></div>
     </div>
     <footer class="footer">
         <div class="footer-content">
@@ -670,65 +627,30 @@
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.querySelector('aside');
-            const sidebarToggle = document.querySelector('button.fixed');
-            const closeSidebarButton = sidebar.querySelector('button');
-            const mainContent = document.querySelector('.main-content');
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const overlay = document.querySelector('.sidebar-overlay');
 
             function toggleSidebar() {
-                const isOpen = !sidebar.classList.contains('-translate-x-full');
-                if (isOpen) {
-                    // Close sidebar
-                    sidebar.classList.add('-translate-x-full');
-                } else {
-                    // Open sidebar
-                    sidebar.classList.remove('-translate-x-full');
-                }
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
             }
 
             // Toggle sidebar when clicking the toggle button
             sidebarToggle.addEventListener('click', toggleSidebar);
 
-            // Close sidebar when clicking the close button
-            closeSidebarButton.addEventListener('click', toggleSidebar);
-
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                const isClickInside = sidebar.contains(e.target) || sidebarToggle.contains(e.target);
-                if (!isClickInside && window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+            // Close sidebar when clicking the overlay
+            overlay.addEventListener('click', () => {
+                if (sidebar.classList.contains('active')) {
                     toggleSidebar();
                 }
             });
 
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 1024) {
-                    sidebar.classList.remove('-translate-x-full');
-                } else {
-                    sidebar.classList.add('-translate-x-full');
-                }
-            });
-
-            // Search functionality
-            const searchInput = sidebar.querySelector('input[type="text"]');
-            const searchButton = sidebar.querySelector('button.absolute');
-
-            function performSearch() {
-                const searchTerm = searchInput.value.toLowerCase();
-                // Add your search logic here
-                console.log('Searching for:', searchTerm);
-            }
-
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    performSearch();
-                }
-            });
-
-            searchButton.addEventListener('click', performSearch);
+            // Initialize sidebar state
+            sidebar.classList.remove('active');
         });
     </script>
 </body>
