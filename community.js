@@ -75,46 +75,74 @@ function toggleMobileMenu() {
 
 // Community Profile Functions
 function updateProfileUI(profile) {
-    // Get elements
-    const userNameElement = document.getElementById('userName');
-    const userProfilePic = document.getElementById('userProfilePic');
-    const userBio = document.getElementById('userBio');
-    const userLocation = document.getElementById('userLocation');
-    const socialLinks = document.getElementById('socialLinks');
+    // Update sidebar profile
+    const userNameElements = document.querySelectorAll('.user-name');
+    const userProfilePics = document.querySelectorAll('#userProfilePic, #editProfilePic');
+    const userBioElements = document.querySelectorAll('.user-bio');
+    const userLocationElements = document.querySelectorAll('.user-location');
+    const socialLinksElements = document.querySelectorAll('.social-links');
 
-    // Update elements if they exist
-    if (userNameElement) {
-        userNameElement.textContent = profile.full_name || 'Anonymous User';
-    }
-
-    if (userProfilePic) {
-        userProfilePic.src = profile.avatar_url || 'images/default-avatar.png';
-        userProfilePic.alt = profile.full_name || 'User avatar';
-    }
-
-    if (userBio) {
-        userBio.textContent = profile.bio || 'No bio available';
-    }
-
-    if (userLocation) {
-        userLocation.textContent = profile.city && profile.country ? 
-            `${profile.city}, ${profile.country}` : 'Location not set';
-    }
-
-    if (socialLinks) {
-        socialLinks.innerHTML = '';
-        if (profile.facebook_url) {
-            socialLinks.innerHTML += `<a href="${profile.facebook_url}" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>`;
+    // Update all username elements
+    userNameElements.forEach(element => {
+        if (element) {
+            element.textContent = profile.full_name || 'Anonymous User';
         }
-        if (profile.instagram_url) {
-            socialLinks.innerHTML += `<a href="${profile.instagram_url}" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>`;
+    });
+
+    // Update all profile pictures
+    userProfilePics.forEach(pic => {
+        if (pic) {
+            pic.src = profile.avatar_url || 'images/default-avatar.png';
+            pic.alt = profile.full_name || 'User avatar';
         }
-        if (profile.tiktok_url) {
-            socialLinks.innerHTML += `<a href="${profile.tiktok_url}" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>`;
+    });
+
+    // Update all bio elements
+    userBioElements.forEach(element => {
+        if (element) {
+            element.textContent = profile.bio || 'No bio available';
         }
-        if (profile.whatsapp_number) {
-            socialLinks.innerHTML += `<a href="https://wa.me/${profile.whatsapp_number}" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>`;
+    });
+
+    // Update all location elements
+    userLocationElements.forEach(element => {
+        if (element) {
+            element.innerHTML = profile.city && profile.country ? 
+                `<i class="fas fa-map-marker-alt"></i> ${profile.city}, ${profile.country}` : 
+                '<i class="fas fa-map-marker-alt"></i> Location not set';
         }
+    });
+
+    // Update all social links sections
+    socialLinksElements.forEach(element => {
+        if (element) {
+            element.innerHTML = '';
+            if (profile.facebook_url) {
+                element.innerHTML += `<a href="${profile.facebook_url}" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>`;
+            }
+            if (profile.instagram_url) {
+                element.innerHTML += `<a href="${profile.instagram_url}" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>`;
+            }
+            if (profile.tiktok_url) {
+                element.innerHTML += `<a href="${profile.tiktok_url}" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>`;
+            }
+            if (profile.whatsapp_number) {
+                element.innerHTML += `<a href="https://wa.me/${profile.whatsapp_number}" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>`;
+            }
+        }
+    });
+
+    // Also update the form fields for next edit
+    const editForm = document.getElementById('editProfileForm');
+    if (editForm) {
+        editForm.querySelector('#fullName').value = profile.full_name || '';
+        editForm.querySelector('#city').value = profile.city || '';
+        editForm.querySelector('#country').value = profile.country || '';
+        editForm.querySelector('#bio').value = profile.bio || '';
+        editForm.querySelector('[name="facebook"]').value = profile.facebook_url || '';
+        editForm.querySelector('[name="instagram"]').value = profile.instagram_url || '';
+        editForm.querySelector('[name="tiktok"]').value = profile.tiktok_url || '';
+        editForm.querySelector('[name="whatsapp"]').value = profile.whatsapp_number || '';
     }
 }
 
