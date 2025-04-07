@@ -1,0 +1,1163 @@
+{
+  "categories": {
+    "1": {
+      "name": "By Cuisine",
+      "subcategories": {
+        "1a": {
+          "name": "African",
+          "recipes": [
+            {
+              "id": "af1",
+              "name": "Mashed Matoke + Beef Stew",
+              "imageUrl": "",
+              "tags": ["African", "Main Course", "Traditional"],
+              "cookTime": "60 mins",
+              "likes": 425,
+              "description": "Traditional East African dish of mashed green bananas served with savory beef stew",
+              "ingredients": [
+                "15 pcs Matoke (green bananas)",
+                "5 pcs carrot",
+                "Onions",
+                "Turmeric",
+                "Stock cube",
+                "Oregano",
+                "Beef for stew",
+                "Salt to taste"
+              ],
+              "procedure": [
+                "Fry the onions, add the spices (Turmeric, cube, and Oregano)",
+                "Add the matoke. Cover the mixture, when half cooked add water, let it boil till cooked",
+                "Drain the water and mash"
+              ],
+              "healthBenefits": [
+                "Rich in Protein and Iron from beef",
+                "Good Source of Potassium from Matoke",
+                "Supports Digestive Health",
+                "High in fiber content"
+              ]
+            },
+            {
+              "id": "af2",
+              "name": "Mukimo",
+              "imageUrl": "",
+              "tags": ["African", "Vegetarian", "Traditional"],
+              "cookTime": "45 mins",
+              "likes": 380,
+              "description": "Traditional Kenyan dish of mashed potatoes, peas, maize, and pumpkin leaves",
+              "ingredients": [
+                "1 cup peas",
+                "2 cups maize",
+                "1 leek and spring onion",
+                "Vegetable oil",
+                "1 bowl potatoes",
+                "Salt to taste",
+                "A bunch of pumpkin leaves"
+              ],
+              "procedure": [
+                "Peel the potatoes, boil on medium heat, mash them and set aside",
+                "Boil the peas and maize together until ready and set aside",
+                "Blanch the pumpkin leaves and then blend/mash them",
+                "Fry leek and spring onion on medium heat",
+                "Add mashed potatoes and stir",
+                "Add mixture of boiled peas and maize, mash together until soft",
+                "Add blended pumpkin leaves, salt, stir well",
+                "Cover and cook for two minutes"
+              ],
+              "healthBenefits": [
+                "High in Fiber",
+                "Rich in Complex Carbohydrates",
+                "Good for Heart Health"
+              ]
+            },
+            {
+              "id": "af3",
+              "name": "Kenyan Pilau",
+              "imageUrl": "",
+              "tags": ["African", "Main Course", "Spicy"],
+              "cookTime": "50 mins",
+              "likes": 450,
+              "description": "Aromatic Kenyan rice dish cooked with meat and traditional spices",
+              "ingredients": [
+                "2 onions",
+                "3 blended tomatoes",
+                "Grated ginger and garlic",
+                "Pre-boiled beef",
+                "Black pepper",
+                "Beef masala",
+                "Garam masala",
+                "Soy sauce",
+                "Cumin",
+                "Pilau masala",
+                "Salt",
+                "Rice"
+              ],
+              "procedure": [
+                "Cook chopped onions till golden brown",
+                "Add blended tomatoes and cook for 5-7 minutes",
+                "Add measured spices and stir",
+                "Add grated ginger, garlic, and pre-boiled beef",
+                "Cook covered for 10-15 minutes",
+                "Add water and bring to boil",
+                "Season with pilau masala and salt",
+                "Add rice and cook for 10-20 minutes"
+              ],
+              "healthBenefits": [
+                "Rich in Carbohydrates",
+                "High in Protein",
+                "Boosts Immunity through spices"
+              ]
+            },
+            {
+              "id": "af4",
+              "name": "Githeri with Avocado",
+              "imageUrl": "",
+              "tags": ["African", "Vegetarian", "Healthy"],
+              "cookTime": "90 mins",
+              "likes": 395,
+              "description": "Traditional Kenyan dish of boiled maize and beans served with creamy avocado",
+              "ingredients": [
+                "1 cup pre-soaked maize",
+                "1 cup pre-soaked beans",
+                "1 onion, chopped",
+                "2 tomatoes, chopped",
+                "1 carrot, diced",
+                "1 green bell pepper",
+                "2 tablespoons vegetable oil",
+                "Salt and pepper",
+                "Ripe avocados"
+              ],
+              "procedure": [
+                "Boil maize and beans until tender (1-2 hours)",
+                "Sauté onion until softened",
+                "Add tomatoes, carrot, and bell pepper",
+                "Combine vegetables with maize and beans",
+                "Season and simmer for 15-20 minutes",
+                "Serve with sliced avocado"
+              ],
+              "healthBenefits": [
+                "High in Protein & Fiber",
+                "Rich in Healthy Fats from avocado",
+                "Packed with Vitamins & Minerals"
+              ]
+            }
+          ]
+        },
+        "1b": {
+          "name": "Asian",
+          "recipes": [
+            {
+              "id": "as1",
+              "name": "Congee",
+              "imageUrl": "images/congee.jpg",
+              "tags": ["Asian","Comfort Food"],
+              "cookTime": "50 mins",
+              "likes": 310,
+              "description": "Comforting rice porridge with various toppings",
+              "ingredients": ["Rice", "Ginger", "Green onions", "Soy sauce"],
+              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "healthBenefits": ["Easy to digest", "Hydrating"]
+            },
+            {
+              "id": "as2",
+              "name": "Sushi Rolls",
+              "imageUrl": "images/sushi.jpg",
+              "tags": ["Asian", "Lunch", "Japanese"],
+              "cookTime": "45 mins",
+              "likes": 450,
+              "description": "Fresh sushi rolls with various fillings",
+              "ingredients": ["Sushi rice", "Nori", "Fish", "Vegetables"],
+              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "healthBenefits": ["Omega-3 rich", "Low calorie"]
+            },
+            {
+              "id": "as3",
+              "name": "Korean BBQ",
+              "imageUrl": "images/kbbq.jpg",
+              "tags": ["Asian", "Dinner", "Korean"],
+              "cookTime": "40 mins",
+              "likes": 480,
+              "description": "Grilled marinated meat with sides",
+              "ingredients": ["Beef", "Marinade", "Garlic", "Soy sauce"],
+              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "healthBenefits": ["High in protein", "Rich in minerals"]
+            },
+            {
+              "id": "as4",
+              "name": "Dim Sum",
+              "imageUrl": "images/dimsum.jpg",
+              "tags": ["Asian", "Lunch", "Chinese"],
+              "cookTime": "60 mins",
+              "likes": 400,
+              "description": "Various steamed dumplings and small bites",
+              "ingredients": ["Flour", "Various fillings", "Sauces"],
+              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "healthBenefits": ["Balanced meal", "Variety of nutrients"]
+            }
+          ]
+        },
+        "1c": {
+          "name": "European",
+          "recipes": [
+            {
+              "id": "eu1",
+              "name": "Classic French Toast",
+              "imageUrl": "images/french-toast.jpg",
+              "tags": ["European", "Sweet"],
+              "cookTime": "20 mins",
+              "likes": 420,
+              "description": "Golden brown French toast with maple syrup",
+              "ingredients": ["Bread", "Eggs", "Milk", "Cinnamon"],
+              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "healthBenefits": ["Protein-rich", "Energy-boosting"]
+            },
+            {
+              "id": "eu2",
+              "name": "Italian Pasta",
+              "imageUrl": "images/pasta.jpg",
+              "tags": ["European", "Lunch", "Italian"],
+              "cookTime": "30 mins",
+              "likes": 460,
+              "description": "Classic pasta with tomato sauce",
+              "ingredients": ["Pasta", "Tomatoes", "Herbs", "Olive oil"],
+              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "healthBenefits": ["Good carbs", "Antioxidants"]
+            },
+            {
+              "id": "eu3",
+              "name": "Spanish Paella",
+              "imageUrl": "images/paella.jpg",
+              "tags": ["European", "Dinner", "Spanish"],
+              "cookTime": "55 mins",
+              "likes": 440,
+              "description": "Saffron-flavored rice with seafood",
+              "ingredients": ["Rice", "Seafood", "Saffron", "Vegetables"],
+              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "healthBenefits": ["Rich in omega-3", "Various nutrients"]
+            },
+            {
+              "id": "eu4",
+              "name": "Greek Salad",
+              "imageUrl": "images/greek-salad.jpg",
+              "tags": ["European", "Lunch", "Greek"],
+              "cookTime": "15 mins",
+              "likes": 380,
+              "description": "Fresh Mediterranean salad with feta",
+              "ingredients": ["Tomatoes", "Cucumber", "Feta", "Olives"],
+              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "healthBenefits": ["Low calorie", "Rich in vitamins"]
+            }
+          ]
+        }
+      }
+    },
+    "2": {
+      "name": "By Meal-Time",
+      "subcategories": {
+        "2a": {
+          "name": "Breakfast",
+          "recipes": [
+            {
+              "id": "br1",
+              "name": "Liver and Toast with Avocado",
+              "imageUrl": "",
+              "tags": ["Breakfast", "High Protein", "African"],
+              "cookTime": "30 mins",
+              "likes": 385,
+              "description": "A hearty breakfast combining pan-seared liver with toasted bread and creamy avocado",
+              "ingredients": [
+                "1 lb beef or goat liver, sliced",
+                "1 onion, chopped",
+                "2 cloves garlic, minced",
+                "1 tomato, chopped",
+                "1 green bell pepper, chopped",
+                "1 tablespoon vegetable oil",
+                "1 teaspoon paprika",
+                "1/2 teaspoon cumin",
+                "Salt and pepper to taste",
+                "Bread slices, toasted",
+                "1 ripe avocado, sliced"
+              ],
+              "procedure": [
+                "Heat oil in a skillet",
+                "Add liver and brown on both sides. Remove and set aside",
+                "Add onion to the skillet and cook until softened",
+                "Add garlic and cook until fragrant",
+                "Add tomato and bell pepper, cook for a few minutes",
+                "Return liver to skillet. Add paprika, cumin, salt, and pepper",
+                "Cook until liver is cooked through and sauce has thickened",
+                "Toast bread slices until golden brown",
+                "Top with sliced avocado",
+                "Serve liver with toast and avocado"
+              ],
+              "healthBenefits": [
+                "Rich in Iron & B12: Supports red blood cell production and prevents anemia",
+                "High in Healthy Fats: Avocado provides heart-healthy monounsaturated fats",
+                "Nutrient-Dense: Packed with vitamins (A, E) and minerals (zinc, potassium) for overall health"
+              ]
+            },
+            {
+              "id": "br2",
+              "name": "Nduma na Chai (Arrowroot with Tea)",
+              "imageUrl": "",
+              "tags": ["Breakfast", "Traditional", "African"],
+              "cookTime": "35 mins",
+              "likes": 342,
+              "description": "Traditional Kenyan breakfast combining tender arrowroot with spiced milk tea",
+              "ingredients": [
+                "4-6 medium arrowroots, peeled",
+                "Water",
+                "Salt (optional)",
+                "2 cups water",
+                "2 cups milk",
+                "2 tablespoons black tea leaves",
+                "Sugar to taste",
+                "Optional: Ginger, cardamom, cinnamon for flavor"
+              ],
+              "procedure": [
+                "Place peeled arrowroots in a pot",
+                "Cover with water and add a pinch of salt (optional)",
+                "Bring to a boil, then reduce heat and simmer until tender, about 20-30 minutes",
+                "Drain and serve warm",
+                "For Chai: Bring water to a boil",
+                "Add tea leaves and spices (optional). Simmer for 2-3 minutes",
+                "Add milk and sugar. Bring back to a simmer, but do not boil",
+                "Strain and serve hot alongside Nduma"
+              ],
+              "healthBenefits": [
+                "Rich in Starch and Energy: Arrowroot is a great source of easily digestible carbohydrates",
+                "Supports Digestive Health: Arrowroot aids in digestion and relieves stomach discomfort",
+                "Low in Calories: Healthy option for weight management",
+                "Rich in Antioxidants from tea",
+                "Boosts Immunity through spices",
+                "Promotes Hydration while providing essential nutrients"
+              ]
+            },
+            {
+              "id": "br3",
+              "name": "Sweet Plantain (Matoke) Dessert",
+              "imageUrl": "",
+              "tags": ["Breakfast", "Sweet", "African"],
+              "cookTime": "20 mins",
+              "likes": 375,
+              "description": "Caramelized sweet plantains with cinnamon and brown sugar",
+              "ingredients": [
+                "2 ripe plantains, peeled and sliced",
+                "2 tablespoons butter",
+                "1/4 cup brown sugar",
+                "1/4 teaspoon ground cinnamon",
+                "Pinch of salt",
+                "Optional: Vanilla ice cream or whipped cream for serving"
+              ],
+              "procedure": [
+                "Melt butter in a skillet over medium heat",
+                "Add plantain slices and cook until golden brown on both sides",
+                "Sprinkle brown sugar, cinnamon, and salt over plantains",
+                "Cook for a few more minutes, until sugar is melted and plantains are caramelized",
+                "Serve warm, with vanilla ice cream or whipped cream if desired"
+              ],
+              "healthBenefits": [
+                "Good source of dietary fiber",
+                "Rich in potassium and vitamins",
+                "Natural energy boost from carbohydrates"
+              ]
+            },
+            {
+              "id": "br4",
+              "name": "Madazi ya Nazi (Coconut Mandazi)",
+              "imageUrl": "",
+              "tags": ["Breakfast", "Sweet", "African"],
+              "cookTime": "40 mins",
+              "likes": 395,
+              "description": "Traditional East African coconut-flavored doughnuts",
+              "ingredients": [
+                "2 cups all-purpose flour",
+                "1/2 cup sugar",
+                "1 teaspoon baking powder",
+                "1/2 teaspoon ground cardamom",
+                "Pinch of salt",
+                "1/2 cup grated coconut",
+                "1/2 cup coconut milk",
+                "Oil for deep frying"
+              ],
+              "procedure": [
+                "In a bowl, mix flour, sugar, baking powder, cardamom, salt, and grated coconut",
+                "Gradually add coconut milk to form a soft dough",
+                "Knead dough for a few minutes",
+                "Roll dough to about 1/2 inch thickness and cut into desired shapes",
+                "Heat oil for deep frying",
+                "Fry mandazi until golden brown on both sides",
+                "Remove from oil and drain on paper towels",
+                "Serve warm"
+              ],
+              "healthBenefits": [
+                "Contains healthy fats from coconut",
+                "Good source of quick energy",
+                "Rich in aromatic spices with antioxidant properties"
+              ]
+            }
+          ]
+        },
+        "2b": {
+          "name": "Lunch",
+          "recipes": [
+            {
+              "id": "ln1",
+              "name": "Githeri with Avocado",
+              "imageUrl": "",
+              "tags": ["Lunch", "Vegetarian", "African", "Healthy"],
+              "cookTime": "90 mins",
+              "likes": 425,
+              "description": "Traditional Kenyan dish of boiled maize and beans served with creamy avocado",
+              "ingredients": [
+                "1 cup pre-soaked maize (corn)",
+                "1 cup pre-soaked beans (kidney, pinto, etc.)",
+                "1 onion, chopped",
+                "2 tomatoes, chopped",
+                "1 carrot, diced (optional)",
+                "1 green bell pepper, chopped (optional)",
+                "2 tablespoons vegetable oil",
+                "Salt and pepper to taste",
+                "Water",
+                "Ripe avocados, sliced"
+              ],
+              "procedure": [
+                "In a pot, combine maize and beans with enough water to cover",
+                "Bring to a boil, then reduce heat and simmer until maize and beans are tender, about 1-2 hours (pressure cooker reduces time)",
+                "Heat oil in a separate pan. Add onion and cook until softened",
+                "Add tomatoes, carrot (if using), and bell pepper (if using). Cook until softened",
+                "Add vegetables to the maize and bean mixture. Season with salt and pepper",
+                "Simmer for another 15-20 minutes, allowing flavors to meld",
+                "Slice avocado and serve alongside Githeri"
+              ],
+              "healthBenefits": [
+                "High in Protein & Fiber: Beans and maize provide plant-based protein and fiber, supporting muscle repair and digestion",
+                "Rich in Healthy Fats: Avocado offers monounsaturated fats, promoting heart health and reducing bad cholesterol",
+                "Packed with Vitamins & Minerals: Contains vitamins (A, C) and minerals (potassium, iron) for overall wellness"
+              ]
+            },
+            {
+              "id": "ln2",
+              "name": "Wali wa Nazi na Samaki",
+              "imageUrl": "",
+              "tags": ["Lunch", "Seafood", "African", "Coastal"],
+              "cookTime": "45 mins",
+              "likes": 445,
+              "description": "Aromatic coconut rice served with spiced fish curry",
+              "ingredients": [
+                "2 cups rice (basmati or long grain)",
+                "4 cups coconut milk",
+                "1 teaspoon salt",
+                "1 lb fish fillets (tilapia, snapper, etc.)",
+                "1 onion, chopped",
+                "2 tomatoes, chopped",
+                "1 tablespoon vegetable oil",
+                "1 teaspoon ginger-garlic paste",
+                "1 teaspoon curry powder",
+                "Salt and pepper to taste"
+              ],
+              "procedure": [
+                "Rinse rice",
+                "Combine rice, coconut milk, and salt in a pot",
+                "Bring to a boil, then reduce heat to low, cover, and simmer until rice is cooked and liquid is absorbed, about 15-20 minutes",
+                "Heat oil in a pan",
+                "Add onion and cook until softened",
+                "Add ginger-garlic paste and cook until fragrant",
+                "Add tomatoes and cook until softened",
+                "Add curry powder, salt, and pepper",
+                "Place fish fillets in the sauce. Cover and cook until fish is cooked through, about 5-7 minutes",
+                "Serve coconut rice with fish"
+              ],
+              "healthBenefits": [
+                "Rich in Healthy Fats: Coconut milk provides medium-chain triglycerides (MCTs), supporting energy and heart health",
+                "High in Protein & Omega-3: Fish is an excellent source of protein and omega-3 fatty acids, promoting brain and heart health",
+                "Nutrient-Dense: Contains vitamins (B, C) and minerals (iron, potassium) for overall wellness and immune support"
+              ]
+            },
+            {
+              "id": "ln3",
+              "name": "Mukimo with Roast Meat (Nyama Choma)",
+              "imageUrl": "",
+              "tags": ["Lunch", "African", "Traditional", "Meat"],
+              "cookTime": "75 mins",
+              "likes": 465,
+              "description": "Traditional Kenyan mashed potato dish served with grilled meat",
+              "ingredients": [
+                "1 cup peas",
+                "2 cups maize",
+                "1 leek and spring onion",
+                "Vegetable oil",
+                "1 bowl potatoes",
+                "Salt to taste",
+                "A bunch of pumpkin leaves",
+                "Beef, goat, or chicken meat",
+                "Salt",
+                "Pepper",
+                "Optional: Marinade (garlic, ginger, lemon juice, spices)"
+              ],
+              "procedure": [
+                "Peel the potatoes, boil on medium heat, mash them and set aside",
+                "Boil the peas and maize together until they are ready and set aside",
+                "Blanch the pumpkin leaves and then blend/mash them",
+                "Fry your leek and spring onion on medium heat in a different pan",
+                "Add the mashed potatoes and stir",
+                "Add the mixture of boiled peas and maize and mash them together until the texture is soft",
+                "Add the blended/mashed pumpkin leaves, salt to taste, and stir the mixture well",
+                "Cut meat into pieces",
+                "Season with salt, pepper, and optional marinade",
+                "Grill over hot coals until cooked to desired doneness, turning occasionally",
+                "Serve hot Mukimo with Roast Meat"
+              ],
+              "healthBenefits": [
+                "High in Protein & Iron: Roast meat provides essential protein and iron, supporting muscle repair and preventing anemia",
+                "Rich in Vitamins & Fiber: Mukimo's pumpkin leaves, peas, and maize offer vitamins (A, C) and fiber, aiding digestion and boosting immunity",
+                "Energy-Boosting & Nutrient-Dense: Potatoes and maize provide carbohydrates for energy, while the dish is packed with minerals"
+              ]
+            },
+            {
+              "id": "ln4",
+              "name": "Biryani",
+              "imageUrl": "",
+              "tags": ["Lunch", "Indian", "Spicy", "Rice"],
+              "cookTime": "60 mins",
+              "likes": 485,
+              "description": "Aromatic rice dish layered with spiced chicken and fragrant herbs",
+              "ingredients": [
+                "2 cups basmati rice",
+                "500g chicken",
+                "Biryani spices: cumin, cardamom, cloves",
+                "Yogurt",
+                "Onions",
+                "Saffron"
+              ],
+              "procedure": [
+                "Marinate chicken with yogurt and spices",
+                "Cook rice halfway, layer with chicken",
+                "Steam (dum) for 20 minutes until fragrant"
+              ],
+              "healthBenefits": [
+                "Rich in Protein: Biryani includes chicken providing high-quality protein for muscle growth and repair",
+                "Spices with Health Properties: Spices have anti-inflammatory and antioxidant properties",
+                "Balanced Meal: Combines carbs, protein, and fats, offering a complete meal",
+                "Vegetable Additions: Provides vitamins, minerals, and fiber",
+                "Energy Boost: Rice provides quick energy for the body and brain",
+                "Iron and Zinc: Contains minerals essential for immunity and blood health"
+              ]
+            }
+          ]
+        },
+        "2c": {
+          "name": "Dinner",
+          "recipes": [
+            {
+              "id": "di1",
+              "name": "Sukuma Wiki with Ugali and Fried Fish",
+              "imageUrl": "",
+              "tags": ["Dinner", "African", "Traditional", "Fish"],
+              "cookTime": "60 mins",
+              "likes": 445,
+              "description": "Traditional East African complete meal with collard greens, cornmeal porridge, and crispy fish",
+              "ingredients": [
+                "For Sukuma Wiki:",
+                "1 bunch sukuma wiki (collard greens), thinly sliced",
+                "1 onion, chopped",
+                "1 tomato, chopped",
+                "1 clove garlic, minced",
+                "1 tablespoon vegetable oil",
+                "Salt and pepper to taste",
+                "For Ugali:",
+                "4 cups water",
+                "2 cups maize flour (cornmeal)",
+                "For Fried Fish:",
+                "1 lb fish fillets (tilapia, snapper, etc.)",
+                "Salt and pepper to taste",
+                "Flour (for coating)",
+                "Oil for frying"
+              ],
+              "procedure": [
+                "For Sukuma Wiki:",
+                "Heat oil in a pan",
+                "Add onion and cook until softened",
+                "Add garlic and cook until fragrant",
+                "Add tomato and cook until softened",
+                "Add sukuma wiki, salt, and pepper",
+                "Cook until sukuma wiki is tender",
+                "For Ugali:",
+                "Bring water to a boil in a pot",
+                "Gradually add maize flour while stirring continuously",
+                "Continue stirring until mixture thickens and pulls away from sides",
+                "Cook for a few more minutes, smooth surface with spoon",
+                "For Fish:",
+                "Season fish with salt and pepper",
+                "Coat fish in flour",
+                "Heat oil and fry until golden brown and cooked through",
+                "Serve all components together"
+              ],
+              "healthBenefits": [
+                "Rich in Vitamins & Minerals: Sukuma wiki provides vitamins A, C, K and calcium",
+                "High in Protein & Omega-3: Fish provides essential nutrients for heart and brain health",
+                "Energy-Boosting & Gluten-Free: Ugali offers sustained energy from complex carbs"
+              ]
+            },
+            {
+              "id": "di2",
+              "name": "Pilau with Kachumbari",
+              "imageUrl": "",
+              "tags": ["Dinner", "African", "Spicy", "Traditional"],
+              "cookTime": "55 mins",
+              "likes": 465,
+              "description": "Aromatic spiced rice served with fresh tomato-onion salad",
+              "ingredients": [
+                "For Pilau:",
+                "2 onions",
+                "3 blended tomatoes",
+                "Grated ginger and garlic",
+                "Pre-boiled beef",
+                "Black pepper",
+                "Beef masala",
+                "Garam masala",
+                "Soy sauce",
+                "Cumin",
+                "Pilau masala",
+                "Salt",
+                "Rice",
+                "For Kachumbari:",
+                "2 tomatoes, diced",
+                "1 red onion, diced",
+                "1 green bell pepper, diced",
+                "Juice of 1 lemon",
+                "Salt and pepper to taste",
+                "Optional: Chili pepper, finely chopped"
+              ],
+              "procedure": [
+                "For Pilau:",
+                "Cook chopped onions till golden brown",
+                "Add blended tomatoes, cook 5-7 minutes",
+                "Add measured spices and stir",
+                "Add ginger, garlic, and pre-boiled beef",
+                "Cook covered for 10-15 minutes",
+                "Add water and bring to boil",
+                "Season with pilau masala and salt",
+                "Add rice and cook for 10-20 minutes",
+                "For Kachumbari:",
+                "Combine tomatoes, onion, and bell pepper",
+                "Add lemon juice, salt, and pepper",
+                "Add chili pepper if using",
+                "Toss gently to combine",
+                "Chill for 15 minutes before serving"
+              ],
+              "healthBenefits": [
+                "Rich in Antioxidants: Spices and fresh vegetables boost immunity",
+                "High in Protein & Iron: Beef provides essential nutrients",
+                "Digestive & Hydration Support: Fresh ingredients aid digestion and hydration"
+              ]
+            },
+            {
+              "id": "di3",
+              "name": "Matoke with Beef Stew",
+              "imageUrl": "",
+              "tags": ["Dinner", "African", "Traditional", "Stew"],
+              "cookTime": "75 mins",
+              "likes": 425,
+              "description": "Traditional East African green banana stew with tender beef",
+              "ingredients": [
+                "8-10 green bananas (matoke), peeled and sliced",
+                "1 onion, chopped",
+                "2 tomatoes, chopped",
+                "2 cloves garlic, minced",
+                "1 carrot, diced",
+                "1 green bell pepper, chopped",
+                "1 tablespoon vegetable oil",
+                "1 teaspoon curry powder",
+                "1/2 teaspoon turmeric powder",
+                "Salt and pepper to taste",
+                "1 lb beef stew meat, cubed",
+                "Water or broth"
+              ],
+              "procedure": [
+                "Season and brown beef in the oven",
+                "Heat oil in a pot",
+                "Add onion and cook until softened",
+                "Add garlic and cook until fragrant",
+                "Add tomatoes, carrot, and bell pepper",
+                "Add curry powder, turmeric, salt, and pepper",
+                "Add matoke, browned beef, and water/broth",
+                "Simmer until matoke is tender and stew has thickened (30-40 minutes)",
+                "Serve hot"
+              ],
+              "healthBenefits": [
+                "Rich in Potassium & Fiber: Matoke supports heart health and digestion",
+                "High in Protein & Iron: Beef provides essential nutrients",
+                "Packed with Vitamins & Antioxidants: Vegetables and spices boost immunity"
+              ]
+            },
+            {
+              "id": "di4",
+              "name": "Biryani",
+              "imageUrl": "",
+              "tags": ["Dinner", "Indian", "Spicy", "Rice"],
+              "cookTime": "60 mins",
+              "likes": 485,
+              "description": "Aromatic rice dish layered with spiced chicken and fragrant herbs",
+              "ingredients": [
+                "2 cups basmati rice",
+                "500g chicken",
+                "Biryani spices: cumin, cardamom, cloves",
+                "Yogurt",
+                "Onions",
+                "Saffron"
+              ],
+              "procedure": [
+                "Marinate chicken with yogurt and spices",
+                "Cook rice halfway, layer with chicken",
+                "Steam (dum) for 20 minutes until fragrant"
+              ],
+              "healthBenefits": [
+                "Rich in Protein: Biryani includes chicken providing high-quality protein for muscle growth and repair",
+                "Spices with Health Properties: Spices have anti-inflammatory and antioxidant properties",
+                "Balanced Meal: Combines carbs, protein, and fats, offering a complete meal",
+                "Vegetable Additions: Provides vitamins, minerals, and fiber",
+                "Energy Boost: Rice provides quick energy for the body and brain",
+                "Iron and Zinc: Contains minerals essential for immunity and blood health"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "3": {
+      "name": "Desserts",
+      "recipes": [
+        {
+          "id": "ds1",
+          "name": "Crème brûlée",
+          "imageUrl": "",
+          "tags": ["Dessert", "French", "European", "Elegant"],
+          "cookTime": "75 mins",
+          "likes": 485,
+          "description": "Classic French dessert featuring rich vanilla custard topped with caramelized sugar",
+          "ingredients": [
+            "2 cups heavy cream",
+            "1/2 cup granulated sugar, plus extra for brûléeing",
+            "1 vanilla bean, split lengthwise and seeds scraped (or 1 tsp vanilla extract)",
+            "6 large egg yolks",
+            "Pinch of salt"
+          ],
+          "procedure": [
+            "Preheat oven to 325°F (160°C)",
+            "In a saucepan, combine cream, 1/2 cup sugar, vanilla bean (and seeds). Heat until simmering. Remove from heat and let steep for 30 minutes. Discard vanilla bean",
+            "Whisk egg yolks and salt in a bowl. Slowly whisk in the warm cream mixture",
+            "Strain mixture into a pitcher. Skim off any foam",
+            "Pour into ramekins. Place ramekins in a baking dish. Add hot water to the dish to reach halfway up the ramekins",
+            "Bake 40-50 minutes, or until edges are set but centers wobble slightly",
+            "Cool completely. Chill in refrigerator for at least 2 hours",
+            "Before serving, sprinkle a thin, even layer of sugar over each crème brûlée",
+            "Use a kitchen torch to caramelize sugar until golden brown and crisp",
+            "Let stand briefly. Serve immediately"
+          ],
+          "healthBenefits": [
+            "Rich in Calcium: Made with cream and eggs, supports bone health",
+            "High in Protein: Eggs provide essential protein for muscle repair and growth",
+            "Antioxidant Benefits: Vanilla contains antioxidants that help fight free radicals",
+            "Key Nutrients: Protein, calcium, vitamin A, antioxidants (from vanilla)"
+          ]
+        },
+        {
+          "id": "ds2",
+          "name": "Gulab Jamun",
+          "imageUrl": "",
+          "tags": ["Dessert", "Indian", "Asian", "Sweet"],
+          "cookTime": "60 mins",
+          "likes": 465,
+          "description": "Traditional Indian dessert of fried milk solids soaked in aromatic sugar syrup",
+          "ingredients": [
+            "1 cup milk powder",
+            "1/4 cup all-purpose flour",
+            "1/4 tsp baking soda",
+            "2 tbsp ghee, melted",
+            "Milk, to make dough",
+            "Oil or ghee, for frying",
+            "For Syrup:",
+            "1 1/2 cups sugar",
+            "1 1/2 cups water",
+            "1/4 tsp cardamom powder",
+            "A few saffron strands"
+          ],
+          "procedure": [
+            "Make Syrup: Combine sugar and water in saucepan. Bring to boil, add cardamom powder and saffron strands. Simmer until slightly sticky",
+            "In a bowl, mix milk powder, flour, and baking soda. Add melted ghee. Mix well",
+            "Add milk little by little to form soft dough",
+            "Make small balls of dough",
+            "Heat oil/ghee over medium heat. Fry balls on low heat until golden brown",
+            "Place fried balls in warm sugar syrup. Soak for at least 1 hour",
+            "Serve warm"
+          ],
+          "healthBenefits": [
+            "Good Source of Energy: Rich in carbohydrates, providing quick energy",
+            "Rich in Calcium: Milk solids contribute to strong bones and teeth",
+            "Antioxidant Properties: Cardamom and rosewater have antioxidant properties",
+            "Key Nutrients: Carbohydrates, calcium, protein, antioxidants"
+          ]
+        },
+        {
+          "id": "ds3",
+          "name": "Alfajores",
+          "imageUrl": "",
+          "tags": ["Dessert", "Argentinian", "South American", "Cookies"],
+          "cookTime": "45 mins",
+          "likes": 445,
+          "description": "Delicate South American sandwich cookies filled with dulce de leche",
+          "ingredients": [
+            "2 cups all-purpose flour",
+            "1 cup cornstarch",
+            "1 tsp baking powder",
+            "1/2 cup unsalted butter, softened",
+            "3/4 cup granulated sugar",
+            "3 large egg yolks",
+            "1 tbsp brandy or vanilla extract",
+            "Dulce de leche",
+            "Powdered sugar"
+          ],
+          "procedure": [
+            "Whisk together flour, cornstarch, and baking powder",
+            "Cream together butter and sugar. Add egg yolks, brandy, and beat well",
+            "Slowly add dry ingredients to wet ingredients, mixing until just combined",
+            "Wrap dough in plastic wrap and chill for 30 minutes",
+            "Roll out dough thinly on a lightly floured surface. Cut out circles",
+            "Bake at 350°F (175°C) for 8-10 minutes, until lightly golden",
+            "Cool completely",
+            "Spread dulce de leche on one cookie and top with another cookie",
+            "Roll edges in shredded coconut or sprinkle with powdered sugar"
+          ],
+          "healthBenefits": [
+            "Provides Quick Energy: Sugar and butter provide quick energy source",
+            "Contains Healthy Fats: Can provide healthy fats when made with alternative oils",
+            "Rich in Iron: Dulce de leche provides some iron for blood circulation",
+            "Key Nutrients: Carbohydrates, healthy fats, iron, calcium"
+          ]
+        },
+        {
+          "id": "ds4",
+          "name": "Pavlova",
+          "imageUrl": "",
+          "tags": ["Dessert", "Australian", "New Zealand", "Light"],
+          "cookTime": "180 mins",
+          "likes": 475,
+          "description": "Light and airy meringue dessert topped with whipped cream and fresh fruits",
+          "ingredients": [
+            "4 large egg whites",
+            "1/4 tsp salt",
+            "1 cup granulated sugar",
+            "1 tsp white vinegar",
+            "1 tsp cornstarch",
+            "1/2 tsp vanilla extract",
+            "1 cup heavy cream",
+            "Fresh fruits, for topping"
+          ],
+          "procedure": [
+            "Preheat oven to 250°F (120°C). Line baking sheet with parchment paper",
+            "Beat egg whites with salt until soft peaks form",
+            "Gradually add sugar, beating until meringue is glossy and stiff peaks form",
+            "Fold in vinegar, cornstarch, and vanilla",
+            "Spoon meringue onto prepared baking sheet in desired shape",
+            "Bake for 1 hour, then turn off oven and let cool completely inside (1-2 hours)",
+            "Whip heavy cream until soft peaks form",
+            "Top pavlova with whipped cream and fresh fruits",
+            "Serve immediately"
+          ],
+          "healthBenefits": [
+            "Low in Fat: Made primarily from egg whites, making it a lighter dessert option",
+            "Rich in Protein: Egg whites provide good amount of protein",
+            "High in Vitamin C: Fresh fruit toppings boost immune system",
+            "Key Nutrients: Protein, vitamin C, carbohydrates"
+          ]
+        }
+      ]
+    },
+    "4": {
+      "name": "Healthy",
+      "recipes": [
+        {
+          "id": "he1",
+          "name": "Quinoa Buddha Bowl",
+          "imageUrl": "images/quinoa-buddha-bowl.jpg",
+          "tags": ["Healthy", "Vegan", "High Protein", "Gluten-Free"],
+          "cookTime": "30 mins",
+          "likes": 380,
+          "description": "A nourishing bowl packed with quinoa, roasted vegetables, and protein-rich toppings",
+          "ingredients": [
+            "1 cup quinoa, rinsed",
+            "2 cups water",
+            "1 sweet potato, cubed",
+            "1 cup chickpeas, drained and rinsed",
+            "2 cups kale, chopped",
+            "1 avocado, sliced",
+            "1/4 cup pumpkin seeds",
+            "2 tbsp olive oil",
+            "1 lemon, juiced",
+            "1 tsp cumin",
+            "Salt and pepper to taste"
+          ],
+          "procedure": [
+            "Rinse quinoa thoroughly. Combine with water in a pot",
+            "Bring to boil, reduce heat, simmer covered for 15-20 minutes until water is absorbed",
+            "Preheat oven to 400°F (200°C)",
+            "Toss sweet potato cubes with 1 tbsp olive oil, cumin, salt, and pepper",
+            "Roast sweet potatoes for 20-25 minutes until tender",
+            "In the last 10 minutes, add chickpeas to the roasting pan",
+            "Massage kale with remaining olive oil and lemon juice",
+            "Assemble bowls: quinoa base, topped with roasted vegetables, chickpeas",
+            "Add avocado slices and sprinkle with pumpkin seeds"
+          ],
+          "healthBenefits": [
+            "Complete Protein: Quinoa provides all essential amino acids",
+            "Heart-Healthy Fats: Avocado and olive oil support cardiovascular health",
+            "Rich in Fiber: Supports digestive health and maintains steady blood sugar",
+            "High in Antioxidants: Sweet potatoes and kale provide beta-carotene and vitamin C",
+            "Mineral-Rich: Iron from quinoa and zinc from pumpkin seeds support immune function"
+          ]
+        },
+        {
+          "id": "he2",
+          "name": "Mediterranean Grilled Chicken Salad",
+          "imageUrl": "images/med-chicken-salad.jpg",
+          "tags": ["Healthy", "High Protein", "Mediterranean", "Low Carb"],
+          "cookTime": "25 mins",
+          "likes": 365,
+          "description": "Light and flavorful grilled chicken salad with Mediterranean ingredients",
+          "ingredients": [
+            "2 chicken breasts",
+            "2 cups mixed greens",
+            "1 cucumber, diced",
+            "1 cup cherry tomatoes, halved",
+            "1/2 red onion, thinly sliced",
+            "1/2 cup kalamata olives",
+            "1/2 cup feta cheese, crumbled",
+            "For marinade:",
+            "2 tbsp olive oil",
+            "1 lemon, juiced",
+            "2 cloves garlic, minced",
+            "1 tsp dried oregano",
+            "Salt and pepper to taste"
+          ],
+          "procedure": [
+            "Mix marinade ingredients in a bowl",
+            "Marinate chicken for at least 30 minutes",
+            "Grill chicken 6-7 minutes per side until cooked through",
+            "Let chicken rest 5 minutes, then slice",
+            "Combine all salad ingredients in a large bowl",
+            "Top with sliced chicken and feta cheese",
+            "Drizzle with extra olive oil and lemon juice if desired"
+          ],
+          "healthBenefits": [
+            "Lean Protein: Chicken breast supports muscle maintenance and repair",
+            "Heart-Healthy: Olive oil and olives provide beneficial monounsaturated fats",
+            "Low in Calories: Perfect for weight management while being nutrient-dense",
+            "Rich in Vitamins: Fresh vegetables provide essential vitamins and minerals",
+            "Probiotic Benefits: Feta cheese contains beneficial bacteria for gut health"
+          ]
+        },
+        {
+          "id": "he3",
+          "name": "Salmon and Sweet Potato Sheet Pan Dinner",
+          "imageUrl": "images/salmon-sheet-pan.jpg",
+          "tags": ["Healthy", "Seafood", "One-Pan", "High Protein"],
+          "cookTime": "35 mins",
+          "likes": 405,
+          "description": "Easy and nutritious sheet pan dinner with omega-3 rich salmon and colorful vegetables",
+          "ingredients": [
+            "4 salmon fillets (6 oz each)",
+            "2 sweet potatoes, cubed",
+            "2 cups Brussels sprouts, halved",
+            "2 tbsp olive oil",
+            "2 tbsp maple syrup",
+            "2 tbsp Dijon mustard",
+            "4 cloves garlic, minced",
+            "1 lemon",
+            "Fresh rosemary",
+            "Salt and pepper to taste"
+          ],
+          "procedure": [
+            "Preheat oven to 425°F (220°C)",
+            "Toss sweet potatoes and Brussels sprouts with 1 tbsp olive oil, salt, and pepper",
+            "Spread vegetables on sheet pan, roast for 15 minutes",
+            "Mix remaining olive oil, maple syrup, Dijon, and garlic",
+            "Add salmon to pan, brush with maple-mustard mixture",
+            "Add lemon slices and rosemary sprigs",
+            "Roast additional 12-15 minutes until salmon is cooked through",
+            "Garnish with fresh lemon juice before serving"
+          ],
+          "healthBenefits": [
+            "Omega-3 Fatty Acids: Salmon supports brain health and reduces inflammation",
+            "Beta Carotene: Sweet potatoes provide vitamin A for eye health",
+            "Cruciferous Vegetables: Brussels sprouts offer cancer-fighting compounds",
+            "High in Protein: Salmon provides essential amino acids",
+            "Nutrient-Dense: Complete meal with healthy fats, protein, and complex carbs"
+          ]
+        },
+        {
+          "id": "he4",
+          "name": "Green Goddess Smoothie Bowl",
+          "imageUrl": "images/green-smoothie-bowl.jpg",
+          "tags": ["Healthy", "Vegan", "Raw"],
+          "cookTime": "10 mins",
+          "likes": 355,
+          "description": "Nutrient-packed smoothie bowl with superfoods and fresh toppings",
+          "ingredients": [
+            "2 cups spinach",
+            "1 frozen banana",
+            "1/2 avocado",
+            "1 cup almond milk",
+            "1 tbsp chia seeds",
+            "1 scoop plant-based protein powder (optional)",
+            "Toppings:",
+            "Granola",
+            "Fresh berries",
+            "Sliced almonds",
+            "Hemp seeds",
+            "Coconut flakes"
+          ],
+          "procedure": [
+            "Blend spinach and almond milk until smooth",
+            "Add banana, avocado, chia seeds, and protein powder",
+            "Blend until creamy but thick enough to eat with a spoon",
+            "Pour into a bowl",
+            "Top with granola, berries, almonds, hemp seeds, and coconut",
+            "Serve immediately"
+          ],
+          "healthBenefits": [
+            "Nutrient-Dense: Packed with vitamins, minerals, and antioxidants",
+            "Healthy Fats: Avocado and seeds provide essential fatty acids",
+            "High in Fiber: Supports digestive health and satiety",
+            "Plant-Based Protein: Complete protein when combined with toppings",
+            "Energy-Boosting: Natural sugars and complex carbs for sustained energy"
+          ]
+        }
+      ]
+    },
+    "5": {
+      "name": "Snacks",
+      "recipes": [
+        {
+          "id": "sn1",
+          "name": "Potato Chips",
+          "imageUrl": "",
+          "tags": ["Snacks", "Crispy", "Vegetarian", "Easy"],
+          "cookTime": "45 mins",
+          "likes": 425,
+          "description": "Crispy, homemade potato chips seasoned to perfection",
+          "ingredients": [
+            "3 large potatoes",
+            "Salt to taste",
+            "Oil for frying",
+            "Optional: paprika, chili powder, or garlic powder for extra flavor"
+          ],
+          "procedure": [
+            "Slice the potatoes thinly using a mandoline or knife",
+            "Soak the slices in cold water for 30 minutes to remove excess starch",
+            "Dry the slices with a paper towel",
+            "Heat oil in a pan and fry the slices until golden and crispy",
+            "Drain on paper towels and season with salt or desired spices"
+          ],
+          "healthBenefits": [
+            "Quick Energy Boost: Source of carbohydrates and fats for fast energy",
+            "Source of Potassium: Supports heart and muscle health",
+            "Feel-Good Factor: Can contribute to happiness and reduce stress",
+            "Iron and Magnesium: Contains trace amounts of essential minerals",
+            "Low Sugar Snack: Relatively low in sugar compared to sweet treats"
+          ]
+        },
+        {
+          "id": "sn2",
+          "name": "Popcorn",
+          "imageUrl": "",
+          "tags": ["Snacks", "Healthy", "Quick", "Vegetarian"],
+          "cookTime": "10 mins",
+          "likes": 415,
+          "description": "Light and fluffy popcorn, perfect for snacking",
+          "ingredients": [
+            "½ cup popcorn kernels",
+            "2 tbsp oil (vegetable or coconut)",
+            "Salt or melted butter for seasoning"
+          ],
+          "procedure": [
+            "Heat oil in a large pot over medium heat",
+            "Add 3 kernels; when they pop, add the remaining kernels",
+            "Cover the pot, shaking occasionally until popping slows",
+            "Remove from heat, season with salt or drizzle with melted butter"
+          ],
+          "healthBenefits": [
+            "Rich in Fiber: Packed with dietary fiber for healthy digestion",
+            "Low in Calories: Air-popped popcorn is naturally low in calories",
+            "Antioxidants: Contains polyphenols that combat free radicals",
+            "Gluten-Free: Natural gluten-free snack option",
+            "Vitamins & Minerals: Provides B-complex vitamins, magnesium, zinc, and manganese"
+          ]
+        },
+        {
+          "id": "sn3",
+          "name": "Chocolate Chip Cookies",
+          "imageUrl": "",
+          "tags": ["Snacks", "Baking", "Sweet", "Classic"],
+          "cookTime": "25 mins",
+          "likes": 495,
+          "description": "Classic homemade chocolate chip cookies with a perfect chewy texture",
+          "ingredients": [
+            "1 cup butter (softened)",
+            "1 cup sugar",
+            "2 cups flour",
+            "1 tsp baking soda",
+            "1 cup chocolate chips",
+            "1 egg",
+            "1 tsp vanilla extract"
+          ],
+          "procedure": [
+            "Cream butter and sugar together",
+            "Add egg and vanilla, mix well",
+            "Stir in flour, baking soda, and chocolate chips",
+            "Scoop dough onto a baking sheet",
+            "Bake at 180°C (350°F) for 10–12 minutes"
+          ],
+          "healthBenefits": [
+            "Energy Boost: Contains carbohydrates and fats for quick energy",
+            "Nutrient Potential: Can include fiber, vitamins, and minerals when made with whole grains",
+            "Customizable Ingredients: Can be made healthier with alternative ingredients",
+            "Mental Satisfaction: Contributes to emotional wellness",
+            "Dietary Flexibility: Can be adapted to various dietary needs"
+          ]
+        },
+        {
+          "id": "sn4",
+          "name": "Brownies",
+          "imageUrl": "",
+          "tags": ["Snacks", "Baking", "Chocolate", "Dessert"],
+          "cookTime": "35 mins",
+          "likes": 485,
+          "description": "Rich and fudgy chocolate brownies made from scratch",
+          "ingredients": [
+            "½ cup melted butter",
+            "1 cup sugar",
+            "2 eggs",
+            "1 tsp vanilla extract",
+            "⅓ cup cocoa powder",
+            "½ cup flour",
+            "¼ tsp salt"
+          ],
+          "procedure": [
+            "Preheat oven to 175°C (350°F)",
+            "Mix butter, sugar, eggs, and vanilla",
+            "Add cocoa, flour, and salt; stir until smooth",
+            "Pour into a greased pan",
+            "Bake for 20–25 minutes"
+          ],
+          "healthBenefits": [
+            "Source of Energy: Provides quick energy through carbohydrates and fats",
+            "Potential for Nutrients: Can include fiber and antioxidants with healthy ingredients",
+            "Mood Booster: Contains compounds that may contribute to happiness",
+            "Customizable Health Benefits: Can be made with healthier alternatives",
+            "Enjoyment in Moderation: Can be part of a balanced diet"
+          ]
+        }
+      ]
+    }
+  }
+}

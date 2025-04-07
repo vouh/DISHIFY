@@ -29,7 +29,7 @@
             background: white;
             position: fixed;
             top: 64px;
-            left: -280px; /* Start completely off-screen */
+            left: -280px;
             height: calc(100vh - 64px);
             z-index: 40;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
@@ -39,6 +39,10 @@
 
         aside.active {
             left: 0;
+        }
+
+        .sidebar-content {
+            margin-top: 80px;
         }
 
         /* Main content styles */
@@ -53,7 +57,7 @@
             top: 80px;
             left: 1rem;
             z-index: 50;
-            background:#ee592b;
+            background: #FF5722;
             border: none;
             padding: 0.75rem;
             border-radius: 50%;
@@ -62,6 +66,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .sidebar-toggle i {
+            color: white;
         }
 
         /* Overlay styles */
@@ -268,9 +276,130 @@
             display: block;
         }
 
-      
-      
-      
+        /* Update category text colors */
+        .category {
+            font-weight: bold;
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            color: #FF5722;
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .category:hover {
+            opacity: 0.8;
+        }
+
+        .nav-item {
+            color: #4B5563;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        .nav-item:hover {
+            color: #FF5722;
+        }
+
+        /* Category Section Styles */
+        .recipe-category-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            border-radius: 1rem;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-icon {
+            margin-right: 2rem;
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        .category-title h2 {
+            font-size: 2rem;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .category-title p {
+            margin: 0.5rem 0 0;
+            opacity: 0.9;
+        }
+
+        /* Subcategory Styles */
+        .subcategory-section {
+            margin-bottom: 3rem;
+        }
+
+        .subcategory-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid #FF5722;
+        }
+
+        .subcategory-header i {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .subcategory-header h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Recipe Grid Adjustments */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Recipe Card Hover Effects */
+        .recipe-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .category-icon {
+                margin: 0 0 1rem 0;
+            }
+
+            .recipe-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -307,19 +436,21 @@
                         </a>
                         <div class="dropdown-content">
                             <div class="category">By Cuisine</div>
-                            <a href="#">African</a>
-                            <a href="#">Asian</a>
-                            <a href="#">European</a>
+                            <a href="#african-section" data-category="1a">African</a>
+                            <a href="#asian-section" data-category="1b">Asian</a>
+                            <a href="#european-section" data-category="1c">European</a>
                             
                             <div class="category">By Meal-Time</div>
-                            <a href="#">Breakfast</a>
-                            <a href="#">Lunch</a>
-                            <a href="#">Dinner</a>
-                            
-                            <div class="category">By Dietary Needs</div>
-                            <a href="#">Vegetarian</a>
-                            <a href="#">Vegan</a>
-                            <a href="#">Gluten-Free</a>
+                            <a href="#breakfast-section" data-category="2a">Breakfast</a>
+                            <a href="#lunch-section" data-category="2b">Lunch</a>
+                            <a href="#dinner-section" data-category="2c">Dinner</a>
+
+                            <div class="category">Desserts</div>
+                            <a href="#desserts-section" data-category="3">Desserts</a>
+                            <div class="category">Healthy</div>
+                            <a href="#healthy-section" data-category="4">Healthy Meals</a>
+                            <div class="category">Snacks</div>
+                            <a href="#snacks-section" data-category="5">Quick Snacks</a>
                         </div>
                     </div>
 
@@ -347,218 +478,176 @@
 
         <!-- Sidebar -->
         <aside>
-            <div class="p-4">
+            <div class="p-4 sidebar-content">
                 <div class="mb-6">
-                    <div class="category font-bold text-lg mb-3 text-gray-700">By Cuisine</div>
+                    <a href="#" class="category" data-category="1">By Cuisine</a>
                     <div class="flex flex-col space-y-2">
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">African</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Asian</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">European</a>
+                        <a href="#" class="nav-item" data-category="1a">African</a>
+                        <a href="#" class="nav-item" data-category="1b">Asian</a>
+                        <a href="#" class="nav-item" data-category="1c">European</a>
                     </div>
                 </div>
 
                 <div class="mb-6">
-                    <div class="category font-bold text-lg mb-3 text-gray-700">By Meal-Time</div>
+                    <a href="#" class="category" data-category="2">By Meal-Time</a>
                     <div class="flex flex-col space-y-2">
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Breakfast</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Lunch</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Dinner</a>
+                        <a href="#" class="nav-item" data-category="2a">Breakfast</a>
+                        <a href="#" class="nav-item" data-category="2b">Lunch</a>
+                        <a href="#" class="nav-item" data-category="2c">Dinner</a>
                     </div>
                 </div>
 
                 <div class="mb-6">
-                    <div class="category font-bold text-lg mb-3 text-gray-700">By Dietary Needs</div>
-                    <div class="flex flex-col space-y-2">
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Vegetarian</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Vegan</a>
-                        <a href="#" class="nav-item hover:text-[#ee592b] transition-colors">Gluten-Free</a>
-                    </div>
+                    <a href="#" class="category" data-category="3">Desserts</a>
+                </div>   
+                <div class="mb-6">
+                    <a href="#" class="category" data-category="4">Healthy</a>
+                </div>
+                <div class="mb-6">
+                    <a href="#" class="category" data-category="5">Snacks</a>
                 </div>
             </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content">
-            <section class="trending-recipes">
-                <div class="section-title">
-                    <h2>Popular Kenyan Recipes Recipes</h2>
-                    <p>Discover authentic tastes from the heart of Kenya</p>
+            <!-- By Meal-Time Section -->
+            <section class="recipe-category-section meal-time" id="meal-time-section">
+                <div class="category-header" style="background: linear-gradient(135deg, #FF5722, #FF8A65);">
+                    <div class="category-icon">
+                        <i class="fas fa-clock" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="category-title">
+                        <h2>By Meal-Time</h2>
+                        <p>Discover recipes for every time of day</p>
+                    </div>
                 </div>
-                <div class="recipe-grid">
-                    <div class="recipe-card" data-aos="fade-up">
-                        <div class="recipe-image-wrapper">
-                            <img src="images/17.jpg" alt="Nyama Choma" class="recipe-image">
-                            <div class="recipe-overlay"                          <i class="fas fa-fire"></i>
-                                <span>Most Popular</span>
-                            </div>
-                        </div>
-                        <div class="recipe-content">
-                            <div class="recipe-tags">
-                                <span class="recipe-tag">Traditional</span>
-                                <span class="recipe-tag">Main Course</span>
-                            </div>
-                            <h3>Nyama Choma</h3>
-                            <p class="recipe-description">Traditional Kenyan roasted meat, usually goat or beef, served with kachumbari</p>
-                            <div class="recipe-stats">
-                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 45 mins</span>
-                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 328</span>
-                            </div>
-                        </div>
+                
+                <!-- Breakfast Section -->
+                <div class="subcategory-section" id="breakfast-section">
+                    <div class="subcategory-header">
+                        <i class="fas fa-sun" style="color: #FFA726;"></i>
+                        <h3>Breakfast</h3>
                     </div>
+                    <div class="recipe-grid" id="breakfast-grid">
+                        <!-- Recipes will be loaded here -->
+                    </div>
+                </div>
 
-                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="500">
-                        <div class="recipe-image-wrapper">
-                            <img src="images/16.jpg" alt="Ugali and Beef" class="recipe-image">
-                            <div class="recipe-overlay">
-                                <i class="fas fa-crown"></i>
-                                <span>Classic</span>
-                            </div>
-                        </div>
-                        <div class="recipe-content">
-                            <div class="recipe-tags">
-                                <span class="recipe-tag">Traditional</span>
-                                <span class="recipe-tag">Main Course</span>
-                            </div>
-                            <h3>Ugali na Nyama</h3>
-                            <p class="recipe-description">Classic Kenyan cornmeal dish served with tender beef stew and vegetables</p>
-                            <div class="recipe-stats">
-                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 45 mins</span>
-                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 425</span>
-                            </div>
-                        </div>
+                <!-- Lunch Section -->
+                <div class="subcategory-section" id="lunch-section">
+                    <div class="subcategory-header">
+                        <i class="fas fa-utensils" style="color: #66BB6A;"></i>
+                        <h3>Lunch</h3>
                     </div>
+                    <div class="recipe-grid" id="lunch-grid">
+                        <!-- Recipes will be loaded here -->
+                    </div>
+                </div>
 
-                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="recipe-image-wrapper">
-                            <img src="images/2.jpg" alt="Mukimo" class="recipe-image">
-                            <div class="recipe-overlay">
-                                <i class="fas fa-leaf"></i>
-                                <span>Vegetarian</span>
-                            </div>
-                        </div>
-                        <div class="recipe-content">
-                            <div class="recipe-tags">
-                                <span class="recipe-tag">Vegetarian</span>
-                                <span class="recipe-tag">Kikuyu</span>
-                            </div>
-                            <h3>Mukimo</h3>
-                            <p class="recipe-description">Mashed potatoes with peas, pumpkin leaves, and green maize</p>
-                            <div class="recipe-stats">
-                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 40 mins</span>
-                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 186</span>
-                            </div>
-                        </div>
+                <!-- Dinner Section -->
+                <div class="subcategory-section" id="dinner-section">
+                    <div class="subcategory-header">
+                        <i class="fas fa-moon" style="color: #5C6BC0;"></i>
+                        <h3>Dinner</h3>
                     </div>
+                    <div class="recipe-grid" id="dinner-grid">
+                        <!-- Recipes will be loaded here -->
+                    </div>
+                </div>
+            </section>
 
-                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="recipe-image-wrapper">
-                            <img src="images/21.jpg" alt="Samosa" class="recipe-image">
-                            <div class="recipe-overlay">
-                                <i class="fas fa-fire"></i>
-                                <span>Popular</span>
-                            </div>
-                        </div>
-                        <div class="recipe-content">
-                            <div class="recipe-tags">
-                                <span class="recipe-tag">Snack</span>
-                                <span class="recipe-tag">Spicy</span>
-                            </div>
-                            <h3>Kenyan Samosas</h3>
-                            <p class="recipe-description">Crispy triangular pastries filled with spiced minced meat or vegetables</p>
-                            <div class="recipe-stats">
-                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 60 mins</span>
-                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 312</span>
-                            </div>
-                        </div>
+            <!-- By Cuisine Section -->
+            <section class="recipe-category-section cuisine" id="cuisine-section">
+                <div class="category-header" style="background: linear-gradient(135deg, #43A047, #81C784);">
+                    <div class="category-icon">
+                        <i class="fas fa-globe-africa" style="font-size: 2rem;"></i>
                     </div>
+                    <div class="category-title">
+                        <h2>By Cuisine</h2>
+                        <p>Explore flavors from around the world</p>
+                    </div>
+                </div>
 
-                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="recipe-image-wrapper">
-                            <img src="images/18.jpg" alt="Githeri" class="recipe-image">
-                            <div class="recipe-overlay">
-                                <i class="fas fa-seedling"></i>
-                                <span>Healthy</span>
-                            </div>
-                        </div>git 
-                        <div class="recipe-content">
-                            <div class="recipe-tags">
-                                <span class="recipe-tag">Beans</span>
-                                <span class="recipe-tag">Maize</span>
-                            </div>
-                            <h3>Githeri</h3>
-                            <p class="recipe-description">A nutritious mix of boiled maize and beans, seasoned to perfection</p>
-                            <div class="recipe-stats">
-                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 90 mins</span>
-                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 164</span>
-                            </div>
-                        </div>
+                <!-- African Section -->
+                <div class="subcategory-section" id="african-section">
+                    <div class="subcategory-header">
+                        <i class="fas fa-drum" style="color: #F4511E;"></i>
+                        <h3>African</h3>
                     </div>
+                    <div class="recipe-grid" id="african-grid">
+                        <!-- Recipes will be loaded here -->
+                    </div>
+                </div>
 
-                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="recipe-image-wrapper">
-                            <img src="images/19.jpg" alt="Chapati" class="recipe-image">
-                            <div class="recipe-overlay">
-                                <i class="fas fa-utensils"></i>
-                                <span>Essential</span>
-                            </div>
-                        </div>
-                        <div class="recipe-content">
-                            <div class="recipe-tags">
-                                <span class="recipe-tag">Bread</span>
-                                <span class="recipe-tag">Basic</span>
-                            </div>
-                            <h3>Kenyan Chapati</h3>
-                            <p class="recipe-description">Soft and layered flatbread, perfect with any curry or stew</p>
-                            <div class="recipe-stats">
-                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 30 mins</span>
-                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 292</span>
-                            </div>
-                        </div>
+                <!-- Asian Section -->
+                <div class="subcategory-section" id="asian-section">
+                    <div class="subcategory-header">
+                        <i class="fas fa-fan" style="color: #E91E63;"></i>
+                        <h3>Asian</h3>
                     </div>
+                    <div class="recipe-grid" id="asian-grid">
+                        <!-- Recipes will be loaded here -->
+                    </div>
+                </div>
 
-                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="recipe-image-wrapper">
-                            <img src="images/4.jpg" alt="Pilau" class="recipe-image">
-                            <div class="recipe-overlay">
-                                <i class="fas fa-star"></i>
-                                <span>Featured</span>
-                            </div>
-                        </div>
-                        <div class="recipe-content">
-                            <div class="recipe-tags">
-                                <span class="recipe-tag">Rice</span>
-                                <span class="recipe-tag">Spicy</span>
-                            </div>
-                            <h3>Kenyan Pilau</h3>
-                            <p class="recipe-description">Aromatic rice cooked with spices, meat, and caramelized onions</p>
-                            <div class="recipe-stats">
-                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 60 mins</span>
-                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 245</span>
-                            </div>
-                        </div>
+                <!-- European Section -->
+                <div class="subcategory-section" id="european-section">
+                    <div class="subcategory-header">
+                        <i class="fas fa-landmark" style="color: #3F51B5;"></i>
+                        <h3>European</h3>
                     </div>
+                    <div class="recipe-grid" id="european-grid">
+                        <!-- Recipes will be loaded here -->
+                    </div>
+                </div>
+            </section>
 
-                    <div class="recipe-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="recipe-image-wrapper">
-                            <img src="images/20.jpg" alt="Mandazi" class="recipe-image">
-                            <div class="recipe-overlay">
-                                <i class="fas fa-cookie"></i>
-                                <span>Breakfast</span>
-                            </div>
-                        </div>
-                        <div class="recipe-content">
-                            <div class="recipe-tags">
-                                <span class="recipe-tag">Pastry</span>
-                                <span class="recipe-tag">Sweet</span>
-                            </div>
-                            <h3>Kenyan Mandazi</h3>
-                            <p class="recipe-description">Sweet, fluffy East African doughnuts flavored with cardamom and coconut milk</p>
-                            <div class="recipe-stats">
-                                <span><i class="far fa-clock" style="color: #FF5722;"></i> 45 mins</span>
-                                <span><i class="far fa-heart" style="color: #FF5722;"></i> 275</span>
-                            </div>
-                        </div>
+            <!-- Desserts Section -->
+            <section class="recipe-category-section desserts" id="desserts-section">
+                <div class="category-header" style="background: linear-gradient(135deg, #E91E63, #F48FB1);">
+                    <div class="category-icon">
+                        <i class="fas fa-ice-cream" style="font-size: 2rem;"></i>
                     </div>
+                    <div class="category-title">
+                        <h2>Desserts</h2>
+                        <p>Indulge in sweet delights</p>
+                    </div>
+                </div>
+                <div class="recipe-grid" id="desserts-grid">
+                    <!-- Recipes will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Healthy Section -->
+            <section class="recipe-category-section healthy" id="healthy-section">
+                <div class="category-header" style="background: linear-gradient(135deg, #66BB6A, #A5D6A7);">
+                    <div class="category-icon">
+                        <i class="fas fa-seedling" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="category-title">
+                        <h2>Healthy</h2>
+                        <p>Nutritious and delicious recipes</p>
+                    </div>
+                </div>
+                <div class="recipe-grid" id="healthy-grid">
+                    <!-- Recipes will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Snacks Section -->
+            <section class="recipe-category-section snacks" id="snacks-section">
+                <div class="category-header" style="background: linear-gradient(135deg, #FFA726, #FFD54F);">
+                    <div class="category-icon">
+                        <i class="fas fa-cookie" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="category-title">
+                        <h2>Snacks</h2>
+                        <p>Perfect bites for any time</p>
+                    </div>
+                </div>
+                <div class="recipe-grid" id="snacks-grid">
+                    <!-- Recipes will be loaded here -->
                 </div>
             </section>
         </main>
@@ -653,5 +742,6 @@
             sidebar.classList.remove('active');
         });
     </script>
+    <script src="recipe.js"></script>
 </body>
 </html>
