@@ -9,7 +9,7 @@
             {
               "id": "af1",
               "name": "Mashed Matoke + Beef Stew",
-              "imageUrl": "",
+              "imageUrl": "images/a.jpg",
               "tags": ["African", "Main Course", "Traditional"],
               "cookTime": "60 mins",
               "likes": 425,
@@ -39,7 +39,7 @@
             {
               "id": "af2",
               "name": "Mukimo",
-              "imageUrl": "",
+              "imageUrl": "images/2.jpg",
               "tags": ["African", "Vegetarian", "Traditional"],
               "cookTime": "45 mins",
               "likes": 380,
@@ -72,7 +72,7 @@
             {
               "id": "af3",
               "name": "Kenyan Pilau",
-              "imageUrl": "",
+              "imageUrl": "images/e.jpg",
               "tags": ["African", "Main Course", "Spicy"],
               "cookTime": "50 mins",
               "likes": 450,
@@ -110,7 +110,7 @@
             {
               "id": "af4",
               "name": "Githeri with Avocado",
-              "imageUrl": "",
+              "imageUrl": "images/f.jpg",
               "tags": ["African", "Vegetarian", "Healthy"],
               "cookTime": "90 mins",
               "likes": 395,
@@ -161,7 +161,7 @@
               "id": "as2",
               "name": "Sushi Rolls",
               "imageUrl": "images/sushi.jpg",
-              "tags": ["Asian", "Lunch", "Japanese"],
+              "tags": ["Asian", "Japanese"],
               "cookTime": "45 mins",
               "likes": 450,
               "description": "Fresh sushi rolls with various fillings",
@@ -172,8 +172,8 @@
             {
               "id": "as3",
               "name": "Korean BBQ",
-              "imageUrl": "images/kbbq.jpg",
-              "tags": ["Asian", "Dinner", "Korean"],
+              "imageUrl": "images/koreabbq.jpg",
+              "tags": ["Asian", "Korean"],
               "cookTime": "40 mins",
               "likes": 480,
               "description": "Grilled marinated meat with sides",
@@ -184,8 +184,8 @@
             {
               "id": "as4",
               "name": "Dim Sum",
-              "imageUrl": "images/dimsum.jpg",
-              "tags": ["Asian", "Lunch", "Chinese"],
+              "imageUrl": "images/dimsun.jpg",
+              "tags": ["Asian", "Chinese"],
               "cookTime": "60 mins",
               "likes": 400,
               "description": "Various steamed dumplings and small bites",
@@ -201,7 +201,7 @@
             {
               "id": "eu1",
               "name": "Classic French Toast",
-              "imageUrl": "images/french-toast.jpg",
+              "imageUrl": "images/frenchtoast.jpg",
               "tags": ["European", "Sweet"],
               "cookTime": "20 mins",
               "likes": 420,
@@ -213,8 +213,8 @@
             {
               "id": "eu2",
               "name": "Italian Pasta",
-              "imageUrl": "images/pasta.jpg",
-              "tags": ["European", "Lunch", "Italian"],
+              "imageUrl": "images/pasta.png",
+              "tags": ["European", "Italian"],
               "cookTime": "30 mins",
               "likes": 460,
               "description": "Classic pasta with tomato sauce",
@@ -225,8 +225,8 @@
             {
               "id": "eu3",
               "name": "Spanish Paella",
-              "imageUrl": "images/paella.jpg",
-              "tags": ["European", "Dinner", "Spanish"],
+              "imageUrl": "images/paella.png",
+              "tags": ["European", "Spanish"],
               "cookTime": "55 mins",
               "likes": 440,
               "description": "Saffron-flavored rice with seafood",
@@ -238,7 +238,7 @@
               "id": "eu4",
               "name": "Greek Salad",
               "imageUrl": "images/greek-salad.jpg",
-              "tags": ["European", "Lunch", "Greek"],
+              "tags": ["European", "Greek"],
               "cookTime": "15 mins",
               "likes": 380,
               "description": "Fresh Mediterranean salad with feta",
@@ -259,7 +259,7 @@
             {
               "id": "br1",
               "name": "Liver and Toast with Avocado",
-              "imageUrl": "",
+              "imageUrl": "images/g.jpg",
               "tags": ["Breakfast", "High Protein", "African"],
               "cookTime": "30 mins",
               "likes": 385,
@@ -298,7 +298,7 @@
             {
               "id": "br2",
               "name": "Nduma na Chai (Arrowroot with Tea)",
-              "imageUrl": "",
+              "imageUrl": "images/h.jpg",
               "tags": ["Breakfast", "Traditional", "African"],
               "cookTime": "35 mins",
               "likes": 342,
@@ -335,7 +335,7 @@
             {
               "id": "br3",
               "name": "Sweet Plantain (Matoke) Dessert",
-              "imageUrl": "",
+              "imageUrl": "images/i.jpg",
               "tags": ["Breakfast", "Sweet", "African"],
               "cookTime": "20 mins",
               "likes": 375,
@@ -364,7 +364,7 @@
             {
               "id": "br4",
               "name": "Madazi ya Nazi (Coconut Mandazi)",
-              "imageUrl": "",
+              "imageUrl": "images/j.jpg",
               "tags": ["Breakfast", "Sweet", "African"],
               "cookTime": "40 mins",
               "likes": 395,
@@ -403,7 +403,7 @@
             {
               "id": "ln1",
               "name": "Githeri with Avocado",
-              "imageUrl": "",
+              "imageUrl": "images/f.jpg",
               "tags": ["Lunch", "Vegetarian", "African", "Healthy"],
               "cookTime": "90 mins",
               "likes": 425,
@@ -438,7 +438,7 @@
             {
               "id": "ln2",
               "name": "Wali wa Nazi na Samaki",
-              "imageUrl": "",
+              "imageUrl": "images/k.jpg",
               "tags": ["Lunch", "Seafood", "African", "Coastal"],
               "cookTime": "45 mins",
               "likes": 445,
@@ -476,7 +476,7 @@
             {
               "id": "ln3",
               "name": "Mukimo with Roast Meat (Nyama Choma)",
-              "imageUrl": "",
+              "imageUrl": "images/c.jpg",
               "tags": ["Lunch", "African", "Traditional", "Meat"],
               "cookTime": "75 mins",
               "likes": 465,
@@ -516,7 +516,7 @@
             {
               "id": "ln4",
               "name": "Biryani",
-              "imageUrl": "",
+              "imageUrl": "images/l.jpg",
               "tags": ["Lunch", "Indian", "Spicy", "Rice"],
               "cookTime": "60 mins",
               "likes": 485,
@@ -551,7 +551,7 @@
             {
               "id": "di1",
               "name": "Sukuma Wiki with Ugali and Fried Fish",
-              "imageUrl": "",
+              "imageUrl": "images/m.jpg",
               "tags": ["Dinner", "African", "Traditional", "Fish"],
               "cookTime": "60 mins",
               "likes": 445,
@@ -601,7 +601,7 @@
             {
               "id": "di2",
               "name": "Pilau with Kachumbari",
-              "imageUrl": "",
+              "imageUrl": "images/n.jpg",
               "tags": ["Dinner", "African", "Spicy", "Traditional"],
               "cookTime": "55 mins",
               "likes": 465,
@@ -654,7 +654,7 @@
             {
               "id": "di3",
               "name": "Matoke with Beef Stew",
-              "imageUrl": "",
+              "imageUrl": "images/a.jpg",
               "tags": ["Dinner", "African", "Traditional", "Stew"],
               "cookTime": "75 mins",
               "likes": 425,
@@ -693,7 +693,7 @@
             {
               "id": "di4",
               "name": "Biryani",
-              "imageUrl": "",
+              "imageUrl": "images/l.jpg",
               "tags": ["Dinner", "Indian", "Spicy", "Rice"],
               "cookTime": "60 mins",
               "likes": 485,
@@ -730,7 +730,7 @@
         {
           "id": "ds1",
           "name": "Crème brûlée",
-          "imageUrl": "",
+          "imageUrl": "images/o.jpg",
           "tags": ["Dessert", "French", "European", "Elegant"],
           "cookTime": "75 mins",
           "likes": 485,
@@ -764,7 +764,7 @@
         {
           "id": "ds2",
           "name": "Gulab Jamun",
-          "imageUrl": "",
+          "imageUrl": "images/p.jpg",
           "tags": ["Dessert", "Indian", "Asian", "Sweet"],
           "cookTime": "60 mins",
           "likes": 465,
@@ -801,7 +801,7 @@
         {
           "id": "ds3",
           "name": "Alfajores",
-          "imageUrl": "",
+          "imageUrl": "images/q.jpg",
           "tags": ["Dessert", "Argentinian", "South American", "Cookies"],
           "cookTime": "45 mins",
           "likes": 445,
@@ -838,7 +838,7 @@
         {
           "id": "ds4",
           "name": "Pavlova",
-          "imageUrl": "",
+          "imageUrl": "images/r.jpg",
           "tags": ["Dessert", "Australian", "New Zealand", "Light"],
           "cookTime": "180 mins",
           "likes": 475,
@@ -879,7 +879,7 @@
         {
           "id": "he1",
           "name": "Quinoa Buddha Bowl",
-          "imageUrl": "images/quinoa-buddha-bowl.jpg",
+          "imageUrl": "images/w.jpg",
           "tags": ["Healthy", "Vegan", "High Protein", "Gluten-Free"],
           "cookTime": "30 mins",
           "likes": 380,
@@ -919,7 +919,7 @@
         {
           "id": "he2",
           "name": "Mediterranean Grilled Chicken Salad",
-          "imageUrl": "images/med-chicken-salad.jpg",
+          "imageUrl": "images/x.jpg",
           "tags": ["Healthy", "High Protein", "Mediterranean", "Low Carb"],
           "cookTime": "25 mins",
           "likes": 365,
@@ -959,7 +959,7 @@
         {
           "id": "he3",
           "name": "Salmon and Sweet Potato Sheet Pan Dinner",
-          "imageUrl": "images/salmon-sheet-pan.jpg",
+          "imageUrl": "images/y.jpg",
           "tags": ["Healthy", "Seafood", "One-Pan", "High Protein"],
           "cookTime": "35 mins",
           "likes": 405,
@@ -997,7 +997,7 @@
         {
           "id": "he4",
           "name": "Green Goddess Smoothie Bowl",
-          "imageUrl": "images/green-smoothie-bowl.jpg",
+          "imageUrl": "images/z.jpg",
           "tags": ["Healthy", "Vegan", "Raw"],
           "cookTime": "10 mins",
           "likes": 355,
@@ -1040,7 +1040,7 @@
         {
           "id": "sn1",
           "name": "Potato Chips",
-          "imageUrl": "",
+          "imageUrl": "images/s.jpg",
           "tags": ["Snacks", "Crispy", "Vegetarian", "Easy"],
           "cookTime": "45 mins",
           "likes": 425,
@@ -1069,7 +1069,7 @@
         {
           "id": "sn2",
           "name": "Popcorn",
-          "imageUrl": "",
+          "imageUrl": "images/t.jpg",
           "tags": ["Snacks", "Healthy", "Quick", "Vegetarian"],
           "cookTime": "10 mins",
           "likes": 415,
@@ -1096,7 +1096,7 @@
         {
           "id": "sn3",
           "name": "Chocolate Chip Cookies",
-          "imageUrl": "",
+          "imageUrl": "images/u.jpg",
           "tags": ["Snacks", "Baking", "Sweet", "Classic"],
           "cookTime": "25 mins",
           "likes": 495,
@@ -1128,7 +1128,7 @@
         {
           "id": "sn4",
           "name": "Brownies",
-          "imageUrl": "",
+          "imageUrl": "images/v.jpg",
           "tags": ["Snacks", "Baking", "Chocolate", "Dessert"],
           "cookTime": "35 mins",
           "likes": 485,
