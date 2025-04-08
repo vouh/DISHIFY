@@ -94,6 +94,16 @@
                 display: inline-flex !important;
             }
         }
+
+        /* Add cursor pointer to recipe cards */
+        .recipe-card {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
@@ -255,7 +265,7 @@
                 </div>
             </div>
 
-            <div class="recipe-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="recipe-card" data-aos="fade-up" data-aos-delay="200" data-recipe='{"id":"ke6","name":"Mukimo","imageUrl":"images/2.jpg","tags":["Kenyan","Vegetarian","Kikuyu"],"cookTime":"40 mins","likes":186,"description":"Mashed potatoes with peas, pumpkin leaves, and green maize"}'>
                 <div class="recipe-image-wrapper">
                     <img src="images/2.jpg" alt="Mukimo" class="recipe-image">
                     <div class="recipe-overlay">
@@ -277,7 +287,7 @@
                 </div>
             </div>
 
-            <div class="recipe-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="recipe-card" data-aos="fade-up" data-aos-delay="400" data-recipe='{"id":"ke7","name":"Kenyan Samosas","imageUrl":"images/21.jpg","tags":["Kenyan","Snack","Spicy"],"cookTime":"60 mins","likes":312,"description":"Crispy triangular pastries filled with spiced minced meat or vegetables"}'>
                 <div class="recipe-image-wrapper">
                     <img src="images/21.jpg" alt="Samosa" class="recipe-image">
                     <div class="recipe-overlay">
@@ -369,7 +379,7 @@
             </div>
 
             <!--end of new recipes i have added-->
-            <div class="recipe-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="recipe-card" data-aos="fade-up" data-aos-delay="400" data-recipe='{"id":"ke8","name":"Kenyan Mandazi","imageUrl":"images/20.jpg","tags":["Kenyan","Pastry","Sweet","Breakfast"],"cookTime":"45 mins","likes":275,"description":"Sweet, fluffy East African doughnuts flavored with cardamom and coconut milk"}'>
                 <div class="recipe-image-wrapper">
                     <img src="images/20.jpg" alt="Mandazi" class="recipe-image">
                     <div class="recipe-overlay">
@@ -707,5 +717,8 @@
             }
         }
     </script>
+
+    <!-- Add index.js at the end of body -->
+    <script src="index.js"></script>
 </body>
 </html>

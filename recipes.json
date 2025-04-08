@@ -1224,6 +1224,302 @@
           ]
         }
       ]
+    },
+    "6": {
+      "name": "Kenyan Cuisine",
+      "recipes": [
+        {
+          "id": "ke1",
+          "name": "Nyama Choma",
+          "imageUrl": "images/17.jpg",
+          "tags": ["Kenyan", "Traditional", "Main Course"],
+          "cookTime": "45 mins",
+          "likes": 328,
+          "description": "Traditional Kenyan roasted meat, usually goat or beef, served with kachumbari",
+          "ingredients": [
+            "2 kg goat or beef meat",
+            "3 cloves garlic, minced",
+            "2 tbsp vegetable oil",
+            "1 lemon",
+            "Salt and pepper to taste",
+            "For Kachumbari:",
+            "2 red onions, finely sliced",
+            "2 tomatoes, diced",
+            "1 green chili (optional)",
+            "Juice of 1 lime",
+            "Salt to taste"
+          ],
+          "procedure": [
+            "Cut meat into sizeable chunks",
+            "Marinate with garlic, oil, lemon juice, salt, and pepper for 1 hour",
+            "Preheat grill or charcoal BBQ",
+            "Grill meat for 45-60 minutes, turning occasionally",
+            "For Kachumbari:",
+            "Mix sliced onions with salt and squeeze to soften",
+            "Rinse and drain onions",
+            "Combine with tomatoes, chili, and lime juice",
+            "Serve meat hot with kachumbari on the side"
+          ],
+          "healthBenefits": [
+            "High in protein",
+            "Rich in iron",
+            "Good source of B vitamins",
+            "Fresh vegetables provide vitamins and minerals"
+          ]
+        },
+        {
+          "id": "ke2",
+          "name": "Ugali na Nyama",
+          "imageUrl": "images/16.jpg",
+          "tags": ["Kenyan", "Traditional", "Main Course"],
+          "cookTime": "45 mins",
+          "likes": 425,
+          "description": "Classic Kenyan cornmeal dish served with tender beef stew and vegetables",
+          "ingredients": [
+            "2 cups white cornmeal (maize flour)",
+            "4 cups water",
+            "500g beef, cubed",
+            "2 onions, chopped",
+            "3 tomatoes, diced",
+            "2 carrots, sliced",
+            "2 cloves garlic, minced",
+            "Salt and pepper to taste",
+            "Cooking oil"
+          ],
+          "procedure": [
+            "For Beef Stew:",
+            "Brown beef in oil until golden",
+            "Add onions and garlic, cook until softened",
+            "Add tomatoes, carrots, and seasonings",
+            "Simmer for 30-40 minutes until meat is tender",
+            "For Ugali:",
+            "Boil water in a pot",
+            "Gradually add cornmeal while stirring continuously",
+            "Cook and stir until firm and smooth",
+            "Shape into a dome and serve with the stew"
+          ],
+          "healthBenefits": [
+            "High in protein from beef",
+            "Complex carbohydrates from ugali",
+            "Rich in vitamins and minerals",
+            "Good source of fiber"
+          ]
+        },
+        {
+          "id": "ke3",
+          "name": "Githeri",
+          "imageUrl": "images/18.jpg",
+          "tags": ["Kenyan", "Beans", "Maize", "Healthy"],
+          "cookTime": "90 mins",
+          "likes": 164,
+          "description": "A nutritious mix of boiled maize and beans, seasoned to perfection",
+          "ingredients": [
+            "2 cups dried maize kernels",
+            "2 cups dried beans",
+            "2 onions, chopped",
+            "3 tomatoes, diced",
+            "2 carrots, diced",
+            "2 cloves garlic, minced",
+            "Salt and pepper to taste",
+            "Cooking oil"
+          ],
+          "procedure": [
+            "Soak maize and beans overnight",
+            "Boil maize and beans until tender (about 1 hour)",
+            "In a separate pan, sauté onions and garlic",
+            "Add tomatoes and carrots, cook until soft",
+            "Combine with cooked maize and beans",
+            "Season with salt and pepper",
+            "Simmer for 10-15 minutes to blend flavors"
+          ],
+          "healthBenefits": [
+            "High in protein and fiber",
+            "Rich in complex carbohydrates",
+            "Good source of vitamins and minerals",
+            "Supports digestive health"
+          ]
+        },
+        {
+          "id": "ke4",
+          "name": "Kenyan Chapati",
+          "imageUrl": "images/19.jpg",
+          "tags": ["Kenyan", "Bread", "Basic"],
+          "cookTime": "30 mins",
+          "likes": 292,
+          "description": "Soft and layered flatbread, perfect with any curry or stew",
+          "ingredients": [
+            "3 cups all-purpose flour",
+            "1 tsp salt",
+            "1 cup warm water",
+            "3 tbsp vegetable oil",
+            "Extra oil for cooking"
+          ],
+          "procedure": [
+            "Mix flour and salt in a bowl",
+            "Add water gradually while kneading",
+            "Knead until smooth and elastic",
+            "Divide into 8-10 portions",
+            "Roll each portion into a circle",
+            "Brush with oil and roll into a rope",
+            "Coil the rope and roll flat again",
+            "Cook on hot griddle until golden brown"
+          ],
+          "healthBenefits": [
+            "Good source of carbohydrates",
+            "Provides energy",
+            "Can be made with whole wheat for added nutrition",
+            "Versatile accompaniment to various dishes"
+          ]
+        },
+        {
+          "id": "ke5",
+          "name": "Kenyan Pilau",
+          "imageUrl": "images/4.jpg",
+          "tags": ["Kenyan", "Rice", "Spicy"],
+          "cookTime": "60 mins",
+          "likes": 245,
+          "description": "Aromatic rice cooked with spices, meat, and caramelized onions",
+          "ingredients": [
+            "2 cups basmati rice",
+            "500g beef or goat meat, cubed",
+            "3 onions, sliced",
+            "4 cloves garlic, minced",
+            "2 tbsp pilau masala",
+            "4 cups beef stock",
+            "Salt to taste",
+            "Cooking oil"
+          ],
+          "procedure": [
+            "Boil meat in oil until golden",
+            "Add onions and cook until caramelized",
+            "Add garlic and pilau masala, cook until fragrant",
+            "Add rice and stir to coat with spices",
+            "Pour in hot stock and bring to boil",
+            "Reduce heat, cover and simmer for 20 minutes",
+            "Let rest for 10 minutes before serving"
+          ],
+          "healthBenefits": [
+            "Protein-rich from meat",
+            "Complex carbohydrates from rice",
+            "Spices have anti-inflammatory properties",
+            "Good source of energy"
+          ]
+        },
+        {
+          "id": "ke6",
+          "name": "Mukimo",
+          "imageUrl": "images/2.jpg",
+          "tags": ["Kenyan", "Vegetarian", "Kikuyu"],
+          "cookTime": "40 mins",
+          "likes": 186,
+          "description": "Mashed potatoes with peas, pumpkin leaves, and green maize",
+          "ingredients": [
+            "4 large potatoes, peeled and quartered",
+            "1 cup green peas",
+            "1 cup green maize kernels",
+            "2 cups pumpkin leaves (or spinach), chopped",
+            "2 onions, chopped",
+            "3 tablespoons butter or oil",
+            "Salt to taste"
+          ],
+          "procedure": [
+            "Boil potatoes until tender",
+            "In a separate pot, cook peas and maize until soft",
+            "Blanch pumpkin leaves briefly in hot water",
+            "Sauté onions until golden brown",
+            "Mash potatoes, then add cooked peas and maize",
+            "Mix in blanched pumpkin leaves and sautéed onions",
+            "Season with salt and add butter",
+            "Mash everything together until well combined",
+            "Serve hot as a side dish"
+          ],
+          "healthBenefits": [
+            "Rich in fiber and vitamins",
+            "Good source of plant-based protein",
+            "Contains essential minerals",
+            "High in antioxidants from pumpkin leaves"
+          ]
+        },
+        {
+          "id": "ke7",
+          "name": "Kenyan Samosas",
+          "imageUrl": "images/21.jpg",
+          "tags": ["Kenyan", "Snack", "Spicy"],
+          "cookTime": "60 mins",
+          "likes": 312,
+          "description": "Crispy triangular pastries filled with spiced minced meat or vegetables",
+          "ingredients": [
+            "2 cups all-purpose flour",
+            "Water for dough",
+            "500g minced meat (beef or lamb)",
+            "2 onions, finely chopped",
+            "3 cloves garlic, minced",
+            "1 inch ginger, grated",
+            "2 green chilies, chopped (optional)",
+            "1 tsp cumin powder",
+            "1 tsp coriander powder",
+            "Salt and pepper to taste",
+            "Oil for deep frying"
+          ],
+          "procedure": [
+            "Make dough: Mix flour with water to form firm dough, rest for 30 minutes",
+            "For filling: Brown minced meat in a pan",
+            "Add onions, garlic, ginger, and spices",
+            "Cook until meat is done and mixture is dry",
+            "Roll dough into thin circles",
+            "Cut each circle into two semicircles",
+            "Form cone, fill with meat mixture",
+            "Seal edges with water",
+            "Deep fry until golden brown",
+            "Serve hot with chutney or ketchup"
+          ],
+          "healthBenefits": [
+            "High in protein from meat filling",
+            "Contains anti-inflammatory spices",
+            "Good source of energy",
+            "Ginger and garlic boost immunity"
+          ]
+        },
+        {
+          "id": "ke8",
+          "name": "Kenyan Mandazi",
+          "imageUrl": "images/20.jpg",
+          "tags": ["Kenyan", "Pastry", "Sweet", "Breakfast"],
+          "cookTime": "45 mins",
+          "likes": 275,
+          "description": "Sweet, fluffy East African doughnuts flavored with cardamom and coconut milk",
+          "ingredients": [
+            "3 cups all-purpose flour",
+            "1/2 cup sugar",
+            "1 tsp baking powder",
+            "1/2 tsp cardamom powder",
+            "1/4 tsp salt",
+            "1 cup coconut milk",
+            "1 egg",
+            "2 tbsp butter, melted",
+            "Oil for deep frying"
+          ],
+          "procedure": [
+            "Mix dry ingredients: flour, sugar, baking powder, cardamom, and salt",
+            "In another bowl, whisk coconut milk, egg, and melted butter",
+            "Combine wet and dry ingredients to form soft dough",
+            "Knead for 5-10 minutes until smooth",
+            "Rest dough for 30 minutes",
+            "Roll out dough to 1/4 inch thickness",
+            "Cut into triangles or diamonds",
+            "Heat oil for deep frying",
+            "Fry until golden brown on both sides",
+            "Drain on paper towels",
+            "Serve warm, optionally dusted with sugar"
+          ],
+          "healthBenefits": [
+            "Energy-rich breakfast option",
+            "Cardamom aids digestion",
+            "Coconut milk provides healthy fats",
+            "Good source of quick energy"
+          ]
+        }
+      ]
     }
   }
 }
