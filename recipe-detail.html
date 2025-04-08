@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Detail - Dishify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+    <style>
+        .recipe-hero {
+            position: relative;
+            height: 50vh;
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .recipe-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8));
+        }
+
+        .recipe-hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .recipe-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .recipe-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recipe-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .recipe-section {
+            margin-bottom: 2rem;
+        }
+
+        .recipe-section h2 {
+            color: #FF5722;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #FF5722;
+        }
+
+        .ingredients-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ingredients-list li {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ingredients-list li::before {
+            content: '•';
+            color: #FF5722;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .procedure-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+
+        .procedure-list li {
+            counter-increment: step-counter;
+            display: flex;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f8f8;
+            border-radius: 0.5rem;
+        }
+
+        .procedure-list li::before {
+            content: counter(step-counter);
+            margin-right: 1rem;
+            background: #FF5722;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .health-benefits {
+            background: #f0f9f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .health-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .health-benefits li {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+
+        .health-benefits li::before {
+            content: '✓';
+            color: #4CAF50;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .back-to-recipes {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #FF5722;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .back-to-recipes:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .recipe-hero {
+                height: 40vh;
+            }
+
+            .recipe-content {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="recipe-container">
+        <!-- Recipe content will be loaded here -->
+    </div>
+
+    <a href="recipe.html" class="back-to-recipes">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get recipe data from localStorage
+            const recipeData = JSON.parse(localStorage.getItem('selectedRecipe'));
+            if (!recipeData) {
+                window.location.href = 'recipe.html';
+                return;
+            }
+
+            // Create recipe detail HTML
+            const recipeHTML = `
+                <div class="recipe-hero" style="background-image: url('${recipeData.imageUrl}')">
+                    <div class="recipe-hero-content">
+                        <h1 class="text-4xl font-bold mb-2">${recipeData.name}</h1>
+                        <p class="text-lg opacity-90">${recipeData.description}</p>
+                        <div class="recipe-stats">
+                            <div class="recipe-stat">
+                                <i class="far fa-clock"></i>
+                                <span>${recipeData.cookTime}</span>
+                            </div>
+                            <div class="recipe-stat">
+                                <i class="far fa-heart"></i>
+                                <span>${recipeData.likes}</span>
+                            </div>
+                            <div class="recipe-stat">
+                                <i class="fas fa-tag"></i>
+                                <span>${recipeData.tags.join(', ')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recipe-content">
+                    <div class="recipe-section">
+                        <h2>Ingredients</h2>
+                        <ul class="ingredients-list">
+                            ${(recipeData.ingredients || []).map(ingredient => 
+                                `<li>${ingredient}</li>`
+                            ).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="recipe-section">
+                        <h2>Procedure</h2>
+                        <ol class="procedure-list">
+                            ${(recipeData.procedure || []).map(step => 
+                                `<li>${step}</li>`
+                            ).join('')}
+                        </ol>
+                    </div>
+
+                    ${recipeData.healthBenefits ? `
+                        <div class="recipe-section">
+                            <h2>Health Benefits</h2>
+                            <div class="health-benefits">
+                                <ul>
+                                    ${recipeData.healthBenefits.map(benefit => 
+                                        `<li>${benefit}</li>`
+                                    ).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            document.getElementById('recipe-container').innerHTML = recipeHTML;
+        });
+    </script>
+</body>
+</html> 
