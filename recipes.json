@@ -154,7 +154,15 @@
               "likes": 310,
               "description": "Comforting rice porridge with various toppings",
               "ingredients": ["Rice", "Ginger", "Green onions", "Soy sauce"],
-              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "procedure": [
+                "Rinse rice thoroughly under cold water",
+                "Combine rice with 6-8 cups of water in a large pot",
+                "Add sliced ginger and bring to a boil",
+                "Reduce heat to low and simmer for 45 minutes, stirring occasionally",
+                "Cook until rice breaks down and becomes porridge-like",
+                "Season with soy sauce to taste",
+                "Garnish with chopped green onions before serving"
+              ],
               "healthBenefits": ["Easy to digest", "Hydrating"]
             },
             {
@@ -166,7 +174,15 @@
               "likes": 450,
               "description": "Fresh sushi rolls with various fillings",
               "ingredients": ["Sushi rice", "Nori", "Fish", "Vegetables"],
-              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "procedure": [
+                "Cook sushi rice according to package instructions",
+                "Season cooked rice with prepared sushi vinegar and let cool",
+                "Place nori sheet on bamboo mat, shiny side down",
+                "Spread rice evenly on nori, leaving 1-inch strip empty at top",
+                "Add fish and vegetables in a line across the center",
+                "Using the bamboo mat, roll tightly away from you",
+                "Wet knife blade and cut roll into 6-8 pieces"
+              ],
               "healthBenefits": ["Omega-3 rich", "Low calorie"]
             },
             {
@@ -178,7 +194,14 @@
               "likes": 480,
               "description": "Grilled marinated meat with sides",
               "ingredients": ["Beef", "Marinade", "Garlic", "Soy sauce"],
-              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "procedure": [
+                "Mix marinade combining soy sauce, minced garlic, and seasonings",
+                "Slice beef thinly against the grain",
+                "Marinate beef for at least 30 minutes or up to 4 hours",
+                "Preheat grill or grill pan to high heat",
+                "Grill marinated meat for 2-3 minutes per side",
+                "Serve hot with lettuce leaves and traditional sides"
+              ],
               "healthBenefits": ["High in protein", "Rich in minerals"]
             },
             {
@@ -190,7 +213,16 @@
               "likes": 400,
               "description": "Various steamed dumplings and small bites",
               "ingredients": ["Flour", "Various fillings", "Sauces"],
-              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "procedure": [
+                "Mix flour and water to create dumpling dough",
+                "Knead dough until smooth and let rest for 30 minutes",
+                "Prepare various fillings (meat, vegetables, shrimp)",
+                "Roll dough into small circles",
+                "Place filling in center of each wrapper",
+                "Fold and pleat dumplings to seal completely",
+                "Steam in bamboo steamer for 8-10 minutes",
+                "Serve hot with dipping sauces"
+              ],
               "healthBenefits": ["Balanced meal", "Variety of nutrients"]
             }
           ]
@@ -207,7 +239,13 @@
               "likes": 420,
               "description": "Golden brown French toast with maple syrup",
               "ingredients": ["Bread", "Eggs", "Milk", "Cinnamon"],
-              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "procedure": [
+                "Whisk together eggs, milk, and cinnamon in a shallow bowl",
+                "Heat butter in a large skillet over medium heat",
+                "Dip bread slices in egg mixture, coating both sides evenly",
+                "Cook bread in hot skillet for 2-3 minutes per side until golden",
+                "Serve hot with maple syrup, butter, and optional fresh fruits"
+              ],
               "healthBenefits": ["Protein-rich", "Energy-boosting"]
             },
             {
@@ -219,7 +257,16 @@
               "likes": 460,
               "description": "Classic pasta with tomato sauce",
               "ingredients": ["Pasta", "Tomatoes", "Herbs", "Olive oil"],
-              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "procedure": [
+                "Bring a large pot of salted water to boil",
+                "Cook pasta according to package instructions until al dente",
+                "Meanwhile, heat olive oil in a large pan",
+                "Add garlic and cook until fragrant",
+                "Add tomatoes and herbs, simmer for 15-20 minutes",
+                "Season sauce with salt and pepper to taste",
+                "Drain pasta and toss with sauce",
+                "Serve hot with grated cheese"
+              ],
               "healthBenefits": ["Good carbs", "Antioxidants"]
             },
             {
@@ -231,7 +278,17 @@
               "likes": 440,
               "description": "Saffron-flavored rice with seafood",
               "ingredients": ["Rice", "Seafood", "Saffron", "Vegetables"],
-              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "procedure": [
+                "Steep saffron threads in hot water for 10 minutes",
+                "Heat olive oil in a large paella pan",
+                "Sauté onions, garlic, and bell peppers until soft",
+                "Add rice and toast for 2-3 minutes",
+                "Pour in saffron water and stock, bring to simmer",
+                "Add seafood and vegetables",
+                "Cook without stirring until rice is tender",
+                "Create socarrat (crispy bottom) in the last few minutes",
+                "Let rest 5-10 minutes before serving"
+              ],
               "healthBenefits": ["Rich in omega-3", "Various nutrients"]
             },
             {
@@ -243,7 +300,16 @@
               "likes": 380,
               "description": "Fresh Mediterranean salad with feta",
               "ingredients": ["Tomatoes", "Cucumber", "Feta", "Olives"],
-              "procedure": ["Step 1", "Step 2", "Step 3"],
+              "procedure": [
+                "Chop tomatoes and cucumber into large chunks",
+                "Slice red onion thinly",
+                "Combine vegetables in a large bowl",
+                "Add whole Kalamata olives",
+                "Top with large chunks of feta cheese",
+                "Drizzle with extra virgin olive oil",
+                "Season with dried oregano, salt, and pepper",
+                "Toss gently and serve immediately"
+              ],
               "healthBenefits": ["Low calorie", "Rich in vitamins"]
             }
           ]
