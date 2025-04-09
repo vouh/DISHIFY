@@ -260,6 +260,22 @@
                 padding: 0 1rem;
             }
         }
+
+        .recipe-actions button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
     </style>
 </head>
 <body>
@@ -270,6 +286,29 @@
     <a href="recipe.html" class="back-to-recipes">
         <i class="fas fa-arrow-left"></i>
     </a>
+
+    <div class="recipe-actions">
+        <button class="like-btn" onclick="simulateLike()">
+            <i class="fas fa-heart"></i> Like
+        </button>
+        <button class="save-share-btn" onclick="openFilenameDialog()">
+            <i class="fas fa-share"></i> Save & Share
+        </button>
+    </div>
+
+    <div id="filenameDialog" class="modal-dialog" style="display: none;">
+        <div class="dialog-content">
+            <button class="close-btn" onclick="closeFilenameDialog()" aria-label="Close">&times;</button>
+            <h2>Save Recipe as PDF</h2>
+            <form id="filename-form" onsubmit="savePDFWithFilename(event)">
+                <div class="form-group">
+                    <label for="pdf-filename">Filename</label>
+                    <input type="text" id="pdf-filename" required placeholder="Enter filename">
+                </div>
+                <button type="submit" class="submit-btn">Save</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -407,6 +446,106 @@
                 // Scroll to the new comment
                 commentsList.scrollTop = commentsList.scrollHeight;
             }
+        }
+
+        function openFilenameDialog() {
+            document.getElementById('filenameDialog').style.display = 'block';
+        }
+
+        function closeFilenameDialog() {
+            document.getElementById('filenameDialog').style.display = 'none';
+        }
+
+        function savePDFWithFilename(event) {
+            event.preventDefault();
+            const filename = document.getElementById('pdf-filename').value.trim();
+            if (filename) {
+                captureAndDownloadPDF(filename);
+                closeFilenameDialog();
+            }
+        }
+
+        function captureAndDownloadPDF(filename) {
+            console.log('Generating PDF from HTML content');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const margin = 10;
+            let yPosition = margin;
+
+            // Add title
+            pdf.setFontSize(22);
+            pdf.setTextColor('#FF5722'); // Theme color
+            pdf.text('Dishify Recipe', margin, yPosition);
+            yPosition += 10;
+
+            // Add recipe name
+            const recipeName = document.querySelector('.recipe-hero-content h1').textContent;
+            pdf.setFontSize(16);
+            pdf.setTextColor('#000');
+            pdf.text(`Recipe: ${recipeName}`, margin, yPosition);
+            yPosition += 10;
+
+            // Add description
+            const description = document.querySelector('.recipe-hero-content p').textContent;
+            pdf.setFontSize(12);
+            pdf.text(`Description: ${description}`, margin, yPosition);
+            yPosition += 10;
+
+            // Add ingredients
+            pdf.setFontSize(14);
+            pdf.setTextColor('#FF5722');
+            pdf.text('Ingredients:', margin, yPosition);
+            yPosition += 8;
+            const ingredients = document.querySelectorAll('.ingredients-list li');
+            ingredients.forEach(ingredient => {
+                pdf.setFontSize(12);
+                pdf.setTextColor('#000');
+                pdf.text(`- ${ingredient.textContent}`, margin, yPosition);
+                yPosition += 6;
+            });
+
+            // Add procedure
+            pdf.setFontSize(14);
+            pdf.setTextColor('#FF5722');
+            pdf.text('Procedure:', margin, yPosition);
+            yPosition += 8;
+            const procedures = document.querySelectorAll('.procedure-list li');
+            procedures.forEach((step, index) => {
+                pdf.setFontSize(12);
+                pdf.setTextColor('#000');
+                pdf.text(`${index + 1}. ${step.textContent}`, margin, yPosition);
+                yPosition += 6;
+            });
+
+            // Add health benefits
+            pdf.setFontSize(14);
+            pdf.setTextColor('#FF5722');
+            pdf.text('Health Benefits:', margin, yPosition);
+            yPosition += 8;
+            const healthBenefits = document.querySelectorAll('.health-benefits li');
+            healthBenefits.forEach(benefit => {
+                pdf.setFontSize(12);
+                pdf.setTextColor('#000');
+                pdf.text(`- ${benefit.textContent}`, margin, yPosition);
+                yPosition += 6;
+            });
+
+            // Save the PDF
+            console.log('PDF generated');
+            pdf.save(`${filename}.pdf`);
+        }
+
+        const script2 = document.createElement('script');
+        script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js';
+        script2.onload = function() {
+            console.log('jsPDF loaded');
+            window.jsPDF = window.jspdf.jsPDF; // Ensure jsPDF is available globally
+        };
+        document.head.appendChild(script2);
+
+        function simulateLike() {
+            const likeButton = document.querySelector('.like-btn');
+            likeButton.innerHTML = '<i class="fas fa-heart"></i> Liked';
+            likeButton.style.backgroundColor = '#f4511e';
         }
     </script>
 </body>
