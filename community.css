@@ -2,10 +2,10 @@
 .community-container {
     display: flex;
     gap: 20px;
-    max-width: 1600px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 90px 20px 20px;
-    min-height: calc(100vh - 80px);
+    padding: 60px 10px 10px;
+    min-height: calc(100vh - 60px);
     position: relative;
     transition: padding-left 0.3s ease;
 }
@@ -56,7 +56,7 @@
 /* Main Content Styles */
 .main-content {
     flex: 1;
-    margin-left: 320px; /* 300px sidebar + 20px gap */
+    margin-left: 300px;
     transition: margin-left 0.3s ease;
     min-width: 0;
 }
@@ -232,8 +232,10 @@
 
 /* Members Grid Styles */
 .members-section {
-    padding: 20px;
+    padding: 50px;
     width: 100%;
+    max-height: calc(130vh - 100px);
+    overflow-y: visible;
 }
 
 .members-section h2 {
@@ -244,16 +246,15 @@
 
 .members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px;
-    max-height: calc(100vh - 150px);
-    overflow-y: auto;
-    padding-right: 15px;
-    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding-right: 10px;
+    overflow: visible;
 }
 
 .members-grid::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
 }
 
 .members-grid::-webkit-scrollbar-track {
@@ -271,7 +272,7 @@
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -285,8 +286,8 @@
 }
 
 .member-pic {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     border: 4px solid #FF5722;
     object-fit: cover;
@@ -525,14 +526,35 @@ input[type="file"] {
     border: none;
     border-radius: 12px;
     padding: 0;
-    max-width: 500px;
-    width: 90%;
+    max-width: 450px;
+    width: 100%;
 }
 
-.dialog-content {
-    padding: 30px;
-    max-width: 600px;
-    width: 90%;
+.modal-dialog .dialog-content {
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 280px;
+}
+
+#recipeForm {
+    padding: 5px;
+    margin: 0 auto;
+    max-width: 180px;
+}
+
+#recipeForm .form-group {
+    margin-bottom: 8px;
+}
+
+#recipeForm input[type="text"],
+#recipeForm textarea {
+    padding: 5px;
+    font-size: 0.8rem;
+}
+
+#recipeForm button {
+    padding: 5px 8px;
+    font-size: 0.8rem;
 }
 
 .dialog-content h2 {

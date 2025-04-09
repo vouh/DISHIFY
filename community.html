@@ -82,6 +82,9 @@
                     <button class="edit-profile-btn" onclick="editProfile()">
                         <i class="fas fa-edit"></i> Edit Profile
                     </button>
+                    <button class="submit-recipe-btn" onclick="openRecipeModal()">
+                        <i class="fas fa-plus"></i> Submit Recipe
+                    </button>
                 </div>
             </div>
         </div>
@@ -93,11 +96,39 @@
                 <div class="members-grid">
                     <!-- 10 Blank Member Cards -->
                     <div class="member-card">
-                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <img src="images/khalid.jpg" alt="Member" class="member-pic">
                         <div class="member-info">
-                            <h3 class="member-name">Your Name</h3>
-                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
-                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <h3 class="member-name">Khalid Swaleh</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i>SANA'A,YEMEN</p>
+                            <p class="member-bio">Hi, I'm Khalid Breik Swaleh, a passionate home cook with a love for exploring flavors and sharing delicious recipes.I hope you find something here that sparks your culinary curiosity and brings warmth to your table.</p>
+                            <div class="member-social">
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/.scoffield.?igsh=MTZ6OXI3eWE3MnpwOA==" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="http://wa.me/+254782521860" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="images/wallace.jpg" alt="Member" class="member-pic">
+                        <div class="member-info">
+                            <h3 class="member-name">Wallace Kahin</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+                            <p class="member-bio">Cooking is such a wonderful adventure.it’s like chemistry meets art. I find joy in exploring cuisines from around the world, as each one tells a story about its culture, climate, and history</p>
+                            <div class="member-social">
+                                <a href="https://www.facebook.com/wallace.macharia.758" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/wally_kahin?igsh=aHFsbmhyOGw0Zmdx" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.tiktok.com/@wally_marsha?_t=ZM-8vKL9AeqJM6&_r=1" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="https://wa.me/qr/2LG4XIMAHEULO1 " class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="images/avatar.png" alt="Member" class="member-pic">
+                        <div class="member-info">
+                            <h3 class="member-name">Faith </h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> Mombasa, Kenya</p>
+                            <p class="member-bio">: The kitchen is my happy place where I transform ingredients into memories ,I enjoy Italian dishes, cooking is my therapy</p>
                             <div class="member-social">
                                 <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
                                 <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
@@ -107,11 +138,11 @@
                         </div>
                     </div>
                     <div class="member-card">
-                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <img src="images/avatar.png" alt="Member" class="member-pic">
                         <div class="member-info">
-                            <h3 class="member-name">Your Name</h3>
-                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
-                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <h3 class="member-name">Esha Mwinyihajj</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i>Mombasa, Kenya</p>
+                            <p class="member-bio"> I have a deep passion for cooking, especially Swahili  cuisines. I love experimenting with different ingredients and creating delicious meals that bring joy to others.</p>
                             <div class="member-social">
                                 <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
                                 <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
@@ -121,11 +152,11 @@
                         </div>
                     </div>
                     <div class="member-card">
-                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <img src="images/collo.jpg" alt="Member" class="member-pic">
                         <div class="member-info">
-                            <h3 class="member-name">Your Name</h3>
-                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
-                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <h3 class="member-name">Collins Kimani</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i>Nakuru, Kenya</p>
+                            <p class="member-bio">Cooking- is a one of a kind chemistry created from numerous different ingredients to make appealing delicacies. This is a journey taken by the taste buds</p>
                             <div class="member-social">
                                 <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
                                 <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
@@ -135,58 +166,16 @@
                         </div>
                     </div>
                     <div class="member-card">
-                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
+                        <img src="images/mrp.jpg" alt="Member" class="member-pic">
                         <div class="member-info">
-                            <h3 class="member-name">Your Name</h3>
-                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
-                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
+                            <h3 class="member-name">M.r P</h3>
+                            <p class="member-location"><i class="fas fa-map-marker-alt"></i>Nairobi, Kenya</p>
+                            <p class="member-bio">Though not a big fan of cooking, I love eating and trying out new recipes. I'm always up for a good meal and a good conversation and a good company</p>
                             <div class="member-social">
-                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member-card">
-                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
-                        <div class="member-info">
-                            <h3 class="member-name">Your Name</h3>
-                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
-                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
-                            <div class="member-social">
-                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member-card">
-                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
-                        <div class="member-info">
-                            <h3 class="member-name">Your Name</h3>
-                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
-                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
-                            <div class="member-social">
-                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member-card">
-                        <img src="https://via.placeholder.com/150" alt="Member" class="member-pic">
-                        <div class="member-info">
-                            <h3 class="member-name">Your Name</h3>
-                            <p class="member-location"><i class="fas fa-map-marker-alt"></i> City, Country</p>
-                            <p class="member-bio">Share your passion for cooking! Tell us about your favorite cuisines and cooking experiences.</p>
-                            <div class="member-social">
-                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                                <a href="https://www.facebook.com/" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.tiktok.com/" class="social-link"><i class="fab fa-tiktok"></i></a>
+                                <a href="https://api.whatsapp.com/send/?phone=%2B254741739262&text&type=phone_number&app_absent=0" class="social-link"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -264,6 +253,41 @@
         </div>
     </dialog>
 
+    <!-- Recipe Submission Modal -->
+    <dialog id="recipeModal" class="modal-dialog">
+        <div class="dialog-content">
+            <button class="close-btn" onclick="this.closest('dialog').close()">&times;</button>
+            <h2>Add New Recipe</h2>
+            <form id="recipeForm" style="max-width: 300px; margin: auto;">
+                <div class="form-group">
+                    <label for="recipeTitle">Recipe Title</label>
+                    <input type="text" id="recipeTitle" name="title" required style="width: 100%; font-size: 0.85rem;">
+                </div>
+                <div class="form-group">
+                    <label for="recipeDescription">Description</label>
+                    <textarea id="recipeDescription" name="description" required style="width: 100%; font-size: 0.85rem;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipeIngredients">Ingredients</label>
+                    <textarea id="recipeIngredients" name="ingredients" required style="width: 100%; font-size: 0.85rem;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipeInstructions">Instructions</label>
+                    <textarea id="recipeInstructions" name="instructions" required style="width: 100%; font-size: 0.85rem;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipeImage">Recipe Image</label>
+                    <input type="file" id="recipeImage" name="image" accept="image/*" style="display: none;">
+                    <button type="button" onclick="document.getElementById('recipeImage').click()" style="margin-top: 5px; padding: 5px 10px; font-size: 0.85rem;">Select Image</button>
+                    <div id="imagePreview" style="margin-top: 10px; max-width: 100%; height: 100px; border: 1px dashed #ddd; border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                        <p style="color: #666;">No image selected</p>
+                    </div>
+                </div>
+                <button type="submit" class="save-recipe-btn" style="font-size: 0.85rem;">Add Recipe</button>
+            </form>
+        </div>
+    </dialog>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -330,5 +354,31 @@
     <script src="community.js"></script>
     <script src="main.js"></script>
     <script src="dashboard.js"></script>
+    <script>
+        function openRecipeModal() {
+            document.getElementById('recipeModal').showModal();
+        }
+
+        document.getElementById('recipeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form validation and submission logic here
+            alert('Recipe submitted successfully!');
+            document.getElementById('recipeModal').close();
+        });
+
+        document.getElementById('recipeImage').addEventListener('change', function() {
+            const previewContainer = document.getElementById('imagePreview');
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewContainer.innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.innerHTML = '<p style="color: #666;">No image selected</p>';
+            }
+        });
+    </script>
 </body>
 </html>
